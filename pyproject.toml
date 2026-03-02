@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "pyvoicebox"
+version = "0.1.0"
+description = "Python port of VOICEBOX speech processing toolbox"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "scipy",
+    "soundfile",
+    "matplotlib",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["pyvoicebox*"]
