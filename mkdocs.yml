@@ -1,10 +1,24 @@
 site_name: pyvoicebox
 site_description: Python port of the VOICEBOX speech processing toolbox
-repo_url: https://github.com/ImperialCollegeLondon/sap-voicebox
+site_url: https://mfa-x-ai.github.io/pyvoicebox/
+site_author: MFA-X-AI
+
+repo_name: MFA-X-AI/pyvoicebox
+repo_url: https://github.com/MFA-X-AI/pyvoicebox
+edit_uri: edit/master/docs/
+
+copyright: >
+  Port of <a href="https://github.com/ImperialCollegeLondon/sap-voicebox">VOICEBOX</a>
+  by Mike Brookes, Imperial College London.
 
 theme:
   name: material
+  language: en
   palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: indigo
@@ -18,18 +32,41 @@ theme:
       accent: indigo
       toggle:
         icon: material/brightness-4
-        name: Switch to light mode
+        name: Switch to system preference
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
   features:
-    - content.code.copy
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
-    - navigation.expand
-    - search.highlight
-    - search.suggest
+    - navigation.path
+    - navigation.top
+    - navigation.prune
+    - navigation.indexes
     - toc.follow
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+    - content.action.edit
+    - content.action.view
 
 plugins:
-  - search
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - mkdocstrings:
+      default_handler: python
       handlers:
         python:
           options:
@@ -37,36 +74,86 @@ plugins:
             show_source: true
             show_root_heading: true
             show_root_full_path: false
+            show_root_toc_entry: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
             members_order: source
+            separate_signature: true
+            show_signature_annotations: true
+            signature_crossrefs: true
+            merge_init_into_class: true
+            docstring_section_style: table
             heading_level: 3
 
 markdown_extensions:
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.superfences
-  - pymdownx.inlinehilite
+  # Python Markdown
+  - abbr
   - admonition
-  - pymdownx.details
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
   - toc:
       permalink: true
+      title: On this page
+
+  # PyMdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/MFA-X-AI/pyvoicebox
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/pyvoicebox/
 
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
   - API Reference:
-      - "Audio File I/O": api/audio-io.md
-      - "Frequency Scale Conversion": api/frequency-scales.md
-      - "Fourier, DCT & Hartley Transforms": api/transforms.md
-      - "Random Numbers & Probability": api/probability.md
-      - "Vector Distance": api/vector-distance.md
-      - "Speech Analysis": api/speech-analysis.md
-      - "LPC Analysis": api/lpc.md
-      - "Speech Synthesis": api/speech-synthesis.md
-      - "Speech Enhancement": api/speech-enhancement.md
-      - "Speech Coding": api/speech-coding.md
-      - "Speech Recognition & Features": api/speech-recognition.md
-      - "Signal Processing": api/signal-processing.md
-      - "Information Theory": api/information-theory.md
-      - "Rotations, Quaternions & Geometry": api/rotation-geometry.md
-      - "Printing & Display": api/plotting.md
-      - "Utility Functions": api/utility.md
+      - Audio File I/O: api/audio-io.md
+      - Frequency Scale Conversion: api/frequency-scales.md
+      - Fourier, DCT & Hartley Transforms: api/transforms.md
+      - Random Numbers & Probability: api/probability.md
+      - Vector Distance: api/vector-distance.md
+      - Speech Analysis: api/speech-analysis.md
+      - LPC Analysis: api/lpc.md
+      - Speech Synthesis: api/speech-synthesis.md
+      - Speech Enhancement: api/speech-enhancement.md
+      - Speech Coding: api/speech-coding.md
+      - Speech Recognition & Features: api/speech-recognition.md
+      - Signal Processing: api/signal-processing.md
+      - Information Theory: api/information-theory.md
+      - Rotations, Quaternions & Geometry: api/rotation-geometry.md
+      - Printing & Display: api/plotting.md
+      - Utility Functions: api/utility.md

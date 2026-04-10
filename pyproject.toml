@@ -6,7 +6,28 @@ build-backend = "setuptools.backends._legacy:_Backend"
 name = "pyvoicebox"
 version = "0.1.0"
 description = "Python port of VOICEBOX speech processing toolbox"
+readme = "README.md"
 requires-python = ">=3.9"
+license = { text = "LGPL-3.0-or-later" }
+authors = [
+    { name = "MFA-X-AI" },
+]
+keywords = ["speech", "audio", "dsp", "lpc", "mfcc", "voicebox", "matlab"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Scientific/Engineering",
+]
 dependencies = [
     "numpy",
     "scipy",
@@ -14,8 +35,16 @@ dependencies = [
     "matplotlib",
 ]
 
+[project.urls]
+Homepage = "https://github.com/MFA-X-AI/pyvoicebox"
+Documentation = "https://mfa-x-ai.github.io/pyvoicebox/"
+Repository = "https://github.com/MFA-X-AI/pyvoicebox"
+Issues = "https://github.com/MFA-X-AI/pyvoicebox/issues"
+"Original MATLAB" = "https://github.com/ImperialCollegeLondon/sap-voicebox"
+
 [project.optional-dependencies]
 dev = ["pytest"]
+docs = ["mkdocs-material", "mkdocstrings[python]", "ruff"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

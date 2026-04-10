@@ -1,6 +1,46 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
 *.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# Virtual environments
 .venv/
+venv/
+env/
+ENV/
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# MkDocs build output
+site/
+
+# Test reference data (regenerated on first run via Octave)
 tests/ref_data/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Environment
+.env
+.envrc
+
+# Type checkers
+.mypy_cache/
+.ruff_cache/
