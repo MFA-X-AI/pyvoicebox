@@ -1,3 +1,7 @@
+---
+icon: material/file-music
+---
+
 # Audio File Input/Output
 
 Read and write a variety of audio file formats.

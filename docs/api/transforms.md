@@ -1,3 +1,7 @@
+---
+icon: material/cosine-wave
+---
+
 # Fourier, DCT and Hartley Transforms
 
 Fast transforms on real data, including zoom FFT and FFT-based convolution.

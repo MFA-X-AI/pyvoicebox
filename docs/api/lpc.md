@@ -1,3 +1,7 @@
+---
+icon: material/sine-wave
+---
+
 # LPC Analysis of Speech
 
 Autocorrelation and covariance LPC, bandwidth expansion, inverse filtering, stability enforcement, and a complete set of conversions between LPC representations (AR, reflection coefficients, line spectra, cepstra, impulse response, power spectrum, poles and zeros, etc.).

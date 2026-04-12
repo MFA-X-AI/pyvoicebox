@@ -2,13 +2,13 @@
 
 A complete Python port of the [VOICEBOX](https://github.com/ImperialCollegeLondon/sap-voicebox) speech processing toolbox, originally written in MATLAB by Mike Brookes at Imperial College London's Speech and Audio Processing Lab.
 
-**282 functions**, validated against the original MATLAB source via GNU Octave with **511 automated tests**.
+**280+ functions**, validated against the original MATLAB source via GNU Octave with **500+ automated tests**.
 
 ## What is VOICEBOX?
 
 VOICEBOX is a comprehensive MATLAB toolkit for speech and audio signal processing maintained since the 1990s. It covers areas that most Python audio libraries don't touch:
 
-- **Linear Predictive Coding** — 61 functions for LPC analysis and conversion between representations (AR coefficients, cepstra, reflection coefficients, line spectra, etc.)
+- **Linear Predictive Coding** — 60+ functions for LPC analysis and conversion between representations (AR coefficients, cepstra, reflection coefficients, line spectra, etc.)
 - **Gaussian Mixture Models** — full GMM suite: fitting (EM), scoring, merging, divergence, batch processing
 - **Speech Enhancement** — spectral subtraction, MMSE estimators, noise estimation (Rangachari & Loizou, Martin)
 - **Pitch Detection** — PEFAC (`v_fxpefac`), RAPT (`v_fxrapt`), DYPSA glottal closure detection
@@ -29,7 +29,7 @@ pyvoicebox, librosa, and openSMILE cover overlapping but fundamentally different
 | | pyvoicebox | librosa | openSMILE |
 |---|---|---|---|
 | License | LGPL-3.0 | ISC | Dual — free for research, **commercial licence required** from audEERING |
-| LPC analysis (61 representations) | Full suite | `lpc()` only | Internal, not exposed |
+| LPC analysis (60+ representations) | Full suite | `lpc()` only | Internal, not exposed |
 | Speech enhancement (MMSE, spectral subtraction, dereverb) | Full | None | None |
 | Psychoacoustic quality metrics (PESQ, SII, STOI, phon/sone) | Full | None | None |
 | Gaussian mixtures (fit, score, merge, divergence) | Full | None | None |
@@ -98,7 +98,7 @@ from pyvoicebox import lpcauto       # same as v_lpcauto
 Functions are grouped by topic, following the same categorisation as the [original VOICEBOX documentation](https://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html). Click any section to expand.
 
 <details>
-<summary><strong>Audio File Input/Output</strong> (10 functions)</summary>
+<summary><strong>Audio File Input/Output</strong></summary>
 
 Read and write a variety of audio file formats: WAV, HTK, SPHERE/TIMIT, AIFF, AU, FLAC, and more.
 
@@ -118,7 +118,7 @@ Read and write a variety of audio file formats: WAV, HTK, SPHERE/TIMIT, AIFF, AU
 </details>
 
 <details>
-<summary><strong>Frequency Scale Conversion</strong> (10 functions)</summary>
+<summary><strong>Frequency Scale Conversion</strong></summary>
 
 Convert between Hz and perceptual (Mel, Bark, ERB) or musical (Cent, MIDI) frequency scales.
 
@@ -138,7 +138,7 @@ Convert between Hz and perceptual (Mel, Bark, ERB) or musical (Cent, MIDI) frequ
 </details>
 
 <details>
-<summary><strong>Fourier, DCT and Hartley Transforms</strong> (9 functions)</summary>
+<summary><strong>Fourier, DCT and Hartley Transforms</strong></summary>
 
 Fast transforms on real data, plus zoom FFT and FFT-based convolution.
 
@@ -157,7 +157,7 @@ Fast transforms on real data, plus zoom FFT and FFT-based convolution.
 </details>
 
 <details>
-<summary><strong>Random Numbers and Probability</strong> (31 functions)</summary>
+<summary><strong>Random Numbers and Probability</strong></summary>
 
 RNGs, multivariate Gaussian mixtures (fit/score/merge/divergence), k-means, and probability densities.
 
@@ -198,7 +198,7 @@ RNGs, multivariate Gaussian mixtures (fit/score/merge/divergence), k-means, and 
 </details>
 
 <details>
-<summary><strong>Vector Distance</strong> (7 functions)</summary>
+<summary><strong>Vector Distance</strong></summary>
 
 Spectral distance measures between LPC filter pairs (Itakura, Itakura–Saito, COSH, Euclidean).
 
@@ -215,7 +215,7 @@ Spectral distance measures between LPC filter pairs (Itakura, Itakura–Saito, C
 </details>
 
 <details>
-<summary><strong>Speech Analysis</strong> (35 functions)</summary>
+<summary><strong>Speech Analysis</strong></summary>
 
 Frame-based analysis, spectrograms, pitch trackers, voice activity detection, level measurement, and psychoacoustic metrics.
 
@@ -260,9 +260,9 @@ Frame-based analysis, spectrograms, pitch trackers, voice activity detection, le
 </details>
 
 <details>
-<summary><strong>LPC Analysis</strong> (63 functions)</summary>
+<summary><strong>LPC Analysis</strong></summary>
 
-Autocorrelation and covariance LPC, bandwidth expansion, inverse filtering, stability enforcement, and **61 conversion routines** between every LPC representation (AR coefficients, reflection coefficients, line spectra, cepstra, impulse response, power spectrum, poles/zeros, etc.).
+Autocorrelation and covariance LPC, bandwidth expansion, inverse filtering, stability enforcement, and **60+ conversion routines** between every LPC representation (AR coefficients, reflection coefficients, line spectra, cepstra, impulse response, power spectrum, poles/zeros, etc.).
 
 | Function | Description |
 |---|---|
@@ -333,7 +333,7 @@ Autocorrelation and covariance LPC, bandwidth expansion, inverse filtering, stab
 </details>
 
 <details>
-<summary><strong>Speech Synthesis</strong> (3 functions)</summary>
+<summary><strong>Speech Synthesis</strong></summary>
 
 Text-to-speech and glottal flow models.
 
@@ -346,7 +346,7 @@ Text-to-speech and glottal flow models.
 </details>
 
 <details>
-<summary><strong>Speech Enhancement</strong> (7 functions)</summary>
+<summary><strong>Speech Enhancement</strong></summary>
 
 Noise estimation and single-channel speech enhancement algorithms.
 
@@ -363,7 +363,7 @@ Noise estimation and single-channel speech enhancement algorithms.
 </details>
 
 <details>
-<summary><strong>Speech Coding</strong> (5 functions)</summary>
+<summary><strong>Speech Coding</strong></summary>
 
 Companding (A-law, mu-law) and telephone-band filtering.
 
@@ -378,7 +378,7 @@ Companding (A-law, mu-law) and telephone-band filtering.
 </details>
 
 <details>
-<summary><strong>Speech Recognition & Features</strong> (5 functions)</summary>
+<summary><strong>Speech Recognition & Features</strong></summary>
 
 MFCC extraction, mel filterbanks, and Linear Discriminant Analysis.
 
@@ -393,7 +393,7 @@ MFCC extraction, mel filterbanks, and Linear Discriminant Analysis.
 </details>
 
 <details>
-<summary><strong>Signal Processing</strong> (19 functions)</summary>
+<summary><strong>Signal Processing</strong></summary>
 
 General-purpose DSP: filtering, windows, peak finding, dithering, Teager energy, zero-crossings, resampling.
 
@@ -422,7 +422,7 @@ General-purpose DSP: filtering, windows, peak finding, dithering, Teager energy,
 </details>
 
 <details>
-<summary><strong>Information Theory</strong> (2 functions)</summary>
+<summary><strong>Information Theory</strong></summary>
 
 Entropy and Huffman coding.
 
@@ -434,7 +434,7 @@ Entropy and Huffman coding.
 </details>
 
 <details>
-<summary><strong>Rotations, Quaternions and Geometry</strong> (37 functions)</summary>
+<summary><strong>Rotations, Quaternions and Geometry</strong></summary>
 
 Conversions between Euler angles, rotation matrices, and quaternions (real and complex), quaternion arithmetic, and 2D/3D geometry primitives.
 
@@ -481,7 +481,7 @@ Conversions between Euler angles, rotation matrices, and quaternions (real and c
 </details>
 
 <details>
-<summary><strong>Printing and Display</strong> (17 functions)</summary>
+<summary><strong>Printing and Display</strong></summary>
 
 Figure export, axis labelling with SI prefixes, colour maps, and figure layout.
 
@@ -508,7 +508,7 @@ Figure export, axis labelling with SI prefixes, colour maps, and figure layout.
 </details>
 
 <details>
-<summary><strong>Utility Functions</strong> (22 functions)</summary>
+<summary><strong>Utility Functions</strong></summary>
 
 VOICEBOX configuration, filesystem helpers, numeric helpers, and combinatorics.
 
@@ -556,7 +556,7 @@ Requires Git, GNU Octave, and Python 3.9+.
 ```bash
 pip install -e ".[dev]"
 pytest tests/ -v
-# First run: clones voicebox source, generates ref data via Octave, runs 511 tests
+# First run: clones voicebox source, generates ref data via Octave, runs all tests
 # Subsequent runs: uses cached ref data, runs tests only
 ```
 

@@ -1,3 +1,7 @@
+---
+icon: material/account-voice
+---
+
 # Speech Recognition & Features
 
 MFCC extraction, mel filterbank construction, cepstrum/power-spectrum conversion, and Linear Discriminant Analysis.

@@ -1,3 +1,7 @@
+---
+icon: material/waveform
+---
+
 # Signal Processing
 
 General-purpose DSP utilities: filtering, windowing, peak finding, dithering, Teager energy, zero-crossings, and resampling.

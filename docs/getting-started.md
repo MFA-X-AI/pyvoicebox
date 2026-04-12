@@ -1,3 +1,7 @@
+---
+icon: material/rocket-launch
+---
+
 # Getting Started
 
 ## Installation
@@ -7,11 +11,20 @@ pip install pyvoicebox                # core (numpy, scipy, soundfile)
 pip install "pyvoicebox[plot]"        # with matplotlib for plotting functions
 ```
 
-For development:
+For development (includes pytest and matplotlib):
 
 ```bash
 pip install -e ".[dev]"
 ```
+
+### Dependencies
+
+| Package | Purpose |
+|---|---|
+| `numpy` | Array operations and linear algebra |
+| `scipy` | Signal processing, special functions, sparse matrices, optimization |
+| `soundfile` | Audio file I/O (WAV, FLAC, AIFF, AU) via libsndfile |
+| `matplotlib` | *(optional)* Plotting and display functions |
 
 ## Quick Start
 
@@ -59,7 +72,7 @@ clean = v_specsub(signal, fs)             # spectral subtraction
 
 ## Function naming
 
-All functions are available with both the `v_` prefix (matching MATLAB) and without (legacy aliases):
+All functions are available with both the `v_` prefix (matching the MATLAB original) and without:
 
 ```python
 from pyvoicebox import frq2mel       # same as v_frq2mel
@@ -67,19 +80,10 @@ from pyvoicebox import melcepst      # same as v_melcepst
 from pyvoicebox import lpcauto       # same as v_lpcauto
 ```
 
-## Running tests
+The `v_` prefix avoids naming collisions and makes it easy to grep for VOICEBOX functions in your codebase. Use whichever style you prefer.
 
-Tests validate against the original MATLAB source via GNU Octave:
+## Next steps
 
-```bash
-pip install -e ".[dev]"
-pytest tests/ -v
-# First run: clones voicebox source, generates ref data via Octave, runs 511 tests
-# Subsequent runs: uses cached ref data, runs tests only
-```
-
-### Prerequisites for running tests
-
-- **Git** (to clone MATLAB source)
-- **GNU Octave** (to generate reference data)
-- **Python 3.9+** with numpy, scipy, soundfile, matplotlib
+- Browse the [API Reference](api/audio-io.md) to find functions by category
+- See how pyvoicebox compares to [librosa and openSMILE](comparison.md)
+- Read about the [testing approach](testing.md) and how correctness is verified

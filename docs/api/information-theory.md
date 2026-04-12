@@ -1,3 +1,7 @@
+---
+icon: material/information
+---
+
 # Information Theory
 
 Entropy calculation and Huffman coding.

@@ -1,3 +1,7 @@
+---
+icon: material/ruler
+---
+
 # Vector Distance
 
 Spectral distance measures between LPC filter pairs (Itakura, Itakura–Saito, COSH, Euclidean).

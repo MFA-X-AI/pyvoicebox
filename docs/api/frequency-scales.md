@@ -1,3 +1,7 @@
+---
+icon: material/tune-vertical
+---
+
 # Frequency Scale Conversion
 
 Convert between Hz and perceptual or musical frequency scales.

@@ -1,3 +1,7 @@
+---
+icon: material/wrench
+---
+
 # Utility Functions
 
 VOICEBOX configuration, filesystem helpers, numeric routines, and combinatorics.

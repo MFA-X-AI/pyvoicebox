@@ -1,0 +1,115 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+  {{ super() }}
+
+  <style>
+    .md-header { position: initial; }
+    .md-main__inner { margin: 0; }
+    .md-content { display: none; }
+    @media screen and (min-width: 60em) {
+      .md-sidebar--secondary { display: none; }
+    }
+    @media screen and (min-width: 76.25em) {
+      .md-sidebar--primary { display: none; }
+    }
+  </style>
+
+  <!-- Hero with gradient + SVG wave -->
+  <section class="mdx-container">
+    <div class="md-grid md-typeset">
+      <div class="mdx-hero">
+        <div class="mdx-hero__content">
+          <h1><span class="mdx-hero__icon">{% include ".icons/custom/logo.svg" %}</span>pyvoicebox</h1>
+          <p>
+            <strong>280+ speech processing functions</strong>, ported from MATLAB to Python.
+            <br>
+            A complete port of the
+            <a href="https://github.com/ImperialCollegeLondon/sap-voicebox">VOICEBOX</a>
+            toolbox by Mike Brookes, Imperial College London.
+          </p>
+          <a href="{{ 'getting-started/' | url }}" class="md-button md-button--primary">
+            Get started
+          </a>
+          <a href="{{ 'api/' | url }}" class="md-button">
+            API Reference
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature grid -->
+  <section class="mdx-features-section">
+    <div class="md-grid md-typeset">
+      <div class="mdx-features__grid">
+
+        <a class="mdx-features__item" href="{{ 'api/lpc/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/sine-wave.svg" %}</span>
+          </div>
+          <h2>LPC Analysis</h2>
+          <p>60+ functions for linear predictive coding &mdash; every conversion between AR, reflection, line spectra, cepstra, and more.</p>
+        </a>
+
+        <a class="mdx-features__item" href="{{ 'api/speech-enhancement/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/waveform.svg" %}</span>
+          </div>
+          <h2>Speech Enhancement</h2>
+          <p>Spectral subtraction, MMSE estimators, noise estimation, dereverberation, and voice activity detection.</p>
+        </a>
+
+        <a class="mdx-features__item" href="{{ 'api/speech-analysis/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/ear-hearing.svg" %}</span>
+          </div>
+          <h2>Psychoacoustic Metrics</h2>
+          <p>PESQ/MOS, Speech Intelligibility Index, STOI, phon/sone loudness, active speech level, and segmental SNR.</p>
+        </a>
+
+        <a class="mdx-features__item" href="{{ 'api/speech-analysis/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/microphone.svg" %}</span>
+          </div>
+          <h2>Pitch Detection</h2>
+          <p>PEFAC, RAPT, and DYPSA glottal closure detection &mdash; battle-tested algorithms from decades of speech research.</p>
+        </a>
+
+        <a class="mdx-features__item" href="{{ 'api/probability/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/chart-bell-curve.svg" %}</span>
+          </div>
+          <h2>Gaussian Mixtures</h2>
+          <p>Complete GMM toolkit: EM fitting, scoring, merging, marginals, conditionals, Bhattacharyya and KL divergence.</p>
+        </a>
+
+        <a class="mdx-features__item" href="{{ 'api/rotation-geometry/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/axis-arrow.svg" %}</span>
+          </div>
+          <h2>Rotations &amp; Geometry</h2>
+          <p>Euler angles, rotation matrices, quaternions, polygon/polyhedron geometry, and spherical harmonics.</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="mdx-cta-section">
+    <div class="md-grid md-typeset">
+      <div class="mdx-cta">
+        <p>
+          Validated against the original MATLAB source via GNU Octave with
+          <a href="{{ 'testing/' | url }}"><strong>500+ automated tests</strong></a>.
+          <br>
+          <a href="{{ 'acknowledgements/' | url }}">LGPL-3.0 licensed</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block content %}{% endblock %}

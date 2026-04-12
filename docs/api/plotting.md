@@ -1,3 +1,7 @@
+---
+icon: material/chart-line
+---
+
 # Printing and Display
 
 Figure export, axis labelling with SI prefixes, colour maps, and figure layout helpers.

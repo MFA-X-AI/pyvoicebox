@@ -1,3 +1,7 @@
+---
+icon: material/chart-bell-curve
+---
+
 # Random Numbers and Probability Distributions
 
 Random number generators, multivariate Gaussian mixtures, k-means clustering, and probability density functions.

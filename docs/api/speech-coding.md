@@ -1,3 +1,7 @@
+---
+icon: material/barcode
+---
+
 # Speech Coding
 
 Companding (A-law, mu-law) and telephone-band filtering.

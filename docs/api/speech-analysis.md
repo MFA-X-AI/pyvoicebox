@@ -1,3 +1,7 @@
+---
+icon: material/microphone
+---
+
 # Speech Analysis
 
 Frame-based analysis, spectrograms, pitch trackers, voice activity detection, level measurement, and psychoacoustic metrics.

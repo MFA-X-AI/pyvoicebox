@@ -1,3 +1,7 @@
+---
+icon: material/axis-arrow
+---
+
 # Rotations, Quaternions and Geometry
 
 Conversions between Euler angles, rotation matrices (real and complex), and quaternions (real and complex), quaternion arithmetic, and 2D/3D geometry primitives.

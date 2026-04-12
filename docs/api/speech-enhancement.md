@@ -1,3 +1,7 @@
+---
+icon: material/broom
+---
+
 # Speech Enhancement
 
 Noise estimation and single-channel speech enhancement algorithms.

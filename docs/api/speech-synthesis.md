@@ -1,3 +1,7 @@
+---
+icon: material/bullhorn
+---
+
 # Speech Synthesis
 
 Text-to-speech and glottal flow models.
