@@ -15,80 +15,96 @@
     }
   </style>
 
-  <!-- Hero with gradient + SVG wave -->
+  <!-- ▬▬ HERO ▬▬ -->
   <section class="mdx-container">
     <div class="md-grid md-typeset">
       <div class="mdx-hero">
         <div class="mdx-hero__content">
-          <h1><span class="mdx-hero__icon">{% include ".icons/custom/logo.svg" %}</span>pyvoicebox</h1>
-          <p>
+          <div class="mdx-hero__badge">Open Source &middot; LGPL-3.0</div>
+          <h1>
+            <span class="mdx-hero__icon">{% include ".icons/custom/logo.svg" %}</span>
+            pyvoicebox
+          </h1>
+          <p class="mdx-hero__tagline">
             <strong>280+ speech processing functions</strong>, fully typed, ported from MATLAB to Python.
-            <br>
+          </p>
+          <p class="mdx-hero__sub">
             A complete port of the
             <a href="https://github.com/ImperialCollegeLondon/sap-voicebox">VOICEBOX</a>
             toolbox by Mike Brookes, Imperial College London.
           </p>
-          <a href="{{ 'getting-started/' | url }}" class="md-button md-button--primary">
-            Get started
-          </a>
-          <a href="{{ 'api/' | url }}" class="md-button">
-            API Reference
-          </a>
+          <div class="mdx-hero__actions">
+            <a href="{{ 'getting-started/' | url }}" class="md-button md-button--primary">
+              Get Started &rarr;
+            </a>
+            <a href="{{ 'api/' | url }}" class="md-button">
+              API Reference
+            </a>
+          </div>
         </div>
       </div>
     </div>
+    <div class="mdx-hero__waveform">
+      <canvas id="waveform"></canvas>
+    </div>
   </section>
 
-  <!-- Feature grid -->
-  <section class="mdx-features-section">
+  <!-- ▬▬ FEATURES ▬▬ -->
+  <section class="mdx-features-section" id="features">
     <div class="md-grid md-typeset">
+      <div class="mdx-section-header reveal">
+        <span class="mdx-section-label">Capabilities</span>
+        <h2 class="mdx-section-title">
+          Everything you need to <em>analyze</em>, <em>enhance</em>, and <em>transform</em> speech signals
+        </h2>
+      </div>
       <div class="mdx-features__grid">
 
-        <a class="mdx-features__item" href="{{ 'api/lpc/' | url }}">
+        <a class="mdx-features__item reveal" href="{{ 'api/lpc/' | url }}">
           <div class="mdx-features__icon">
             <span class="twemoji">{% include ".icons/material/sine-wave.svg" %}</span>
           </div>
-          <h2>LPC Analysis</h2>
-          <p>60+ functions for linear predictive coding &mdash; every conversion between AR, reflection, line spectra, cepstra, and more.</p>
+          <h3>LPC Analysis</h3>
+          <p>60+ functions for linear predictive coding &mdash; every conversion between AR, reflection coefficients, line spectra, cepstra, and more.</p>
         </a>
 
-        <a class="mdx-features__item" href="{{ 'api/speech-enhancement/' | url }}">
+        <a class="mdx-features__item reveal" href="{{ 'api/speech-enhancement/' | url }}">
           <div class="mdx-features__icon">
             <span class="twemoji">{% include ".icons/material/waveform.svg" %}</span>
           </div>
-          <h2>Speech Enhancement</h2>
+          <h3>Speech Enhancement</h3>
           <p>Spectral subtraction, MMSE estimators, noise estimation, dereverberation, and voice activity detection.</p>
         </a>
 
-        <a class="mdx-features__item" href="{{ 'api/speech-analysis/' | url }}">
+        <a class="mdx-features__item reveal" href="{{ 'api/speech-analysis/' | url }}">
           <div class="mdx-features__icon">
             <span class="twemoji">{% include ".icons/material/ear-hearing.svg" %}</span>
           </div>
-          <h2>Psychoacoustic Metrics</h2>
+          <h3>Psychoacoustic Metrics</h3>
           <p>PESQ/MOS, Speech Intelligibility Index, STOI, phon/sone loudness, active speech level, and segmental SNR.</p>
         </a>
 
-        <a class="mdx-features__item" href="{{ 'api/speech-analysis/' | url }}">
+        <a class="mdx-features__item reveal" href="{{ 'api/speech-analysis/' | url }}">
           <div class="mdx-features__icon">
             <span class="twemoji">{% include ".icons/material/microphone.svg" %}</span>
           </div>
-          <h2>Pitch Detection</h2>
+          <h3>Pitch Detection</h3>
           <p>PEFAC, RAPT, and DYPSA glottal closure detection &mdash; battle-tested algorithms from decades of speech research.</p>
         </a>
 
-        <a class="mdx-features__item" href="{{ 'api/probability/' | url }}">
+        <a class="mdx-features__item reveal" href="{{ 'api/probability/' | url }}">
           <div class="mdx-features__icon">
             <span class="twemoji">{% include ".icons/material/chart-bell-curve.svg" %}</span>
           </div>
-          <h2>Gaussian Mixtures</h2>
+          <h3>Gaussian Mixtures</h3>
           <p>Complete GMM toolkit: EM fitting, scoring, merging, marginals, conditionals, Bhattacharyya and KL divergence.</p>
         </a>
 
-        <a class="mdx-features__item" href="{{ 'api/rotation-geometry/' | url }}">
+        <a class="mdx-features__item reveal" href="{{ 'api/rotation-geometry/' | url }}">
           <div class="mdx-features__icon">
             <span class="twemoji">{% include ".icons/material/axis-arrow.svg" %}</span>
           </div>
-          <h2>Rotations &amp; Geometry</h2>
+          <h3>Rotations &amp; Geometry</h3>
           <p>Euler angles, rotation matrices, quaternions, polygon/polyhedron geometry, and spherical harmonics.</p>
         </a>
 
@@ -96,12 +112,74 @@
     </div>
   </section>
 
-  <!-- Bottom CTA -->
-  <section class="mdx-cta-section">
+  <!-- ▬▬ CODE EXAMPLE ▬▬ -->
+  <section class="mdx-code-section" id="code">
+    <div class="md-grid">
+      <div class="mdx-code-grid">
+        <div class="mdx-code-text reveal-left">
+          <span class="mdx-section-label">Developer Experience</span>
+          <h2 class="mdx-section-title">
+            Faithful MATLAB port with a <em>Pythonic API</em>
+          </h2>
+          <p>
+            Every function preserves its original VOICEBOX name and behavior,
+            rigorously validated against the MATLAB source via GNU Octave.
+            Drop-in replacements using NumPy arrays.
+          </p>
+        </div>
+        <div class="mdx-code-block reveal-right">
+          <div class="mdx-code-header">
+            <span class="mdx-dot mdx-dot--red"></span>
+            <span class="mdx-dot mdx-dot--yellow"></span>
+            <span class="mdx-dot mdx-dot--green"></span>
+            <div class="mdx-code-tabs">
+              <button class="mdx-code-tab active" data-tab="python">Python</button>
+              <button class="mdx-code-tab" data-tab="matlab">MATLAB</button>
+            </div>
+          </div>
+<pre class="mdx-code-pre" data-tab="python"><span class="kw">import</span> <span class="fn">numpy</span> <span class="kw">as</span> np
+<span class="kw">from</span> <span class="fn">pyvoicebox</span> <span class="kw">import</span> (
+    v_filtbankm, v_melbankm, v_rfft,
+    v_enframe, v_lpcauto, v_lpcar2cc,
+)
+
+<span class="cm"># Load audio &amp; frame into overlapping windows</span>
+signal <span class="op">=</span> np.<span class="fn">random.randn</span>(<span class="num">16000</span>)
+frames <span class="op">=</span> <span class="fn">v_enframe</span>(signal, <span class="num">400</span>, <span class="num">160</span>)
+
+<span class="cm"># Mel-scaled filterbank</span>
+m, _, _ <span class="op">=</span> <span class="fn">v_melbankm</span>(<span class="num">26</span>, <span class="num">512</span>, <span class="num">16000</span>)
+
+<span class="cm"># LPC analysis &rarr; cepstral coefficients</span>
+ar, e <span class="op">=</span> <span class="fn">v_lpcauto</span>(frames, <span class="num">12</span>)
+cc <span class="op">=</span> <span class="fn">v_lpcar2cc</span>(ar, <span class="num">12</span>)</pre>
+<pre class="mdx-code-pre" data-tab="matlab" style="display:none"><span class="cm">% Load audio &amp; frame into overlapping windows</span>
+signal <span class="op">=</span> <span class="fn">randn</span>(<span class="num">1</span>, <span class="num">16000</span>);
+frames <span class="op">=</span> <span class="fn">v_enframe</span>(signal, <span class="num">400</span>, <span class="num">160</span>);
+
+<span class="cm">% Mel-scaled filterbank</span>
+[m, ~, ~] <span class="op">=</span> <span class="fn">v_melbankm</span>(<span class="num">26</span>, <span class="num">512</span>, <span class="num">16000</span>);
+
+<span class="cm">% LPC analysis &rarr; cepstral coefficients</span>
+[ar, e] <span class="op">=</span> <span class="fn">v_lpcauto</span>(frames, <span class="num">12</span>);
+cc <span class="op">=</span> <span class="fn">v_lpcar2cc</span>(ar, <span class="num">12</span>);</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▬▬ INSTALL ▬▬ -->
+  <section class="mdx-install-section" id="install">
     <div class="md-grid md-typeset">
-      <div class="mdx-cta">
-        <p>
-          Validated against the original MATLAB source via GNU Octave with
+      <div class="mdx-install reveal">
+        <span class="mdx-section-label">Get started in seconds</span>
+        <h2 class="mdx-section-title" style="margin: 0 auto;">Start building <em>now</em></h2>
+        <div class="mdx-install__cmd" onclick="navigator.clipboard.writeText('pip install pyvoicebox'); this.querySelector('.mdx-install__copy').textContent='Copied!'">
+          <span><span class="mdx-install__prompt">$</span> pip install pyvoicebox</span>
+          <span class="mdx-install__copy">Click to copy</span>
+        </div>
+        <p class="mdx-install__note">
+          Validated against the original MATLAB source with
           <a href="{{ 'testing/' | url }}"><strong>500+ automated tests</strong></a>.
           <br>
           <a href="{{ 'acknowledgements/' | url }}">LGPL-3.0 licensed</a>.
@@ -113,3 +191,77 @@
 {% endblock %}
 
 {% block content %}{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+  // ━━━━ Intersection Observer for scroll animations ━━━━
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  // ━━━━ Code tabs ━━━━
+  document.querySelectorAll('.mdx-code-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const block = tab.closest('.mdx-code-block');
+      block.querySelectorAll('.mdx-code-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const target = tab.dataset.tab;
+      block.querySelectorAll('.mdx-code-pre').forEach(pre => {
+        pre.style.display = pre.dataset.tab === target ? '' : 'none';
+      });
+    });
+  });
+
+  // ━━━━ Animated waveform canvas ━━━━
+  const canvas = document.getElementById('waveform');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width = canvas.offsetWidth * devicePixelRatio;
+      canvas.height = canvas.offsetHeight * devicePixelRatio;
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function drawWave(t) {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      const layers = [
+        { color: 'rgba(159,168,218,0.35)',  amp: 35, freq: 0.007, speed: 0.0006, phase: 0 },
+        { color: 'rgba(121,134,203,0.3)',   amp: 25, freq: 0.011, speed: 0.001,  phase: 2 },
+        { color: 'rgba(197,202,233,0.15)',  amp: 18, freq: 0.016, speed: 0.0005, phase: 4 },
+      ];
+
+      layers.forEach(layer => {
+        ctx.beginPath();
+        ctx.moveTo(0, h / 2);
+        for (let x = 0; x <= w; x += 2) {
+          const y = h / 2
+            + Math.sin(x * layer.freq + t * layer.speed + layer.phase) * layer.amp
+            + Math.sin(x * layer.freq * 2.3 + t * layer.speed * 1.7) * (layer.amp * 0.4);
+          ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = layer.color;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      });
+
+      requestAnimationFrame(() => drawWave(t + 16));
+    }
+    drawWave(0);
+  }
+  </script>
+{% endblock %}
