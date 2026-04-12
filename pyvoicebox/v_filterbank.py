@@ -1,10 +1,11 @@
 """V_FILTERBANK - Apply a bank of IIR filters to a signal."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.signal import lfilter
 
 
-def v_filterbank(b, a, x, zi=None):
+def v_filterbank(b, a, x, zi=None) -> tuple[np.ndarray, np.ndarray]:
     """Apply a bank of filters to a signal.
 
     Parameters

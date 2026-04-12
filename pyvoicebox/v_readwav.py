@@ -4,11 +4,12 @@ Uses the soundfile library for core WAV I/O, preserving the MATLAB
 function signature for compatibility.
 """
 
+from __future__ import annotations
 import numpy as np
 import soundfile as sf
 
 
-def v_readwav(filename, mode='p', nmax=-1, nskip=0):
+def v_readwav(filename, mode='p', nmax=-1, nskip=0) -> tuple[np.ndarray, int]:
     """Read a .WAV format sound file.
 
     Parameters

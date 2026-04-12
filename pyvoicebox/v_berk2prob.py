@@ -1,9 +1,10 @@
 """V_BERK2PROB - Convert Berksons (log-odds base 2) to probability."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_berk2prob(b):
+def v_berk2prob(b) -> tuple[np.ndarray, np.ndarray]:
     """Convert Berksons to probability.
 
     Parameters

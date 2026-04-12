@@ -3,10 +3,11 @@
 Uses the soundfile library when available for robust AIFF reading.
 """
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_readaif(filename, mode='p', nmax=-1, nskip=0):
+def v_readaif(filename, mode='p', nmax=-1, nskip=0) -> tuple[np.ndarray, int]:
     """Read a .AIF (AIFF) format sound file.
 
     Parameters

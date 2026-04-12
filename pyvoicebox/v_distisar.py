@@ -1,11 +1,12 @@
 """V_DISTISAR - Itakura-Saito distance between AR coefficients."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_lpcar2rr import v_lpcar2rr
 from pyvoicebox.v_lpcar2ra import v_lpcar2ra
 
 
-def v_distisar(ar1, ar2, mode=''):
+def v_distisar(ar1, ar2, mode='') -> np.ndarray:
     """Calculate the Itakura-Saito distance between AR coefficients.
 
     Parameters

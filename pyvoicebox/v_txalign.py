@@ -1,9 +1,10 @@
 """V_TXALIGN - Find best alignment of two sets of time markers."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_txalign(x, y, maxt, nsd=None):
+def v_txalign(x, y, maxt, nsd=None) -> tuple[np.ndarray, np.ndarray, int, float, float]:
     """Find the best alignment of two sets of time markers.
 
     Parameters

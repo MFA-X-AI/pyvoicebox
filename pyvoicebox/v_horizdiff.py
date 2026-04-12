@@ -1,11 +1,12 @@
 """V_HORIZDIFF - Estimate horizontal difference between two functions."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.interpolate import interp1d
 from scipy.optimize import minimize_scalar
 
 
-def v_horizdiff(y, v, x=None, u=None, q=''):
+def v_horizdiff(y, v, x=None, u=None, q='') -> np.ndarray:
     """Estimate horizontal difference between two functions of x.
 
     Approximately: y(x) = v(x+z).

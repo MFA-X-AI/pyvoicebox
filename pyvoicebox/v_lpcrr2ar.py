@@ -1,9 +1,10 @@
 """V_LPCRR2AR - Convert autocorrelation coefficients to AR coefficients."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcrr2ar(rr):
+def v_lpcrr2ar(rr) -> tuple[np.ndarray, np.ndarray]:
     """Convert autocorrelation coefficients to AR coefficients.
 
     Parameters

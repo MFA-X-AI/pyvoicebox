@@ -1,10 +1,11 @@
 """V_MINSPANE - minimum spanning tree using Euclidean distance."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.spatial import Delaunay
 
 
-def v_minspane(x):
+def v_minspane(x) -> np.ndarray:
     """Calculate minimum spanning tree using Euclidean distance.
 
     Uses Delaunay triangulation to find candidate edges, then applies

@@ -1,5 +1,6 @@
 """V_MELCEPST - Calculate the mel cepstrum of a signal."""
 
+from __future__ import annotations
 import numpy as np
 from .v_enframe import v_enframe
 from .v_rfft import v_rfft
@@ -7,7 +8,7 @@ from .v_rdct import v_rdct
 from .v_melbankm import v_melbankm
 
 
-def v_melcepst(s, fs=11025, w='M', nc=12, p=None, n=None, inc=None, fl=0, fh=0.5):
+def v_melcepst(s, fs=11025, w='M', nc=12, p=None, n=None, inc=None, fl=0, fh=0.5) -> tuple[np.ndarray, np.ndarray]:
     """Calculate the mel cepstrum of a signal.
 
     Parameters

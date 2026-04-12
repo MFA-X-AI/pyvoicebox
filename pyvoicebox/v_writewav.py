@@ -3,11 +3,12 @@
 Uses the soundfile library for core WAV I/O.
 """
 
+from __future__ import annotations
 import numpy as np
 import soundfile as sf
 
 
-def v_writewav(d, fs, filename, mode='s'):
+def v_writewav(d, fs, filename, mode='s') -> None:
     """Write a .WAV format sound file.
 
     Parameters

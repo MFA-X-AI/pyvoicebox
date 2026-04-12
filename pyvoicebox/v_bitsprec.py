@@ -1,9 +1,10 @@
 """V_BITSPREC - Round values to a specified fixed or floating precision."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_bitsprec(x, n=None, mode='sne'):
+def v_bitsprec(x, n=None, mode='sne') -> np.ndarray:
     """Round values to a specified number of bits precision.
 
     Parameters

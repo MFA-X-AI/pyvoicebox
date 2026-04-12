@@ -1,9 +1,10 @@
 """V_LPCDB2PF - Convert decibel power spectrum to power spectrum."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcdb2pf(db):
+def v_lpcdb2pf(db) -> np.ndarray:
     """Convert decibel power spectrum to power spectrum.
 
     Parameters

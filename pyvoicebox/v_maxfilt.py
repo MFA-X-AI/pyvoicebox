@@ -1,9 +1,10 @@
 """V_MAXFILT - Find max of an exponentially weighted sliding window."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_maxfilt(x, f=1, n=None, d=None, x0=None):
+def v_maxfilt(x, f=1, n=None, d=None, x0=None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Find max of an exponentially weighted sliding window.
 
     Calculates y(p) = max(f^r * x(p-r), r=0:n-1) where x(r)=-inf for r<0.

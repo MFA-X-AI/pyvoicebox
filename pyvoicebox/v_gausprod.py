@@ -1,9 +1,10 @@
 """V_GAUSPROD - Calculate the product of Gaussians."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_gausprod(m, c=None):
+def v_gausprod(m, c=None) -> tuple[float, np.ndarray, np.ndarray]:
     """Calculate the product of n d-dimensional multivariate Gaussians.
 
     Parameters

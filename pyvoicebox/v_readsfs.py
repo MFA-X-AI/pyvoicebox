@@ -4,6 +4,7 @@ The SFS format was developed by Mark Huckvale at UCL for speech research.
 This is a simplified Python reader for the most common data types.
 """
 
+from __future__ import annotations
 import numpy as np
 import struct
 import os
@@ -17,7 +18,7 @@ def _zerotrim(data):
     return data.decode('ascii', errors='replace').strip()
 
 
-def v_readsfs(filename, ty=1, sub=-1, mode='p', nmax=-1, nskip=0):
+def v_readsfs(filename, ty=1, sub=-1, mode='p', nmax=-1, nskip=0) -> tuple[np.ndarray, float, dict]:
     """Read a .SFS format sound file.
 
     Parameters

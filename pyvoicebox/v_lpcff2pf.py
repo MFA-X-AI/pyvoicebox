@@ -1,9 +1,10 @@
 """V_LPCFF2PF - Convert complex spectrum to power spectrum."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcff2pf(ff):
+def v_lpcff2pf(ff) -> np.ndarray:
     """Convert complex spectrum to power spectrum.
 
     Parameters

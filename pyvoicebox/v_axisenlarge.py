@@ -1,9 +1,10 @@
 """V_AXISENLARGE - Enlarge the axes of a figure."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_axisenlarge(f=None, ax=None):
+def v_axisenlarge(f=None, ax=None) -> None:
     """Enlarge the axes of a matplotlib plot.
 
     Parameters

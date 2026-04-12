@@ -1,11 +1,12 @@
 """V_KMEANS - K-means clustering algorithm."""
 
+from __future__ import annotations
 import numpy as np
 from .v_disteusq import v_disteusq
 from .v_rnsubset import v_rnsubset
 
 
-def v_kmeans(d, k, x0='f', l=300):
+def v_kmeans(d, k, x0='f', l=300) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Vector quantization using K-means algorithm.
 
     Parameters

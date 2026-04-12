@@ -1,10 +1,11 @@
 """V_GAMMALNS - Log of Gamma(x) for positive or negative real x."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.special import gammaln
 
 
-def v_gammalns(x, return_sign=False):
+def v_gammalns(x, return_sign=False) -> np.ndarray:
     """Compute log(|Gamma(x)|) and optionally sign(Gamma(x)).
 
     Parameters

@@ -1,9 +1,10 @@
 """V_QRDOTDIV - Element-wise quaternion division."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_qrdotdiv(x, y=None):
+def v_qrdotdiv(x, y=None) -> np.ndarray:
     """Divide two real quaternion arrays element-wise.
 
     Parameters

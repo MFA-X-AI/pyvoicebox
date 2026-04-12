@@ -1,10 +1,11 @@
 """V_HYPERGEOM1F1 - Confluent hypergeometric function 1F1 (Kummer's M)."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_gammalns import v_gammalns
 
 
-def v_hypergeom1f1(a, b, z, tol=1e-10, maxj=500, th=30):
+def v_hypergeom1f1(a, b, z, tol=1e-10, maxj=500, th=30) -> tuple[np.ndarray, np.ndarray]:
     """Confluent hypergeometric function 1F1(a; b; z) = M(a; b; z).
 
     Parameters

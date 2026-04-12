@@ -1,7 +1,8 @@
 """V_PSYCEST - Psychoacoustic estimation (stub)."""
 
+from __future__ import annotations
 
-def v_psycest(*args, **kwargs):
+def v_psycest(*args, **kwargs) -> None:
     """Psychoacoustic parameter estimation.
 
     This is a complex estimation function with many options.

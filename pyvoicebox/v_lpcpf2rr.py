@@ -1,10 +1,11 @@
 """V_LPCPF2RR - Convert power spectrum to autocorrelation coefficients."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_irfft import v_irfft
 
 
-def v_lpcpf2rr(pf, p=None):
+def v_lpcpf2rr(pf, p=None) -> np.ndarray:
     """Convert power spectrum to autocorrelation coefficients.
 
     Parameters

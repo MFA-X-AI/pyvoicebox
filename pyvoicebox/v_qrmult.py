@@ -1,11 +1,12 @@
 """V_QRMULT - Multiply two real quaternion matrices."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_qrdotmult import v_qrdotmult
 from pyvoicebox.v_rotqr2mr import v_rotqr2mr
 
 
-def v_qrmult(q1, q2):
+def v_qrmult(q1, q2) -> np.ndarray:
     """Multiply two real quaternion matrices.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_LPCBWEXP - Expand formant bandwidths of LPC filter."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcbwexp(ar, bw):
+def v_lpcbwexp(ar, bw) -> np.ndarray:
     """Expand formant bandwidths of LPC filter.
 
     Parameters

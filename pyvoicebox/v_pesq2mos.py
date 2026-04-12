@@ -1,9 +1,10 @@
 """V_PESQ2MOS - Convert PESQ speech quality scores to MOS."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_pesq2mos(p):
+def v_pesq2mos(p) -> np.ndarray:
     """Convert PESQ speech quality scores to MOS.
 
     Parameters

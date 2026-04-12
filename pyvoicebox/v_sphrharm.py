@@ -3,10 +3,11 @@
 The full implementation is very complex. A basic stub is provided.
 """
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_sphrharm(*args, **kwargs):
+def v_sphrharm(*args, **kwargs) -> None:
     """Forward and inverse spherical harmonic transform.
 
     This is a complex function with many modes. A basic version is

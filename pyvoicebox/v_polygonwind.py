@@ -1,9 +1,10 @@
 """V_POLYGONWIND - test if points are inside a polygon."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_polygonwind(p, x):
+def v_polygonwind(p, x) -> np.ndarray:
     """Calculate the winding number for points with respect to a polygon.
 
     Parameters

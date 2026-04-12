@@ -1,11 +1,12 @@
 """V_RANDFILT - Generate filtered Gaussian noise without initial transient."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.signal import lfilter
 from scipy.linalg import toeplitz
 
 
-def v_randfilt(pb, pa, ny=0, zi=None):
+def v_randfilt(pb, pa, ny=0, zi=None) -> tuple[np.ndarray, np.ndarray, np.ndarray, float]:
     """Generate filtered Gaussian noise without initial transient.
 
     Parameters

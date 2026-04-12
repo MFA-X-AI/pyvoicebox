@@ -3,10 +3,11 @@
 Uses the soundfile library for robust AU file reading.
 """
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_readau(filename, mode=''):
+def v_readau(filename, mode='') -> tuple[np.ndarray, int, dict]:
     """Read a SUN .AU format sound file.
 
     Parameters

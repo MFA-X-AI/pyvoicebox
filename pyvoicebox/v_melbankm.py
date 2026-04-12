@@ -1,5 +1,7 @@
 """V_MELBANKM - Determine matrix for a mel/erb/bark-spaced filterbank."""
 
+from __future__ import annotations
+from typing import Any
 import numpy as np
 import scipy.sparse as sp
 from .v_frq2mel import v_frq2mel
@@ -10,7 +12,7 @@ from .v_frq2erb import v_frq2erb
 from .v_erb2frq import v_erb2frq
 
 
-def v_melbankm(p=None, n=256, fs=11025, fl=0, fh=0.5, w='tz'):
+def v_melbankm(p=None, n=256, fs=11025, fl=0, fh=0.5, w='tz') -> tuple[Any, np.ndarray, int, int]:
     """Determine matrix for a mel/erb/bark-spaced filterbank.
 
     Parameters

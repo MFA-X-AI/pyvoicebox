@@ -1,10 +1,11 @@
 """V_GAUSSMIXG - Global mean, variance and mode of a GMM (computation only)."""
 
+from __future__ import annotations
 import numpy as np
 from .v_gaussmixp import v_gaussmixp
 
 
-def v_gaussmixg(m, v=None, w=None, n_modes=1):
+def v_gaussmixg(m, v=None, w=None, n_modes=1) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Compute global mean, variance and modes of a GMM.
 
     Parameters

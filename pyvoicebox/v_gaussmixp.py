@@ -1,9 +1,10 @@
 """V_GAUSSMIXP - Calculate log probability densities from a Gaussian mixture model."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_gaussmixp(y, m, v=None, w=None, a=None, b=None):
+def v_gaussmixp(y, m, v=None, w=None, a=None, b=None) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Calculate log probability densities from a Gaussian mixture model.
 
     Parameters

@@ -1,5 +1,6 @@
 """V_TEXTHVC - Write text on graph with specified alignment and colour."""
 
+from __future__ import annotations
 import numpy as np
 
 
@@ -11,7 +12,7 @@ _COLOR_MAP = {
 }
 
 
-def v_texthvc(x, y, t, p=None, q=None, r=None, ax=None):
+def v_texthvc(x, y, t, p=None, q=None, r=None, ax=None) -> np.ndarray:
     """Write text on graph with specified alignment and colour.
 
     Parameters

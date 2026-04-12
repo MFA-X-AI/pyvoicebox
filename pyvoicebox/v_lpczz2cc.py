@@ -1,9 +1,10 @@
 """V_LPCZZ2CC - Convert poles to complex cepstrum."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpczz2cc(zz, np_out=None):
+def v_lpczz2cc(zz, np_out=None) -> np.ndarray:
     """Convert poles to complex cepstrum.
 
     Parameters

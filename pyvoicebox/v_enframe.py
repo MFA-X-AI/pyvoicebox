@@ -1,9 +1,10 @@
 """V_ENFRAME - Split signal into (overlapping) frames: one per row."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_enframe(x, win=None, hop=None, m='', fs=1):
+def v_enframe(x, win=None, hop=None, m='', fs=1) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Split signal up into (overlapping) frames: one per row.
 
     Parameters

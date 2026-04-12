@@ -1,9 +1,10 @@
 """V_QRDIVIDE - Divide two real quaternions."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_qrdivide(q1, q2=None):
+def v_qrdivide(q1, q2=None) -> np.ndarray:
     """Divide two real quaternions: q = q1/q2 such that q1 = q*q2.
 
     Parameters

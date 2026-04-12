@@ -1,9 +1,10 @@
 """V_SPRINTCPX - Format a complex number for printing."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_sprintcpx(z, f='g'):
+def v_sprintcpx(z, f='g') -> str:
     """Format a complex number for printing.
 
     Parameters

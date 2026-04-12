@@ -1,5 +1,6 @@
 """V_ROTRO2EU - convert rotation matrix to Euler angles."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_roteucode import v_roteucode, ZEL, MES, _TRMAP
 from pyvoicebox.v_atan2sc import v_atan2sc
@@ -39,7 +40,7 @@ _X6 = np.array([1, 0, 1, 0, 1, 0])  # index for sin components (0-indexed)
 _PMW = np.array([1.0, -1.0])
 
 
-def v_rotro2eu(m, r):
+def v_rotro2eu(m, r) -> np.ndarray:
     """Convert rotation matrix to Euler angles.
 
     Parameters

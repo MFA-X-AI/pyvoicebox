@@ -1,10 +1,11 @@
 """V_LPCAR2FF - Convert AR coefficients to complex spectrum."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_rfft import v_rfft
 
 
-def v_lpcar2ff(ar, np_out=None):
+def v_lpcar2ff(ar, np_out=None) -> tuple[np.ndarray, np.ndarray]:
     """Convert AR coefficients to complex spectrum.
 
     Parameters

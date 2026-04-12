@@ -1,5 +1,6 @@
 """V_IMPORTSII - Calculate the SII importance function."""
 
+from __future__ import annotations
 import numpy as np
 from .v_frq2bark import v_frq2bark
 
@@ -15,7 +16,7 @@ _xi0 = 4.0 - _mi / (2.0 * _ai)
 _xi1 = 18.0 + _mi / (2.0 * _bi)
 
 
-def v_importsii(f, m=''):
+def v_importsii(f, m='') -> np.ndarray:
     """Calculate the SII importance function per Hz or per Bark.
 
     Parameters

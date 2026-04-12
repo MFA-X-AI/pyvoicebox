@@ -1,5 +1,6 @@
 """V_SPGRAMBW - Spectrogram computation with configurable bandwidth."""
 
+from __future__ import annotations
 import numpy as np
 from .v_enframe import v_enframe
 from .v_rfft import v_rfft
@@ -11,7 +12,7 @@ from .v_frq2erb import v_frq2erb
 from .v_erb2frq import v_erb2frq
 
 
-def v_spgrambw(s, fs, mode='', bw=200, fmax=None, db=40, tinc=0):
+def v_spgrambw(s, fs, mode='', bw=200, fmax=None, db=40, tinc=0) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Compute spectrogram with configurable bandwidth (no plotting).
 
     Parameters

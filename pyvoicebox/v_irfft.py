@@ -1,9 +1,10 @@
 """V_IRFFT - Inverse FFT of a conjugate symmetric spectrum."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_irfft(y, n=None, d=None):
+def v_irfft(y, n=None, d=None) -> np.ndarray:
     """Inverse FFT of a conjugate symmetric spectrum X=(Y,N,D).
 
     Parameters

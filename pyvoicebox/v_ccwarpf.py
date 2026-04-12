@@ -1,9 +1,10 @@
 """V_CCWARPF - Warp cepstral coefficients."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_ccwarpf(f, n, s='ll'):
+def v_ccwarpf(f, n, s='ll') -> np.ndarray:
     """Warp cepstral coefficients for frequency/representation changes.
 
     Parameters

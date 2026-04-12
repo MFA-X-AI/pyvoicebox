@@ -1,9 +1,10 @@
 """V_RANGELIM - Limit the range of matrix elements."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rangelim(x, r, m='lp'):
+def v_rangelim(x, r, m='lp') -> np.ndarray:
     """Limit the range of matrix elements.
 
     Parameters

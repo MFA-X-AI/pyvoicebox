@@ -1,9 +1,10 @@
 """V_RSFFT - FFT of a real symmetric spectrum."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rsfft(y, n=None):
+def v_rsfft(y, n=None) -> np.ndarray:
     """FFT of a real symmetric spectrum X=(Y,N).
 
     Y is the "first half" of a symmetric real input signal and X is the

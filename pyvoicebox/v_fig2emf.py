@@ -1,5 +1,6 @@
 """V_FIG2EMF - Save a figure in various image formats."""
 
+from __future__ import annotations
 import os
 import inspect
 
@@ -24,7 +25,7 @@ _FORMAT_MAP = {
 }
 
 
-def v_fig2emf(h=None, s=None, p=None, f='svg', fig=None):
+def v_fig2emf(h=None, s=None, p=None, f='svg', fig=None) -> None:
     """Save a matplotlib figure in various image formats.
 
     Parameters

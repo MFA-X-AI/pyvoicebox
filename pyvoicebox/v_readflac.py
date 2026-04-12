@@ -3,10 +3,11 @@
 Uses the soundfile library for FLAC decoding.
 """
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_readflac(filename, mode='p'):
+def v_readflac(filename, mode='p') -> tuple[np.ndarray, int]:
     """Read a .FLAC format sound file.
 
     Parameters

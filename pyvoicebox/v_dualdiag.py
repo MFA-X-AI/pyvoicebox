@@ -1,10 +1,11 @@
 """V_DUALDIAG - Simultaneous diagonalization of two Hermitian matrices."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.linalg import eig
 
 
-def v_dualdiag(w, b):
+def v_dualdiag(w, b) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Simultaneous diagonalization of two Hermitian matrices.
 
     Parameters

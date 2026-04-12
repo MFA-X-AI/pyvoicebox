@@ -1,10 +1,11 @@
 """V_LOGNMPDF - Calculate PDF of a multivariate lognormal distribution."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.stats import multivariate_normal
 
 
-def v_lognmpdf(x, m=None, v=None):
+def v_lognmpdf(x, m=None, v=None) -> np.ndarray:
     """Calculate PDF of a multivariate lognormal distribution.
 
     Parameters

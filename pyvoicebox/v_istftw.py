@@ -1,9 +1,10 @@
 """V_ISTFTW - Inverse Short-time Fourier Transform."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_istftw(y, so, io=None):
+def v_istftw(y, so, io=None) -> np.ndarray:
     """Convert time-frequency domain back to time domain using inverse STFT.
 
     Parameters

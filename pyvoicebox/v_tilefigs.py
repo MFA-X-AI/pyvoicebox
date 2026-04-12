@@ -1,9 +1,10 @@
 """V_TILEFIGS - Tile current figure windows."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_tilefigs(pos=None):
+def v_tilefigs(pos=None) -> None:
     """Tile current matplotlib figure windows on screen.
 
     Parameters

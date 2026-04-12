@@ -1,9 +1,10 @@
 """V_HISTNDIM - Generate an n-dimensional histogram."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_histndim(x, b=None, mode=''):
+def v_histndim(x, b=None, mode='') -> tuple[np.ndarray, np.ndarray]:
     """Generate an n-dimensional histogram.
 
     Parameters

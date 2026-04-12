@@ -1,5 +1,6 @@
 """V_LPCAR2PP - Convert AR filter to power spectrum polynomial in cos(w)."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_lpcar2ra import v_lpcar2ra
 
@@ -27,7 +28,7 @@ def _chebyshev_matrix(p1):
     return tp
 
 
-def v_lpcar2pp(ar):
+def v_lpcar2pp(ar) -> np.ndarray:
     """Convert AR filter to power spectrum polynomial in cos(w).
 
     Parameters

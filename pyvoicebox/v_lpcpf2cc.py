@@ -1,10 +1,11 @@
 """V_LPCPF2CC - Convert power spectrum to complex cepstrum."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_rsfft import v_rsfft
 
 
-def v_lpcpf2cc(pf, np_out=None, f=None):
+def v_lpcpf2cc(pf, np_out=None, f=None) -> tuple[np.ndarray, np.ndarray]:
     """Convert power spectrum to complex cepstrum.
 
     Parameters

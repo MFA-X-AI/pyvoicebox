@@ -1,9 +1,10 @@
 """V_LPCCOVAR - Perform covariance LPC analysis."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpccovar(s, p=12, t=None):
+def v_lpccovar(s, p=12, t=None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Perform covariance LPC analysis.
 
     Parameters

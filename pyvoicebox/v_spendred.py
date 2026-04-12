@@ -1,7 +1,8 @@
 """V_SPENDRED - Speech enhancement using spectral subtraction with decision-directed approach (stub)."""
 
+from __future__ import annotations
 
-def v_spendred(*args, **kwargs):
+def v_spendred(*args, **kwargs) -> None:
     """Speech enhancement using spectral subtraction.
 
     This is a complex speech enhancement function. A stub is provided.

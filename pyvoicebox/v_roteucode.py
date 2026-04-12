@@ -1,5 +1,6 @@
 """V_ROTEUCODE - decode Euler angle rotation code string."""
 
+from __future__ import annotations
 import numpy as np
 
 # Precomputed tables (from v_roteucode.m / v_rotro2eu_tab.m)
@@ -201,7 +202,7 @@ ZEL = _build_zel()
 MES = np.array([1, 2, 3, 10, 11, 12, 7, 8, 9, 4, 5, 6], dtype=int)
 
 
-def v_roteucode(m):
+def v_roteucode(m) -> np.ndarray:
     """Decode a string specifying a rotation axis sequence.
 
     Parameters

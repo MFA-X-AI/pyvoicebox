@@ -1,10 +1,11 @@
 """V_POW2CEP - Convert power domain means and variances to the cepstral domain."""
 
+from __future__ import annotations
 import numpy as np
 from .v_rdct import v_rdct
 
 
-def v_pow2cep(m, c, mode='c'):
+def v_pow2cep(m, c, mode='c') -> tuple[np.ndarray, np.ndarray]:
     """Convert power domain means and variances to the cepstral domain.
 
     Parameters

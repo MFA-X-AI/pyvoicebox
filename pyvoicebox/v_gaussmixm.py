@@ -1,11 +1,12 @@
 """V_GAUSSMIXM - Estimate mean and variance of the magnitude of a GMM."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.special import gammaln
 from scipy.stats import norm
 
 
-def v_gaussmixm(m, v=None, w=None, z=None):
+def v_gaussmixm(m, v=None, w=None, z=None) -> tuple[np.ndarray, np.ndarray]:
     """Estimate mean and variance of the magnitude of a GMM.
 
     Parameters

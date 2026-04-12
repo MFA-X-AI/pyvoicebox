@@ -1,10 +1,11 @@
 """V_STFTW - Short-time Fourier Transform."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_windows import v_windows
 
 
-def v_stftw(x, nw, m='', ov=2, nt=None):
+def v_stftw(x, nw, m='', ov=2, nt=None) -> tuple[np.ndarray, dict]:
     """Convert time-domain signal to time-frequency domain using STFT.
 
     Parameters

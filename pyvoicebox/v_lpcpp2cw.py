@@ -1,9 +1,10 @@
 """V_LPCPP2CW - Convert power spectrum polynomial to power spectrum zeros."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcpp2cw(pp):
+def v_lpcpp2cw(pp) -> np.ndarray:
     """Convert power spectrum polynomial in cos(w) to power spectrum zeros.
 
     Parameters

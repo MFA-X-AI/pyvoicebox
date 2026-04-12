@@ -1,10 +1,11 @@
 """V_ROTPL2RO - find rotation matrix from plane vectors."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_atan2sc import v_atan2sc
 
 
-def v_rotpl2ro(u, v, t=None):
+def v_rotpl2ro(u, v, t=None) -> np.ndarray:
     """Find rotation matrix to rotate in the plane containing u and v.
 
     Parameters

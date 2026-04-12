@@ -1,11 +1,12 @@
 """V_LPCCC2DB - Convert complex cepstrum to dB power spectrum."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_rfft import v_rfft
 from pyvoicebox.v_lpccc2cc import v_lpccc2cc
 
 
-def v_lpccc2db(cc, np_out=None, nc=None, c0=None):
+def v_lpccc2db(cc, np_out=None, nc=None, c0=None) -> tuple[np.ndarray, np.ndarray]:
     """Convert complex cepstrum to dB power spectrum.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_LPCRF2AO - Convert reflection coefficients to area ratios."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcrf2ao(rf):
+def v_lpcrf2ao(rf) -> np.ndarray:
     """Convert reflection coefficients to area ratios.
 
     Parameters

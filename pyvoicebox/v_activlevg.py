@@ -1,9 +1,10 @@
 """V_ACTIVLEVG - Measure active speech level robustly."""
 
+from __future__ import annotations
 from pyvoicebox.v_activlev import v_activlev
 
 
-def v_activlevg(sp, fs, mode=''):
+def v_activlevg(sp, fs, mode='') -> tuple[np.ndarray, np.ndarray]:
     """Measure active speech level robustly.
 
     This is a simplified wrapper around v_activlev. The full MATLAB

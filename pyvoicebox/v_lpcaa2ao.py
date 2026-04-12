@@ -1,9 +1,10 @@
 """V_LPCAA2AO - Convert area function to area ratios."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcaa2ao(aa):
+def v_lpcaa2ao(aa) -> np.ndarray:
     """Convert area function to area ratios.
 
     Parameters

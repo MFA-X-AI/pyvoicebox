@@ -1,9 +1,10 @@
 """V_STOI2PROB - Convert STOI to probability."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_stoi2prob(s, m='i'):
+def v_stoi2prob(s, m='i') -> np.ndarray:
     """Convert STOI to probability.
 
     Parameters

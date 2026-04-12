@@ -1,10 +1,11 @@
 """V_RANDVEC - Generate random vectors from a GMM distribution."""
 
+from __future__ import annotations
 import numpy as np
 from .v_randiscr import v_randiscr
 
 
-def v_randvec(n, m, c=None, w=None, mode='g'):
+def v_randvec(n, m, c=None, w=None, mode='g') -> tuple[np.ndarray, np.ndarray]:
     """Generate real or complex GMM/lognormal random vectors.
 
     Parameters

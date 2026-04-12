@@ -1,9 +1,10 @@
 """V_POLYGONXLINE - find where a line crosses a polygon."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_polygonxline(p, l):
+def v_polygonxline(p, l) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Find where a line crosses a polygon.
 
     Parameters

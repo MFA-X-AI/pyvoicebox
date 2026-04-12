@@ -3,10 +3,11 @@
 Attempt at a faithful port of voicebox/v_lin2pcmu.m
 """
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lin2pcmu(x, s=4004.189931):
+def v_lin2pcmu(x, s=4004.189931) -> np.ndarray:
     """Convert linear signal to Mu-law PCM values.
 
     Parameters

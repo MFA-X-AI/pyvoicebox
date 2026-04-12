@@ -1,9 +1,10 @@
 """V_ZOOMFFT - DTFT evaluated over a linear frequency range."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_zoomfft(x, n=None, m=None, s=0, d=None):
+def v_zoomfft(x, n=None, m=None, s=0, d=None) -> tuple[np.ndarray, np.ndarray]:
     """DTFT evaluated over a linear frequency range Y=(X,N,M,S,D).
 
     Parameters

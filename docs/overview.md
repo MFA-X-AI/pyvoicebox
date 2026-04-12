@@ -6,7 +6,7 @@ icon: material/book-open-variant
 
 A complete Python port of the [VOICEBOX](https://github.com/ImperialCollegeLondon/sap-voicebox) speech processing toolbox, originally written in MATLAB by Mike Brookes at Imperial College London.
 
-**280+ functions**, validated against the original MATLAB source via GNU Octave with **[500+ automated tests](testing.md)**.
+**280+ functions**, fully typed, validated against the original MATLAB source via GNU Octave with **[500+ automated tests](testing.md)**.
 
 ## What is VOICEBOX?
 
@@ -32,3 +32,12 @@ pip install "pyvoicebox[plot]"        # with matplotlib for plotting functions
 ```
 
 See the [Getting Started](getting-started.md) guide for examples and usage details.
+
+## Notebooks
+
+Interactive Jupyter notebooks are available in the [`notebooks/`](https://github.com/MFA-X-AI/pyvoicebox/tree/master/notebooks) directory:
+
+- **Frequency Scales** — convert between Hz, Mel, Bark, ERB, Cent, MIDI with visualisations
+- **MFCC & Spectrograms** — extract MFCCs, build mel filterbanks, compute spectrograms
+- **LPC Analysis** — AR coefficients, spectral envelopes, representation conversions, bandwidth expansion
+- **Speech Enhancement** — add noise, measure SNR, compare clean vs noisy spectrograms

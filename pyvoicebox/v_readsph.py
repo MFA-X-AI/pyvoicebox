@@ -4,12 +4,13 @@ The SPHERE (SPeech HEader REsources) format is used by NIST for
 speech corpora like TIMIT.
 """
 
+from __future__ import annotations
 import numpy as np
 import struct
 import os
 
 
-def v_readsph(filename, mode='p', nmax=-1, nskip=0):
+def v_readsph(filename, mode='p', nmax=-1, nskip=0) -> np.ndarray:
     """Read a SPHERE/TIMIT format sound file.
 
     Parameters

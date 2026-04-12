@@ -1,10 +1,11 @@
 """V_LPCAA2DL - Convert area coefficients to DCT of log area."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_rdct import v_rdct
 
 
-def v_lpcaa2dl(aa):
+def v_lpcaa2dl(aa) -> np.ndarray:
     """Convert area coefficients to DCT of log area.
 
     Parameters

@@ -1,10 +1,11 @@
 """V_NEARNONZ - Replace each zero element with nearest non-zero element."""
 
+from __future__ import annotations
 import numpy as np
 from scipy import sparse
 
 
-def v_nearnonz(x, d=None):
+def v_nearnonz(x, d=None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Replace each zero element with the nearest non-zero element.
 
     Parameters

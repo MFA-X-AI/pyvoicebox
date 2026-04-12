@@ -1,5 +1,6 @@
 """V_ROTQR2RO - convert real quaternion to 3x3 rotation matrix."""
 
+from __future__ import annotations
 import numpy as np
 
 # Precomputed index arrays (from MATLAB source, converted to 0-indexed)
@@ -14,7 +15,7 @@ _H = np.array([0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3])
 _M = np.array([0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3])
 
 
-def v_rotqr2ro(q):
+def v_rotqr2ro(q) -> np.ndarray:
     """Convert real quaternion to 3x3 rotation matrix.
 
     Parameters

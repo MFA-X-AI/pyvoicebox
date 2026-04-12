@@ -1,7 +1,8 @@
 """V_GAMMABANK - Gammatone filterbank (stub)."""
 
+from __future__ import annotations
 
-def v_gammabank(*args, **kwargs):
+def v_gammabank(*args, **kwargs) -> None:
     """Create a bank of gammatone filters.
 
     The full MATLAB implementation creates gammatone filters at

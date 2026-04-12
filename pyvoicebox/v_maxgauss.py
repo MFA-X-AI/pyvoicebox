@@ -1,10 +1,11 @@
 """V_MAXGAUSS - Gaussian approximation to the max of a Gaussian vector."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.special import erfc
 
 
-def v_maxgauss(m, c=None, d=None):
+def v_maxgauss(m, c=None, d=None) -> tuple[float, float, np.ndarray, np.ndarray]:
     """Determine Gaussian approximation to max of a Gaussian vector.
 
     Parameters

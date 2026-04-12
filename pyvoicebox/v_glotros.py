@@ -1,9 +1,10 @@
 """V_GLOTROS - Rosenberg glottal model."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_glotros(d, t=None, p=None):
+def v_glotros(d, t=None, p=None) -> np.ndarray:
     """Rosenberg glottal model.
 
     Parameters

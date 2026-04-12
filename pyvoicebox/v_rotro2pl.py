@@ -1,10 +1,11 @@
 """V_ROTRO2PL - find plane and rotation angle of a rotation matrix."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.linalg import schur
 
 
-def v_rotro2pl(r):
+def v_rotro2pl(r) -> tuple[np.ndarray, np.ndarray, float]:
     """Find the plane and rotation angle of a rotation matrix.
 
     Parameters

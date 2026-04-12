@@ -1,5 +1,6 @@
 """V_WINDOWS - Generate a standard windowing function."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.special import i0 as besseli0
 
@@ -36,7 +37,7 @@ _KK = np.array([
 ])
 
 
-def v_windows(wtype, n=256, mode=None, p=None, ov=None):
+def v_windows(wtype, n=256, mode=None, p=None, ov=None) -> np.ndarray:
     """Generate a standard windowing function.
 
     Parameters

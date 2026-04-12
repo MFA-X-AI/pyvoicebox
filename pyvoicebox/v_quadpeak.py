@@ -1,9 +1,10 @@
 """V_QUADPEAK - Find quadratically-interpolated peak in an N-D array."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_quadpeak(z):
+def v_quadpeak(z) -> tuple[float, np.ndarray, int, np.ndarray]:
     """Find quadratically-interpolated peak in an N-D array.
 
     Parameters

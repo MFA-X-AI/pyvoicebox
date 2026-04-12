@@ -1,5 +1,6 @@
 """V_VADSOHN - Voice activity detector (Sohn et al.)."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.special import iv as besseli
 from .v_enframe import v_enframe
@@ -8,7 +9,7 @@ from .v_estnoisem import v_estnoisem
 from .v_estnoiseg import v_estnoiseg
 
 
-def v_vadsohn(si, fs, m='a', pp=None):
+def v_vadsohn(si, fs, m='a', pp=None) -> np.ndarray:
     """Voice activity detector based on Sohn et al.
 
     Parameters

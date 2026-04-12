@@ -1,10 +1,11 @@
 """V_LPCIFILT - Apply inverse filter to speech signal."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.signal import lfilter
 
 
-def v_lpcifilt(s, ar, t=None, dc=None, fade=None):
+def v_lpcifilt(s, ar, t=None, dc=None, fade=None) -> np.ndarray:
     """Apply inverse filter to speech signal.
 
     Parameters

@@ -1,10 +1,11 @@
 """V_LPCIM2AR - Convert impulse response to AR coefficients."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.linalg import toeplitz, solve
 
 
-def v_lpcim2ar(im):
+def v_lpcim2ar(im) -> np.ndarray:
     """Convert impulse response to AR coefficients.
 
     Parameters

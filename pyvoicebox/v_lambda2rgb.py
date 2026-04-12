@@ -1,5 +1,6 @@
 """V_LAMBDA2RGB - Convert wavelength to XYZ or RGB colour space."""
 
+from __future__ import annotations
 import numpy as np
 
 # Coefficients for 1931 standard observer
@@ -32,7 +33,7 @@ _xr_mat = _xr_orig.T / _xr_orig[1, 0]
 _rx_mat = np.linalg.inv(_xr_mat)
 
 
-def v_lambda2rgb(l, m='r'):
+def v_lambda2rgb(l, m='r') -> np.ndarray:
     """Convert wavelength to XYZ or RGB colour space.
 
     Parameters

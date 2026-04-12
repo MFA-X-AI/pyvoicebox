@@ -1,12 +1,13 @@
 """V_GAUSSMIXB - Approximate Bhattacharyya divergence between two GMMs."""
 
+from __future__ import annotations
 import numpy as np
 from .v_logsum import v_logsum
 from .v_gaussmixp import v_gaussmixp
 from .v_randvec import v_randvec
 
 
-def v_gaussmixb(mf, vf=None, wf=None, mg=None, vg=None, wg=None, nx=1000):
+def v_gaussmixb(mf, vf=None, wf=None, mg=None, vg=None, wg=None, nx=1000) -> tuple[float, np.ndarray]:
     """Approximate Bhattacharyya divergence between two GMMs.
 
     Parameters

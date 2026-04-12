@@ -1,10 +1,11 @@
 """V_PSYCHOFUNC - Calculate psychometric functions."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.special import erfc
 
 
-def v_psychofunc(m_or_q=None, q=None, x=None, r=None):
+def v_psychofunc(m_or_q=None, q=None, x=None, r=None) -> np.ndarray:
     """Calculate psychometric functions: trial success probability vs SNR.
 
     Parameters

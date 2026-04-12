@@ -1,9 +1,10 @@
 """V_OVERLAPADD - Join overlapping frames together."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_overlapadd(f, win=None, inc=None):
+def v_overlapadd(f, win=None, inc=None) -> np.ndarray:
     """Join overlapping frames together.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_POLYGONAREA - calculate polygon area."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_polygonarea(p):
+def v_polygonarea(p) -> float:
     """Calculate the area of a polygon using the shoelace formula.
 
     Parameters

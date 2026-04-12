@@ -3,6 +3,8 @@
 Set/get global parameters used by other functions in the VOICEBOX toolbox.
 """
 
+from __future__ import annotations
+from typing import Any
 import os
 import tempfile
 
@@ -47,7 +49,7 @@ def _init_defaults():
     }
 
 
-def v_voicebox(field=None, value=None):
+def v_voicebox(field=None, value=None) -> Any:
     """Get or set global Voicebox parameters.
 
     Parameters

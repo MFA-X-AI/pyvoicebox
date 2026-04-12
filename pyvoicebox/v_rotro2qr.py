@@ -1,5 +1,6 @@
 """V_ROTRO2QR - convert 3x3 rotation matrix to real quaternion."""
 
+from __future__ import annotations
 import numpy as np
 
 
@@ -10,7 +11,7 @@ def _qr_normalize(q):
     return q * sgn[np.newaxis, :]
 
 
-def v_rotro2qr(r):
+def v_rotro2qr(r) -> np.ndarray:
     """Convert 3x3 rotation matrix to real quaternion.
 
     Parameters

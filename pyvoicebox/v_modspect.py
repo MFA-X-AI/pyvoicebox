@@ -1,12 +1,13 @@
 """V_MODSPECT - Calculate modulation spectrum of a signal."""
 
+from __future__ import annotations
 import numpy as np
 from .v_enframe import v_enframe
 from .v_rfft import v_rfft
 from .v_melbankm import v_melbankm
 
 
-def v_modspect(s, fs=11025, m='', nf=None, nq=None):
+def v_modspect(s, fs=11025, m='', nf=None, nq=None) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Calculate the modulation spectrum of a signal.
 
     This is a simplified implementation that computes the mel spectrogram

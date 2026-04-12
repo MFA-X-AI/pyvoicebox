@@ -1,9 +1,10 @@
 """V_HUFFMAN - Calculate a D-ary Huffman code."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_huffman(p, a='01'):
+def v_huffman(p, a='01') -> tuple[list, np.ndarray, float]:
     """Calculate a D-ary Huffman code.
 
     Parameters

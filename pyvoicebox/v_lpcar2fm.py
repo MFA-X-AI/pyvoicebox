@@ -1,10 +1,11 @@
 """V_LPCAR2FM - Convert autoregressive coefficients to formant freq+amp+bw."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_lpcar2zz import v_lpcar2zz
 
 
-def v_lpcar2fm(ar, t=None):
+def v_lpcar2fm(ar, t=None) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Convert autoregressive coefficients to formant frequencies, amplitudes and bandwidths.
 
     Parameters

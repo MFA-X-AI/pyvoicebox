@@ -1,9 +1,10 @@
 """V_ROTQR2QC - convert real quaternion to complex quaternion."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rotqr2qc(qr):
+def v_rotqr2qc(qr) -> np.ndarray:
     """Convert real quaternion [r, a, b, c] to complex [r+j*b, a+j*c].
 
     Parameters

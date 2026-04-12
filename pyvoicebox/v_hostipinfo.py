@@ -1,9 +1,10 @@
 """V_HOSTIPINFO - Get host name and IP info using Python equivalents."""
 
+from __future__ import annotations
 import socket
 
 
-def v_hostipinfo(m=''):
+def v_hostipinfo(m='') -> dict:
     """Get host name and IP address info.
 
     Parameters

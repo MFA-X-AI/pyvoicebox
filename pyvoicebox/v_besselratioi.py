@@ -1,10 +1,11 @@
 """V_BESSELRATIOI - Inverse Bessel function ratio."""
 
+from __future__ import annotations
 import numpy as np
 from .v_besselratio import v_besselratio
 
 
-def v_besselratioi(r, v=0, p=5):
+def v_besselratioi(r, v=0, p=5) -> np.ndarray:
     """Calculate the inverse Bessel function ratio.
 
     Given r = besseli(v+1,s)/besseli(v,s), find s.

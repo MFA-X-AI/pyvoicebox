@@ -1,9 +1,10 @@
 """V_LPCCC2CC - Extrapolate complex cepstrum."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpccc2cc(cc, np_out=None):
+def v_lpccc2cc(cc, np_out=None) -> np.ndarray:
     """Extrapolate complex cepstrum.
 
     Parameters

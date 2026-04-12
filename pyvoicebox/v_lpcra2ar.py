@@ -1,10 +1,11 @@
 """V_LPCRA2AR - Convert inverse filter autocorrelation coefficients to AR filter."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.linalg import hankel, toeplitz
 
 
-def v_lpcra2ar(ra, tol=1e-8):
+def v_lpcra2ar(ra, tol=1e-8) -> np.ndarray:
     """Convert inverse filter autocorrelation coefficients to AR filter.
 
     Uses a Newton-Raphson iteration (Wilson's algorithm).

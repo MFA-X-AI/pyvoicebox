@@ -1,10 +1,11 @@
 """V_STDSPECTRUM - Generate standard acoustic/speech spectra (simplified)."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.signal import bilinear, freqz
 
 
-def v_stdspectrum(s, m='s', f=8192, n=None, zi=None, bs=None, as_=None):
+def v_stdspectrum(s, m='s', f=8192, n=None, zi=None, bs=None, as_=None) -> tuple[np.ndarray, np.ndarray]:
     """Generate standard acoustic/speech spectra in s- or z-domain.
 
     Simplified implementation supporting s-domain output and basic z-domain

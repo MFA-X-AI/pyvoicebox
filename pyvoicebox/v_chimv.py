@@ -1,10 +1,11 @@
 """V_CHIMV - Approximate mean and variance of non-central chi distribution."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.stats import norm
 
 
-def v_chimv(n, l=0, s=1):
+def v_chimv(n, l=0, s=1) -> tuple[np.ndarray, np.ndarray]:
     """Approximate mean and variance of non-central chi distribution.
 
     Parameters

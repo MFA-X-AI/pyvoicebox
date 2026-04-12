@@ -2,7 +2,7 @@
 
 A complete Python port of the [VOICEBOX](https://github.com/ImperialCollegeLondon/sap-voicebox) speech processing toolbox, originally written in MATLAB by Mike Brookes at Imperial College London's Speech and Audio Processing Lab.
 
-**280+ functions**, validated against the original MATLAB source via GNU Octave with **500+ automated tests**.
+**280+ functions**, fully typed, validated against the original MATLAB source via GNU Octave with **500+ automated tests**.
 
 ## What is VOICEBOX?
 

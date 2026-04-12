@@ -1,9 +1,10 @@
 """V_ZEROTRIM - Remove trailing zero rows and columns."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_zerotrim(x):
+def v_zerotrim(x) -> np.ndarray:
     """Remove trailing zero rows and columns from a matrix.
 
     Parameters

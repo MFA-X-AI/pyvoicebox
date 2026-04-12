@@ -1,10 +1,11 @@
 """V_BARK2FRQ - Convert the BARK frequency scale to Hertz."""
 
+from __future__ import annotations
 import numpy as np
 from .v_frq2bark import v_frq2bark
 
 
-def v_bark2frq(b, m=''):
+def v_bark2frq(b, m='') -> tuple[np.ndarray, np.ndarray]:
     """Convert BARK-scale values to frequencies in Hz.
 
     Parameters

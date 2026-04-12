@@ -1,9 +1,10 @@
 """V_CENT2FRQ - Convert Cents frequency scale to Hertz."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_cent2frq(c):
+def v_cent2frq(c) -> tuple[np.ndarray, np.ndarray]:
     """Convert cents scale values to frequencies in Hz.
 
     Parameters

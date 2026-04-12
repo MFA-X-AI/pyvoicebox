@@ -1,9 +1,10 @@
 """V_YTICKINT - Remove non-integer ticks from y-axis."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_ytickint(ax=None):
+def v_ytickint(ax=None) -> np.ndarray:
     """Remove non-integer tick marks from the y-axis.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_SKEW3D - convert between vector and skew-symmetric matrix."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_skew3d(x, m=''):
+def v_skew3d(x, m='') -> np.ndarray:
     """Convert between a vector and the corresponding skew-symmetric matrix.
 
     v_skew3d is its own inverse: v_skew3d(v_skew3d(x)) == x.

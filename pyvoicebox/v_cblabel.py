@@ -1,7 +1,8 @@
 """V_CBLABEL - Add a label to a colorbar."""
 
+from __future__ import annotations
 
-def v_cblabel(label, h=None, ax=None):
+def v_cblabel(label, h=None, ax=None) -> np.ndarray:
     """Add a label to a colorbar.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_FINDPEAKS - Find peaks with optional quadratic interpolation."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_findpeaks(y, m='', w=None, x=None):
+def v_findpeaks(y, m='', w=None, x=None) -> tuple[np.ndarray, np.ndarray]:
     """Find peaks with optional quadratic interpolation.
 
     Parameters

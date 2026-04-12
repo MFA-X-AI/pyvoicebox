@@ -1,10 +1,11 @@
 """V_LPCRA2PF - Convert inverse filter autocorrelation to power spectrum."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_rfft import v_rfft
 
 
-def v_lpcra2pf(ra, np_out=None):
+def v_lpcra2pf(ra, np_out=None) -> np.ndarray:
     """Convert inverse filter autocorrelation to power spectrum.
 
     Parameters

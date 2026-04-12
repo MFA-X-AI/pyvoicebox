@@ -1,7 +1,8 @@
 """V_PSYCDIGIT - Psychoacoustic digit recognition test (stub)."""
 
+from __future__ import annotations
 
-def v_psycdigit(*args, **kwargs):
+def v_psycdigit(*args, **kwargs) -> None:
     """Run a psychoacoustic digit recognition test.
 
     This is an interactive GUI-based function that has no direct

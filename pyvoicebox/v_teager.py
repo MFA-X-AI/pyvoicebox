@@ -1,9 +1,10 @@
 """V_TEAGER - Calculate Teager energy waveform."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_teager(x, d=None, m=''):
+def v_teager(x, d=None, m='') -> np.ndarray:
     """Calculate Teager energy waveform.
 
     y(n) = abs(x(n))^2 - x(n+1)*conj(x(n-1))

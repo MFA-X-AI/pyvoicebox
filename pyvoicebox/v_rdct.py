@@ -1,9 +1,10 @@
 """V_RDCT - Discrete cosine transform of real data."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rdct(x, n=None, a=None, b=1.0):
+def v_rdct(x, n=None, a=None, b=1.0) -> np.ndarray:
     """Discrete cosine transform of real data Y=(X,N,A,B).
 
     Parameters

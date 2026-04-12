@@ -1,10 +1,11 @@
 """V_PDFMOMENTS - Convert between central moments, raw moments and cumulants."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.special import comb
 
 
-def v_pdfmoments(t, m, b=0, a=1):
+def v_pdfmoments(t, m, b=0, a=1) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Convert between central moments, raw moments and cumulants.
 
     Parameters

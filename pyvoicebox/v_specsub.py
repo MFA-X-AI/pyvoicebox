@@ -1,5 +1,6 @@
 """V_SPECSUB - Speech enhancement using spectral subtraction."""
 
+from __future__ import annotations
 import numpy as np
 from .v_enframe import v_enframe
 from .v_rfft import v_rfft
@@ -8,7 +9,7 @@ from .v_estnoisem import v_estnoisem
 from .v_estnoiseg import v_estnoiseg
 
 
-def v_specsub(si, fs, pp=None):
+def v_specsub(si, fs, pp=None) -> np.ndarray:
     """Perform speech enhancement using spectral subtraction.
 
     Parameters

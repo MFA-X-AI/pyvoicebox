@@ -1,5 +1,6 @@
 """V_SSUBMMSEV - Speech enhancement using MMSE with VAD-based noise estimation."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.special import iv as besseli
 from .v_enframe import v_enframe
@@ -13,7 +14,7 @@ def _expint(x):
     return exp1(x)
 
 
-def v_ssubmmsev(si, fs, pp=None):
+def v_ssubmmsev(si, fs, pp=None) -> np.ndarray:
     """Speech enhancement using MMSE with VAD-based noise estimation.
 
     Parameters

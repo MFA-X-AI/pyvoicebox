@@ -1,10 +1,11 @@
 """V_NORMCDFLOG - Log of normal CDF, accurate for large negative values."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.special import erfc
 
 
-def v_normcdflog(x, m=None, s=None):
+def v_normcdflog(x, m=None, s=None) -> np.ndarray:
     """Calculate log of Normal Cumulative Distribution function.
 
     Parameters

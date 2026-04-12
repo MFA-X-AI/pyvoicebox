@@ -1,11 +1,12 @@
 """V_FXPEFAC - PEFAC pitch extraction algorithm."""
 
+from __future__ import annotations
 import numpy as np
 from .v_enframe import v_enframe
 from .v_rfft import v_rfft
 
 
-def v_fxpefac(s, fs, tinc=0.01):
+def v_fxpefac(s, fs, tinc=0.01) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """PEFAC pitch extraction algorithm.
 
     Parameters

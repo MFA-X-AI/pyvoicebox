@@ -1,10 +1,11 @@
 """V_CORRELOGRAM - Calculate correlogram."""
 
+from __future__ import annotations
 import numpy as np
 from .v_windows import v_windows
 
 
-def v_correlogram(x, inc=128, nw=None, nlag=None, m='h', fs=1):
+def v_correlogram(x, inc=128, nw=None, nlag=None, m='h', fs=1) -> tuple[np.ndarray, np.ndarray]:
     """Calculate correlogram.
 
     Parameters

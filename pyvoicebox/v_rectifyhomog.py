@@ -1,5 +1,6 @@
 """V_RECTIFYHOMOG - apply rectifying homographies to an image set."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_rotro2qr import v_rotro2qr
 from pyvoicebox.v_rotqr2ro import v_rotqr2ro
@@ -8,7 +9,7 @@ from pyvoicebox.v_rotro2eu import v_rotro2eu
 from pyvoicebox.v_imagehomog import v_imagehomog
 
 
-def v_rectifyhomog(ims, roc=None, k0=None, mode=''):
+def v_rectifyhomog(ims, roc=None, k0=None, mode='') -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Apply rectifying homographies to an image set.
 
     Parameters

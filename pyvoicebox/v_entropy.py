@@ -1,9 +1,10 @@
 """V_ENTROPY - Shannon entropy of discrete and sampled continuous distributions."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_entropy(p, dim=None, cond=None, arg=None, step=None):
+def v_entropy(p, dim=None, cond=None, arg=None, step=None) -> np.ndarray:
     """Calculate the entropy of discrete and sampled continuous distributions.
 
     Parameters

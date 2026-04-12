@@ -1,9 +1,10 @@
 """V_FRAM2WAV - Convert frame values to a continuous waveform."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_fram2wav(x, tt, mode='l'):
+def v_fram2wav(x, tt, mode='l') -> tuple[np.ndarray, np.ndarray]:
     """Convert frame values to a continuous waveform.
 
     Parameters

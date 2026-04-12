@@ -1,9 +1,10 @@
 """V_ROTQC2MC - convert complex quaternion vectors to complex quaternion matrices."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rotqc2mc(qc):
+def v_rotqc2mc(qc) -> np.ndarray:
     """Convert complex quaternion vector form to complex quaternion matrix form.
 
     Each quaternion r+ai+bj+ck is stored as a 2x1 complex vector [r+bi, a+ci].

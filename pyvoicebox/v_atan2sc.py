@@ -1,9 +1,10 @@
 """V_ATAN2SC - sin and cosine of atan(y/x)."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_atan2sc(y, x):
+def v_atan2sc(y, x) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Compute sin and cosine of atan(y/x) robustly.
 
     Parameters

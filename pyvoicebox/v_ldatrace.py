@@ -1,10 +1,11 @@
 """V_LDATRACE - LDA transform to maximize trace discriminant."""
 
+from __future__ import annotations
 import numpy as np
 from scipy import linalg
 
 
-def v_ldatrace(b, w=None, n=None, c=None):
+def v_ldatrace(b, w=None, n=None, c=None) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Calculate an LDA transform to maximize trace discriminant.
 
     Parameters

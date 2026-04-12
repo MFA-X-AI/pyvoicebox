@@ -1,10 +1,11 @@
 """V_USASI - Generate USASI noise."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_randfilt import v_randfilt
 
 
-def v_usasi(n, fs=8000):
+def v_usasi(n, fs=8000) -> np.ndarray:
     """Generate n samples of USASI noise at sample frequency fs.
 
     USASI noise simulates long-term average audio program material.

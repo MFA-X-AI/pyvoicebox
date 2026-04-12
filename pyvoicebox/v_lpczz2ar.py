@@ -1,9 +1,10 @@
 """V_LPCZZ2AR - Convert z-plane poles to AR coefficients."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpczz2ar(zz):
+def v_lpczz2ar(zz) -> np.ndarray:
     """Convert z-plane poles to AR coefficients.
 
     Parameters

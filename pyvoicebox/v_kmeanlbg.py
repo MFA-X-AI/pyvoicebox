@@ -1,10 +1,11 @@
 """V_KMEANLBG - K-means using Linde-Buzo-Gray algorithm."""
 
+from __future__ import annotations
 import numpy as np
 from .v_kmeans import v_kmeans
 
 
-def v_kmeanlbg(d, k):
+def v_kmeanlbg(d, k) -> tuple[np.ndarray, float, np.ndarray]:
     """Vector quantization using the Linde-Buzo-Gray algorithm.
 
     Parameters

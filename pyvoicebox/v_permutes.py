@@ -1,9 +1,10 @@
 """V_PERMUTES - All N! permutations of 0:N-1 + signatures."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_permutes(n, return_sign=False):
+def v_permutes(n, return_sign=False) -> np.ndarray:
     """Generate all N! permutations of 0:N-1 in lexical order.
 
     Note: Returns 0-based indices (unlike MATLAB's 1-based).

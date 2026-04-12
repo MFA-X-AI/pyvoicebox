@@ -1,9 +1,10 @@
 """V_FRQ2ERB - Convert Hertz to ERB frequency scale."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_frq2erb(frq):
+def v_frq2erb(frq) -> tuple[np.ndarray, np.ndarray]:
     """Convert frequencies in Hz to the ERB-rate scale.
 
     Parameters

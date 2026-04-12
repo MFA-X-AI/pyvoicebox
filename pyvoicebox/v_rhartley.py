@@ -1,9 +1,10 @@
 """V_RHARTLEY - Calculate the Hartley transform of real data."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rhartley(x, n=None):
+def v_rhartley(x, n=None) -> np.ndarray:
     """Calculate the Hartley transform of real data Y=(X,N).
 
     Data is truncated/padded to length N if specified.

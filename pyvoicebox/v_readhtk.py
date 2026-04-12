@@ -1,5 +1,6 @@
 """V_READHTK - Read an HTK parameter file."""
 
+from __future__ import annotations
 import struct
 import numpy as np
 
@@ -14,7 +15,7 @@ _HTK_KINDS = [
 _HTK_SUFFIXES = 'ENDACZK0VT'
 
 
-def v_readhtk(file):
+def v_readhtk(file) -> tuple[np.ndarray, np.ndarray, float, int, int]:
     """Read an HTK parameter file.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_RFFT - Calculate the DFT of real data, returning only the first half."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rfft(x, n=None, d=None):
+def v_rfft(x, n=None, d=None) -> np.ndarray:
     """Calculate the DFT of real data Y=(X,N,D).
 
     Data is truncated/padded to length N if specified.

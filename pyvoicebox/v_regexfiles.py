@@ -1,10 +1,11 @@
 """V_REGEXFILES - Find files matching a regular expression pattern."""
 
+from __future__ import annotations
 import os
 import re
 
 
-def v_regexfiles(pattern, directory='.', recursive=False):
+def v_regexfiles(pattern, directory='.', recursive=False) -> list:
     """Find files matching a regular expression pattern.
 
     Parameters

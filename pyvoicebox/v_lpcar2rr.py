@@ -1,11 +1,12 @@
 """V_LPCAR2RR - Convert autoregressive coefficients to autocorrelation coefficients."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_lpcar2rf import v_lpcar2rf
 from pyvoicebox.v_lpcrf2rr import v_lpcrf2rr
 
 
-def v_lpcar2rr(ar, p=None):
+def v_lpcar2rr(ar, p=None) -> np.ndarray:
     """Convert autoregressive coefficients to autocorrelation coefficients.
 
     Parameters

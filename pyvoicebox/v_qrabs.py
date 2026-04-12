@@ -1,9 +1,10 @@
 """V_QRABS - Absolute value and normalization of real quaternions."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_qrabs(q1):
+def v_qrabs(q1) -> tuple[np.ndarray, np.ndarray]:
     """Absolute value and normalization of real quaternions.
 
     Parameters

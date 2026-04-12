@@ -1,7 +1,8 @@
 """V_VOICEBOX_UPDATE - Check for voicebox updates (stub)."""
 
+from __future__ import annotations
 
-def v_voicebox_update():
+def v_voicebox_update() -> None:
     """Check for voicebox updates.
 
     This is a stub. The MATLAB version checks for toolbox updates.

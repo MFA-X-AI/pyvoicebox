@@ -1,10 +1,11 @@
 """V_GAUSSMIXK - Approximate KL divergence between two GMMs."""
 
+from __future__ import annotations
 import numpy as np
 from .v_logsum import v_logsum
 
 
-def v_gaussmixk(mf, vf=None, wf=None, mg=None, vg=None, wg=None):
+def v_gaussmixk(mf, vf=None, wf=None, mg=None, vg=None, wg=None) -> tuple[float, np.ndarray]:
     """Approximate Kullback-Leibler divergence between two GMMs.
 
     Parameters

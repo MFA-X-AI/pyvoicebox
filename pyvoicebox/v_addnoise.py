@@ -1,9 +1,10 @@
 """V_ADDNOISE - Add noise at a chosen SNR."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_addnoise(s, fs, snr=np.inf, m=''):
+def v_addnoise(s, fs, snr=np.inf, m='') -> tuple[np.ndarray, np.ndarray]:
     """Add white noise at a chosen SNR using energy-based measurement.
 
     This is a simplified version that supports white noise addition with

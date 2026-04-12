@@ -1,5 +1,6 @@
 """V_ROTEU2QR - convert Euler angles to real unit quaternion."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_roteucode import v_roteucode
 
@@ -23,7 +24,7 @@ def _qr_normalize(q):
     return q * sgn[np.newaxis, :]
 
 
-def v_roteu2qr(m, e=None):
+def v_roteu2qr(m, e=None) -> np.ndarray:
     """Convert Euler angles to real unit quaternion.
 
     Parameters

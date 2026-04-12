@@ -1,11 +1,12 @@
 """V_SPECSUBM - Spectral subtraction (Martin's method)."""
 
+from __future__ import annotations
 import numpy as np
 from .v_rfft import v_rfft
 from .v_irfft import v_irfft
 
 
-def v_specsubm(s, fs, p=None):
+def v_specsubm(s, fs, p=None) -> tuple[np.ndarray, np.ndarray]:
     """Spectral subtraction using minimum statistics (Martin).
 
     Parameters

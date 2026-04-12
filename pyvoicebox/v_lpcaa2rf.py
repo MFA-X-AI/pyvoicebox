@@ -1,9 +1,10 @@
 """V_LPCAA2RF - Convert vocal tract areas to reflection coefficients."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcaa2rf(aa):
+def v_lpcaa2rf(aa) -> np.ndarray:
     """Convert vocal tract areas to reflection coefficients.
 
     Parameters

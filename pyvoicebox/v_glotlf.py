@@ -1,9 +1,10 @@
 """V_GLOTLF - Liljencrants-Fant glottal model."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_glotlf(d=0, t=None, p=None):
+def v_glotlf(d=0, t=None, p=None) -> tuple[np.ndarray, dict]:
     """Liljencrants-Fant glottal model.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_FIGBOLDEN - Embolden, resize and recolour the current figure."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_figbolden(pos=None, pv=None, m='', fig=None):
+def v_figbolden(pos=None, pv=None, m='', fig=None) -> None:
     """Embolden, resize and recolour a matplotlib figure.
 
     Parameters

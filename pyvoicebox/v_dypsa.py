@@ -1,12 +1,13 @@
 """V_DYPSA - Derive glottal closure instances from speech using the DYPSA algorithm."""
 
+from __future__ import annotations
 import numpy as np
 from .v_lpcauto import v_lpcauto
 from .v_lpcifilt import v_lpcifilt
 from .v_zerocros import v_zerocros
 
 
-def v_dypsa(s, fs):
+def v_dypsa(s, fs) -> tuple[np.ndarray, np.ndarray]:
     """Derive glottal closure instances from speech.
 
     Parameters

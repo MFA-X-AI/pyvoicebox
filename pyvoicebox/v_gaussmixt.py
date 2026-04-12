@@ -1,9 +1,10 @@
 """V_GAUSSMIXT - Multiply two GMM PDFs."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_gaussmixt(m1, v1, w1, m2, v2, w2):
+def v_gaussmixt(m1, v1, w1, m2, v2, w2) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Multiply two GMM PDFs.
 
     Parameters

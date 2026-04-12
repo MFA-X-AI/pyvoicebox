@@ -1,9 +1,10 @@
 """V_SPRINTSI - Print value with SI multiplier."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_sprintsi(x, d=-3, w=0, u=' '):
+def v_sprintsi(x, d=-3, w=0, u=' ') -> str:
     """Format a number with an SI multiplier prefix.
 
     Parameters

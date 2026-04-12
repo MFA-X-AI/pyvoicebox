@@ -1,9 +1,10 @@
 """V_LPCRF2LA - Convert reflection coefficients to log areas."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcrf2la(rf):
+def v_lpcrf2la(rf) -> np.ndarray:
     """Convert reflection coefficients to log areas.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_LPCRF2RR - Convert reflection coefficients to autocorrelation coefficients."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcrf2rr(rf, p=None):
+def v_lpcrf2rr(rf, p=None) -> tuple[np.ndarray, np.ndarray]:
     """Convert reflection coefficients to autocorrelation coefficients.
 
     Parameters

@@ -5,6 +5,7 @@ by name or index. The full MATLAB implementation supports all 75+ uniform
 polyhedra with Wythoff symbol computation.
 """
 
+from __future__ import annotations
 import numpy as np
 
 
@@ -88,7 +89,7 @@ _INDEX_MAP = {
 }
 
 
-def v_upolyhedron(w, md=''):
+def v_upolyhedron(w, md='') -> np.ndarray:
     """Calculate uniform polyhedron characteristics.
 
     This is a simplified implementation supporting common polyhedra.

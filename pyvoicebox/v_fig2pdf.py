@@ -1,10 +1,11 @@
 """V_FIG2PDF - Save a figure to PDF/EPS/PS format."""
 
+from __future__ import annotations
 import os
 import inspect
 
 
-def v_fig2pdf(h=None, s=None, p=None, f='p', fig=None):
+def v_fig2pdf(h=None, s=None, p=None, f='p', fig=None) -> None:
     """Save a matplotlib figure to PDF, EPS or PS format.
 
     Parameters

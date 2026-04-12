@@ -1,9 +1,10 @@
 """V_SCHMITT - Pass input signal through a Schmitt trigger."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_schmitt(x, thresh=0.5, minwid=0, return_transitions=False):
+def v_schmitt(x, thresh=0.5, minwid=0, return_transitions=False) -> np.ndarray:
     """Pass input signal through a Schmitt trigger.
 
     Parameters

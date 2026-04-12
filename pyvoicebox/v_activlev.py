@@ -1,11 +1,12 @@
 """V_ACTIVLEV - Measure active speech level as per ITU-T P.56."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.signal import lfilter
 from pyvoicebox.v_maxfilt import v_maxfilt
 
 
-def v_activlev(sp, fs, mode=''):
+def v_activlev(sp, fs, mode='') -> tuple[np.ndarray, np.ndarray]:
     """Measure active speech level as in ITU-T P.56 (Method B).
 
     Parameters

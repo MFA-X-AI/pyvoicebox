@@ -1,11 +1,12 @@
 """V_LPCPF2FF - Convert power spectrum to complex spectrum."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_lpcpf2cc import v_lpcpf2cc
 from pyvoicebox.v_lpccc2ff import v_lpccc2ff
 
 
-def v_lpcpf2ff(pf, np_out=None, fi=None):
+def v_lpcpf2ff(pf, np_out=None, fi=None) -> tuple[np.ndarray, np.ndarray]:
     """Convert power spectrum to complex spectrum.
 
     Parameters

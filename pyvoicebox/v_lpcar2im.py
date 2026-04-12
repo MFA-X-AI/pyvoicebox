@@ -1,10 +1,11 @@
 """V_LPCAR2IM - Convert AR coefficients to impulse response."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.signal import lfilter
 
 
-def v_lpcar2im(ar, np_out=None):
+def v_lpcar2im(ar, np_out=None) -> np.ndarray:
     """Convert AR coefficients to impulse response.
 
     Parameters

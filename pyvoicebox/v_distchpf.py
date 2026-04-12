@@ -1,9 +1,10 @@
 """V_DISTCHPF - COSH spectral distance between power spectra."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_distchpf(pf1, pf2, mode=''):
+def v_distchpf(pf1, pf2, mode='') -> np.ndarray:
     """Calculate the COSH spectral distance between power spectra.
 
     Parameters

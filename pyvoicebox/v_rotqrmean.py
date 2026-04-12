@@ -1,9 +1,10 @@
 """V_ROTQRMEAN - calculate mean rotation of quaternion array."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rotqrmean(q):
+def v_rotqrmean(q) -> tuple[np.ndarray, np.ndarray, float]:
     """Calculate the mean rotation of a quaternion array.
 
     Parameters

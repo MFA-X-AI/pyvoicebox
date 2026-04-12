@@ -1,9 +1,10 @@
 """V_LPCRF2IS - Convert reflection coefficients to inverse sines."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcrf2is(rf):
+def v_lpcrf2is(rf) -> np.ndarray:
     """Convert reflection coefficients to inverse sines.
 
     Parameters

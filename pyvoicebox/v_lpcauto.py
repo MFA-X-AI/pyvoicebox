@@ -1,10 +1,11 @@
 """V_LPCAUTO - Perform autocorrelation LPC analysis."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_windows import v_windows
 
 
-def v_lpcauto(s, p=12, t=None, w='m', m=''):
+def v_lpcauto(s, p=12, t=None, w='m', m='') -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Perform autocorrelation LPC analysis.
 
     Parameters

@@ -1,11 +1,12 @@
 """V_ROTQR2EU - convert real quaternion to Euler angles."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_rotro2eu import v_rotro2eu
 from pyvoicebox.v_rotqr2ro import v_rotqr2ro
 
 
-def v_rotqr2eu(m, q):
+def v_rotqr2eu(m, q) -> np.ndarray:
     """Convert real quaternion to Euler angles.
 
     Parameters

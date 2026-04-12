@@ -1,9 +1,10 @@
 """V_ROOTSTAB - Determine number of polynomial roots outside, inside and on the unit circle."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rootstab(p):
+def v_rootstab(p) -> tuple[int, int, int]:
     """Determine number of polynomial roots outside, inside and on the unit circle.
 
     Parameters

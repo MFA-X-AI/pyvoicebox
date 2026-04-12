@@ -1,9 +1,11 @@
 """V_FOPENMKD - Open file, creating directories if needed."""
 
+from __future__ import annotations
+from typing import Any
 import os
 
 
-def v_fopenmkd(filename, mode='r', **kwargs):
+def v_fopenmkd(filename, mode='r', **kwargs) -> Any:
     """Open a file, creating any missing parent directories.
 
     Parameters

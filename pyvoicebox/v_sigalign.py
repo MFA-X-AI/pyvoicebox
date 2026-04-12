@@ -1,11 +1,12 @@
 """V_SIGALIGN - Align a clean reference with a noisy signal."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_rfft import v_rfft
 from pyvoicebox.v_irfft import v_irfft
 
 
-def v_sigalign(s, r, maxd=None, m='gs', fs=None):
+def v_sigalign(s, r, maxd=None, m='gs', fs=None) -> tuple[int, float, np.ndarray, np.ndarray]:
     """Align a clean reference with a noisy signal.
 
     Parameters

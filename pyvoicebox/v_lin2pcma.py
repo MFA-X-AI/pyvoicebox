@@ -1,9 +1,10 @@
 """V_LIN2PCMA - Convert linear PCM to A-law."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lin2pcma(x, m=85, s=2017.396342):
+def v_lin2pcma(x, m=85, s=2017.396342) -> np.ndarray:
     """Convert linear signal to A-law PCM values.
 
     Parameters

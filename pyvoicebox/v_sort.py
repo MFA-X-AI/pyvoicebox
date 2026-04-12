@@ -1,9 +1,10 @@
 """V_SORT - Sort with forward and inverse index."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_sort(a, descend=False, return_inverse=False):
+def v_sort(a, descend=False, return_inverse=False) -> tuple[np.ndarray, np.ndarray]:
     """Sort array with forward and optional inverse index.
 
     Parameters

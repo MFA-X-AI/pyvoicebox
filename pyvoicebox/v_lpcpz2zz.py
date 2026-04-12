@@ -1,9 +1,10 @@
 """V_LPCPZ2ZZ - Power spectrum roots to LPC poles."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcpz2zz(pz):
+def v_lpcpz2zz(pz) -> np.ndarray:
     """Convert power spectrum roots to LPC z-plane poles.
 
     Parameters

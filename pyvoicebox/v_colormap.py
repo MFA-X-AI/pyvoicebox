@@ -3,6 +3,7 @@
 Provides custom colormaps and luminance linearization for matplotlib.
 """
 
+from __future__ import annotations
 import numpy as np
 
 # CIELUV constants
@@ -93,7 +94,7 @@ def _lightness_to_luminance(l_star):
     return _laci * l_star + (l_star > _lq) * ((_lci * l_star + _lb) ** 3 - _laci * l_star)
 
 
-def v_colormap(map_input=None, m='', n=None, p=None):
+def v_colormap(map_input=None, m='', n=None, p=None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Create or modify a color map.
 
     Parameters

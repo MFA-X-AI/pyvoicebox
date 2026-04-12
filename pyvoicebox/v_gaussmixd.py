@@ -1,10 +1,11 @@
 """V_GAUSSMIXD - Marginal and conditional Gaussian mixture densities."""
 
+from __future__ import annotations
 import numpy as np
 from .v_gaussmixp import v_gaussmixp
 
 
-def v_gaussmixd(y, m, v, w, a=None, b=None, f=None, g=None, return_mixtures=False):
+def v_gaussmixd(y, m, v, w, a=None, b=None, f=None, g=None, return_mixtures=False) -> tuple[np.ndarray, np.ndarray]:
     """Compute conditional GMM densities.
 
     Parameters

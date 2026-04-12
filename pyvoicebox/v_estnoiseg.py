@@ -1,9 +1,10 @@
 """V_ESTNOISEG - Estimate MMSE noise spectrum (Gerkmann & Hendriks)."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_estnoiseg(yf, tz, pp=None):
+def v_estnoiseg(yf, tz, pp=None) -> tuple[np.ndarray, dict]:
     """Estimate noise spectrum using MMSE method.
 
     Parameters

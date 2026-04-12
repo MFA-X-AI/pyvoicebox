@@ -1,10 +1,11 @@
 """V_INTERVAL - Classify X values into contiguous intervals."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_sort import v_sort
 
 
-def v_interval(x, y, m=''):
+def v_interval(x, y, m='') -> tuple[np.ndarray, np.ndarray]:
     """Classify X values into contiguous intervals with boundaries from Y.
 
     Parameters

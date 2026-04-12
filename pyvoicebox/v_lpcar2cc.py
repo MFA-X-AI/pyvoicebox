@@ -1,10 +1,11 @@
 """V_LPCAR2CC - Convert AR filter to complex cepstrum."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.signal import lfilter
 
 
-def v_lpcar2cc(ar, np_out=None):
+def v_lpcar2cc(ar, np_out=None) -> tuple[np.ndarray, np.ndarray]:
     """Convert AR filter to complex cepstrum.
 
     Parameters

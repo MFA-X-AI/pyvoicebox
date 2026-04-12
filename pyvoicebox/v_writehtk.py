@@ -1,10 +1,11 @@
 """V_WRITEHTK - Write data in HTK format."""
 
+from __future__ import annotations
 import struct
 import numpy as np
 
 
-def v_writehtk(file, d, fp, tc):
+def v_writehtk(file, d, fp, tc) -> None:
     """Write data in HTK format.
 
     Parameters

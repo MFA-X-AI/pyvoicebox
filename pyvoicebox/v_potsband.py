@@ -1,9 +1,10 @@
 """V_POTSBAND - Design 300-3400 Hz telephone bandwidth filter."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_potsband(fs):
+def v_potsband(fs) -> tuple[np.ndarray, np.ndarray]:
     """Design filter for 300-3400 Hz telephone bandwidth.
 
     Parameters

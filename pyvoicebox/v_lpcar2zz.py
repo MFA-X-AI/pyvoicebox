@@ -1,9 +1,10 @@
 """V_LPCAR2ZZ - Convert AR filter to z-plane poles."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcar2zz(ar):
+def v_lpcar2zz(ar) -> np.ndarray:
     """Convert AR filter to z-plane poles.
 
     Parameters

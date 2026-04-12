@@ -1,10 +1,11 @@
 """V_DLYAPSQ - Solve discrete Lyapunov equation in square root form."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.linalg import schur, rsf2csf, qr
 
 
-def v_dlyapsq(a, b):
+def v_dlyapsq(a, b) -> np.ndarray:
     """Solve the discrete Lyapunov equation AV'VA' - V'V + BB' = 0.
 
     V is upper triangular with real non-negative diagonal entries.

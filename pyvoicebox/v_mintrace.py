@@ -1,10 +1,11 @@
 """V_MINTRACE - Find row permutation to minimize trace."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_permutes import v_permutes
 
 
-def v_mintrace(x):
+def v_mintrace(x) -> np.ndarray:
     """Find row permutation to minimize trace of x(p,:).
 
     Parameters

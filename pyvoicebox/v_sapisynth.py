@@ -3,8 +3,9 @@
 This wraps Microsoft SAPI which is Windows-specific.
 """
 
+from __future__ import annotations
 
-def v_sapisynth(*args, **kwargs):
+def v_sapisynth(*args, **kwargs) -> None:
     """Synthesize speech using Microsoft SAPI.
 
     This is a Windows-specific function that interfaces with Microsoft SAPI.

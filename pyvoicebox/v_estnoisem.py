@@ -1,5 +1,6 @@
 """V_ESTNOISEM - Estimate noise spectrum using minimum statistics (Martin)."""
 
+from __future__ import annotations
 import numpy as np
 
 
@@ -48,7 +49,7 @@ def _mhvals(d):
     return m, h
 
 
-def v_estnoisem(yf, tz, pp=None):
+def v_estnoisem(yf, tz, pp=None) -> tuple[np.ndarray, dict, np.ndarray]:
     """Estimate noise spectrum using minimum statistics.
 
     Parameters

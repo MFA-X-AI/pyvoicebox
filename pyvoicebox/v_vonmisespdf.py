@@ -1,10 +1,11 @@
 """V_VONMISESPDF - Von Mises probability distribution."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.special import i0
 
 
-def v_vonmisespdf(x, m, k):
+def v_vonmisespdf(x, m, k) -> np.ndarray:
     """Von Mises probability distribution.
 
     Parameters

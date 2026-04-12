@@ -1,10 +1,11 @@
 """V_RESAMPLE - Resample and remove end transients."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.signal import resample_poly
 
 
-def v_resample(x, p, q, n=10, b=5):
+def v_resample(x, p, q, n=10, b=5) -> np.ndarray:
     """Resample signal and remove end transients.
 
     Parameters

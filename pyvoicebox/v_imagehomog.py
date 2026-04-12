@@ -1,9 +1,10 @@
 """V_IMAGEHOMOG - apply homography transformation to an image."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_imagehomog(im, h=None, m='', clip=None):
+def v_imagehomog(im, h=None, m='', clip=None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Apply a homography transformation to an image with bilinear interpolation.
 
     Parameters

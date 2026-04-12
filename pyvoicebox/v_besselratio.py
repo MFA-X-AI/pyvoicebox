@@ -1,9 +1,10 @@
 """V_BESSELRATIO - Bessel function ratio I_{v+1}(x)/I_v(x)."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_besselratio(x, v=0, p=5):
+def v_besselratio(x, v=0, p=5) -> np.ndarray:
     """Calculate the Bessel function ratio besseli(v+1,x)/besseli(v,x).
 
     Parameters

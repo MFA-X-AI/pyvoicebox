@@ -1,5 +1,6 @@
 """V_XYZTICKSI - Label an axis of a plot using SI multipliers."""
 
+from __future__ import annotations
 import numpy as np
 
 
@@ -39,7 +40,7 @@ def _format_si_tick(value, dp, si_power, global_si=False):
     return label
 
 
-def v_xyzticksi(ax_idx, ax=None, return_prefix=False):
+def v_xyzticksi(ax_idx, ax=None, return_prefix=False) -> str:
     """Label an axis of a plot using SI multipliers.
 
     This is the core implementation called by v_xticksi and v_yticksi.

@@ -1,9 +1,10 @@
 """V_LPCAR2AM - Convert AR coefficients to AR coefficient matrix."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcar2am(ar, p=None):
+def v_lpcar2am(ar, p=None) -> tuple[np.ndarray, np.ndarray]:
     """Convert AR coefficients to AR coefficient matrix.
 
     Parameters

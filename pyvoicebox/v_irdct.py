@@ -1,9 +1,10 @@
 """V_IRDCT - Inverse discrete cosine transform of real data."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_irdct(y, n=None, a=None, b=1.0):
+def v_irdct(y, n=None, a=None, b=1.0) -> np.ndarray:
     """Inverse discrete cosine transform of real data X=(Y,N,A,B).
 
     Parameters

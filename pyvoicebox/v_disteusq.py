@@ -1,9 +1,10 @@
 """V_DISTEUSQ - Squared Euclidean distance matrix."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_disteusq(x, y, mode='', w=None):
+def v_disteusq(x, y, mode='', w=None) -> np.ndarray:
     """Calculate squared Euclidean or Mahalanobis distance.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_PEAK2DQUAD - Find quadratically-interpolated peak in a 2D array."""
 
+from __future__ import annotations
 from pyvoicebox.v_quadpeak import v_quadpeak
 
 
-def v_peak2dquad(z):
+def v_peak2dquad(z) -> float:
     """Find quadratically-interpolated peak in a 2D array.
 
     This is a wrapper around v_quadpeak.

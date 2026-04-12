@@ -1,5 +1,7 @@
 """V_FILTBANKM - General filterbank matrix (mel/bark/erb/linear)."""
 
+from __future__ import annotations
+from typing import Any
 import numpy as np
 from scipy.sparse import csr_matrix
 from pyvoicebox.v_frq2mel import v_frq2mel
@@ -10,7 +12,7 @@ from pyvoicebox.v_frq2bark import v_frq2bark
 from pyvoicebox.v_bark2frq import v_bark2frq
 
 
-def v_filtbankm(p, n, fs, fl=0, fh=None, w=''):
+def v_filtbankm(p, n, fs, fl=0, fh=None, w='') -> tuple[Any, np.ndarray, int, int]:
     """Determine matrix for a filterbank with various frequency scales.
 
     Simplified implementation supporting mel, bark, erb, linear scales.

@@ -1,9 +1,10 @@
 """V_LPCFQ2ZZ - Convert frequencies and Q factors to z-plane poles."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcfq2zz(f, q=None):
+def v_lpcfq2zz(f, q=None) -> np.ndarray:
     """Convert frequencies and Q factors to z-plane poles.
 
     Parameters

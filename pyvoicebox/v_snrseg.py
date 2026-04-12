@@ -1,9 +1,10 @@
 """V_SNRSEG - Measure segmental and global SNR."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_snrseg(s, r, fs, m='wz', tf=0.01):
+def v_snrseg(s, r, fs, m='wz', tf=0.01) -> tuple[float, float, np.ndarray, np.ndarray, np.ndarray]:
     """Measure segmental and global SNR.
 
     Parameters

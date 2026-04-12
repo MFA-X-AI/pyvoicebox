@@ -1,10 +1,11 @@
 """V_LPCRAND - Generate random stable polynomials."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_lpcrf2ar import v_lpcrf2ar
 
 
-def v_lpcrand(p, n=1, bw=0):
+def v_lpcrand(p, n=1, bw=0) -> np.ndarray:
     """Generate random stable polynomials.
 
     Parameters

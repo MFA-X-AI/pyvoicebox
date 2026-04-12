@@ -1,9 +1,10 @@
 """V_WINDINFO - Window information and figures of merit."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_windinfo(w, fs=1):
+def v_windinfo(w, fs=1) -> dict:
     """Calculate window information and figures of merit.
 
     Parameters

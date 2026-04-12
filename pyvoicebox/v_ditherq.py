@@ -1,5 +1,6 @@
 """V_DITHERQ - Add dither and quantize."""
 
+from __future__ import annotations
 import numpy as np
 
 
@@ -8,7 +9,7 @@ def _matlab_round(x):
     return np.sign(x) * np.floor(np.abs(x) + 0.5)
 
 
-def v_ditherq(x, m='w', zi=None, rng=None):
+def v_ditherq(x, m='w', zi=None, rng=None) -> tuple[np.ndarray, float]:
     """Add dither and quantize.
 
     Parameters

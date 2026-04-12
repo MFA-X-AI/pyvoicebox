@@ -1,9 +1,10 @@
 """V_MIDI2FRQ - Convert musical note numbers to frequencies."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_midi2frq(n, s='e'):
+def v_midi2frq(n, s='e') -> np.ndarray:
     """Convert MIDI note numbers to frequencies in Hz.
 
     Parameters

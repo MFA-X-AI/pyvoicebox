@@ -1,10 +1,11 @@
 """V_LPCRA2PP - Convert inverse filter autocorrelation to power spectrum polynomial."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_lpcar2pp import _chebyshev_matrix
 
 
-def v_lpcra2pp(ra):
+def v_lpcra2pp(ra) -> np.ndarray:
     """Convert inverse filter autocorrelation to power spectrum polynomial in cos(w).
 
     Parameters

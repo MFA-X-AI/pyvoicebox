@@ -1,9 +1,10 @@
 """V_ROTAX2QR - convert rotation axis and angle to quaternion."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rotax2qr(a, t):
+def v_rotax2qr(a, t) -> np.ndarray:
     """Convert rotation axis and angle to quaternion.
 
     Parameters

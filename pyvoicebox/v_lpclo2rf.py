@@ -1,9 +1,10 @@
 """V_LPCLO2RF - Convert log area ratios to reflection coefficients."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpclo2rf(lo):
+def v_lpclo2rf(lo) -> np.ndarray:
     """Convert log area ratios to reflection coefficients.
 
     Parameters

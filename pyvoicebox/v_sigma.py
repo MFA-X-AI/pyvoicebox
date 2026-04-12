@@ -4,8 +4,9 @@ This function requires SWT (Stationary Wavelet Transform) which is complex to im
 A simplified stub is provided that raises NotImplementedError.
 """
 
+from __future__ import annotations
 
-def v_sigma(lx, fs, fmax=400):
+def v_sigma(lx, fs, fmax=400) -> None:
     """Estimate glottal opening and closing instants (SIGMA algorithm).
 
     This function requires the Stationary Wavelet Transform (SWT) which

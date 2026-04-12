@@ -1,9 +1,10 @@
 """V_QRDOTMULT - Element-wise quaternion multiplication."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_qrdotmult(q1, q2):
+def v_qrdotmult(q1, q2) -> np.ndarray:
     """Multiply two real quaternion arrays element-wise (Hadamard product).
 
     Parameters

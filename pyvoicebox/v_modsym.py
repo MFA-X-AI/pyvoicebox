@@ -1,9 +1,10 @@
 """V_MODSYM - Symmetric modulus function."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_modsym(x, y=1, r=None):
+def v_modsym(x, y=1, r=None) -> tuple[np.ndarray, np.ndarray]:
     """Symmetric modulus function.
 
     Adds an integer multiple of y onto x so that it lies in the range

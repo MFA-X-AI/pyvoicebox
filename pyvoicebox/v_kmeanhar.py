@@ -1,10 +1,11 @@
 """V_KMEANHAR - K-harmonic means clustering algorithm."""
 
+from __future__ import annotations
 import numpy as np
 from .v_rnsubset import v_rnsubset
 
 
-def v_kmeanhar(d, k, l=None, e=None, x0='f'):
+def v_kmeanhar(d, k, l=None, e=None, x0='f') -> tuple[np.ndarray, float, np.ndarray, np.ndarray]:
     """Vector quantization using K-harmonic means algorithm.
 
     Parameters

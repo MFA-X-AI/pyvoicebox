@@ -1,11 +1,12 @@
 """V_EWGRPDEL - Energy-weighted group delay waveform."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.signal.windows import hamming
 from scipy.signal import lfilter
 
 
-def v_ewgrpdel(x, w=None, m=None):
+def v_ewgrpdel(x, w=None, m=None) -> tuple[np.ndarray, int]:
     """Calculate energy-weighted group delay waveform.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_ROTATION - encode and decode rotation matrices."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rotation(x, y=None, z=None):
+def v_rotation(x, y=None, z=None) -> np.ndarray:
     """Create or decompose a rotation matrix.
 
     (1) r = v_rotation(x, y, angle): rotation in the plane of x and y

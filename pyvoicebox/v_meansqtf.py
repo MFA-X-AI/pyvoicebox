@@ -1,11 +1,12 @@
 """V_MEANSQTF - Mean square transfer function of a filter."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_lpcar2rr import v_lpcar2rr
 from pyvoicebox.v_lpcar2ra import v_lpcar2ra
 
 
-def v_meansqtf(b, a=None):
+def v_meansqtf(b, a=None) -> float:
     """Calculate the mean square transfer function of a filter.
 
     This equals the average output power when the filter is fed

@@ -1,5 +1,6 @@
 """V_FINISHAT - Print estimated finish time of a long computation."""
 
+from __future__ import annotations
 import time
 import sys
 from datetime import datetime, timedelta
@@ -8,7 +9,7 @@ from datetime import datetime, timedelta
 _state = {}
 
 
-def v_finishat(frac, tol=None, fmt=None):
+def v_finishat(frac, tol=None, fmt=None) -> str:
     """Print estimated finish time of a long computation.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_ROTQR2AX - convert quaternion to rotation axis and angle."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rotqr2ax(q):
+def v_rotqr2ax(q) -> tuple[np.ndarray, float]:
     """Convert quaternion to rotation axis and angle.
 
     Parameters

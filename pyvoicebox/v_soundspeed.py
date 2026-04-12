@@ -1,9 +1,10 @@
 """V_SOUNDSPEED - Speed of sound, density and impedance of air."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_soundspeed(t=20, p=1, m=0.0289644, g=1.4):
+def v_soundspeed(t=20, p=1, m=0.0289644, g=1.4) -> tuple[float, float, float]:
     """Calculate speed of sound, density, and acoustic impedance.
 
     Parameters

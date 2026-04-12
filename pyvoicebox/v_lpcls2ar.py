@@ -1,9 +1,10 @@
 """V_LPCLS2AR - Convert line spectrum pair frequencies to AR polynomial."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcls2ar(ls):
+def v_lpcls2ar(ls) -> np.ndarray:
     """Convert line spectrum pair frequencies to AR polynomial.
 
     Parameters

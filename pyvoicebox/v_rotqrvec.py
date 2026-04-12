@@ -1,10 +1,11 @@
 """V_ROTQRVEC - rotate vectors by quaternion."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_rotqr2ro import v_rotqr2ro
 
 
-def v_rotqrvec(q, x):
+def v_rotqrvec(q, x) -> np.ndarray:
     """Apply a quaternion rotation to a vector array.
 
     Parameters

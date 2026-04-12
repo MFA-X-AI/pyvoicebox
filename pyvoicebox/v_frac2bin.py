@@ -1,9 +1,10 @@
 """V_FRAC2BIN - Convert a column vector to binary string representation."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_frac2bin(d, n=1, m=0):
+def v_frac2bin(d, n=1, m=0) -> str:
     """Convert a column vector to binary S=(D,N,M).
 
     Parameters

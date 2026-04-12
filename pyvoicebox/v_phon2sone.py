@@ -1,9 +1,10 @@
 """V_PHON2SONE - Convert PHON loudness values to SONEs."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_phon2sone(p):
+def v_phon2sone(p) -> np.ndarray:
     """Convert PHON loudness values to SONEs.
 
     Parameters

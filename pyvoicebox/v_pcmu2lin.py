@@ -1,9 +1,10 @@
 """V_PCMU2LIN - Convert Mu-law PCM to linear."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_pcmu2lin(p, s=None):
+def v_pcmu2lin(p, s=None) -> np.ndarray:
     """Convert Mu-law PCM values to linear signal.
 
     Parameters

@@ -1,10 +1,11 @@
 """V_BESRATINV0 - Inverse of Modified Bessel Ratio I1(k)/I0(k)."""
 
+from __future__ import annotations
 import numpy as np
 from .v_besselratio import v_besselratio
 
 
-def v_besratinv0(r):
+def v_besratinv0(r) -> np.ndarray:
     """Inverse function of the Modified Bessel Ratio I1(k)/I0(k).
 
     Parameters

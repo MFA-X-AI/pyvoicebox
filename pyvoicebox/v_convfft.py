@@ -1,5 +1,6 @@
 """V_CONVFFT - 1-D convolution or correlation using FFT."""
 
+from __future__ import annotations
 import numpy as np
 
 
@@ -21,7 +22,7 @@ class _ConvFFTPrecomputed:
         self.zmax = None
 
 
-def v_convfft(x, h, d=None, m='', h0=1, x1=1, x2=None):
+def v_convfft(x, h, d=None, m='', h0=1, x1=1, x2=None) -> np.ndarray:
     """1-D convolution or correlation using FFT.
 
     Parameters

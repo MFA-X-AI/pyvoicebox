@@ -1,9 +1,10 @@
 """V_XTICKSI - Label the x-axis of a plot using SI multipliers."""
 
+from __future__ import annotations
 from pyvoicebox.v_xyzticksi import v_xyzticksi
 
 
-def v_xticksi(ax=None, return_prefix=False):
+def v_xticksi(ax=None, return_prefix=False) -> str:
     """Label the x-axis of a plot using SI multipliers.
 
     Parameters

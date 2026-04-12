@@ -1,10 +1,11 @@
 """V_LPCAR2DB - Convert AR coefficients to power spectrum in dB."""
 
+from __future__ import annotations
 import numpy as np
 from pyvoicebox.v_rfft import v_rfft
 
 
-def v_lpcar2db(ar, np_out=None):
+def v_lpcar2db(ar, np_out=None) -> tuple[np.ndarray, np.ndarray]:
     """Convert AR coefficients to power spectrum in dB.
 
     Parameters

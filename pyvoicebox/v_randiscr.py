@@ -1,9 +1,10 @@
 """V_RANDISCR - Generate discrete random values with specified probabilities."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_randiscr(p=None, n=1, a=None):
+def v_randiscr(p=None, n=1, a=None) -> np.ndarray:
     """Generate discrete random numbers with specified probabilities.
 
     Parameters

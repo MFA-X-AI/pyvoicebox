@@ -1,10 +1,11 @@
 """V_CHOOSRNK - All choices of K elements from 0:N-1 with replacement."""
 
+from __future__ import annotations
 import numpy as np
 from .v_choosenk import v_choosenk
 
 
-def v_choosrnk(n, k):
+def v_choosrnk(n, k) -> np.ndarray:
     """Generate all choices of K elements from 0:N-1 with replacement.
 
     Note: Returns 0-based indices (unlike MATLAB's 1-based).

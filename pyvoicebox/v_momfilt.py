@@ -1,11 +1,12 @@
 """V_MOMFILT - Calculate moments of a signal using a sliding window."""
 
+from __future__ import annotations
 import numpy as np
 from scipy.signal import lfilter
 from scipy.signal.windows import hamming
 
 
-def v_momfilt(x, r, w=None, m=None):
+def v_momfilt(x, r, w=None, m=None) -> tuple[np.ndarray, int]:
     """Calculate moments of a signal using a sliding window.
 
     Parameters

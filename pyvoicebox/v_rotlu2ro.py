@@ -1,9 +1,10 @@
 """V_ROTLU2RO - convert look and up directions to rotation matrix."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rotlu2ro(l, u=None):
+def v_rotlu2ro(l, u=None) -> np.ndarray:
     """Convert look and up directions to a rotation matrix.
 
     The rotation maps the look direction to the negative z-axis and the

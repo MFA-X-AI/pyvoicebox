@@ -1,9 +1,10 @@
 """V_EARNOISE - Add noise to simulate hearing threshold."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_earnoise(s, fs, m='', spl=62.35):
+def v_earnoise(s, fs, m='', spl=62.35) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Add noise to simulate the hearing threshold of a listener.
 
     Simplified version that adds white noise scaled to simulate internal ear noise.

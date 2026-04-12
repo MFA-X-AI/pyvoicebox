@@ -1,7 +1,8 @@
 """V_LPCCONV - Convert between LPC parameter sets (generates conversion string)."""
 
+from __future__ import annotations
 
-def v_lpcconv(from_type, to_type):
+def v_lpcconv(from_type, to_type) -> None:
     """Generate conversion path between LPC parameter sets.
 
     Parameters

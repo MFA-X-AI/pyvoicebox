@@ -82,6 +82,19 @@ from pyvoicebox import lpcauto       # same as v_lpcauto
 
 The `v_` prefix avoids naming collisions and makes it easy to grep for VOICEBOX functions in your codebase. Use whichever style you prefer.
 
+## Type annotations
+
+All functions have return type annotations, so your IDE can show what each function returns:
+
+```python
+v_frq2mel(frq) -> tuple[np.ndarray, np.ndarray]
+v_lpcauto(s, p=12, ...) -> tuple[np.ndarray, np.ndarray, np.ndarray]
+v_midi2frq(n, s='e') -> np.ndarray
+v_writewav(d, fs, filename, ...) -> None
+```
+
+Many VOICEBOX functions return tuples — for example, `v_frq2mel` returns `(mel_values, gradient)`. The type annotations make this visible without reading the docstring.
+
 ## Next steps
 
 - Browse the [API Reference](api/audio-io.md) to find functions by category

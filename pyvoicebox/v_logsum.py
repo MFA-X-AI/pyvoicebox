@@ -1,10 +1,11 @@
 """V_LOGSUM - log(sum(k.*exp(x),d)) computed avoiding overflow/underflow."""
 
+from __future__ import annotations
 import numpy as np
 from ._compat import first_nonsingleton
 
 
-def v_logsum(x, d=None, k=None):
+def v_logsum(x, d=None, k=None) -> np.ndarray:
     """Compute log(sum(k.*exp(x), d)) avoiding overflow/underflow.
 
     Parameters

@@ -3,10 +3,11 @@
 The full implementation requires specific filter design. A simplified stub is provided.
 """
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_ppmvu(sp, fs, mode=''):
+def v_ppmvu(sp, fs, mode='') -> float:
     """Calculate PPM and VU meter readings.
 
     Simplified implementation. The full MATLAB version implements

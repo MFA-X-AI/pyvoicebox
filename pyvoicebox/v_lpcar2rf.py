@@ -1,9 +1,10 @@
 """V_LPCAR2RF - Convert autoregressive coefficients to reflection coefficients."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcar2rf(ar):
+def v_lpcar2rf(ar) -> np.ndarray:
     """Convert autoregressive coefficients to reflection coefficients.
 
     Parameters

@@ -1,9 +1,10 @@
 """V_LPCCC2AR - Convert complex cepstrum to AR coefficients."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpccc2ar(cc):
+def v_lpccc2ar(cc) -> np.ndarray:
     """Convert complex cepstrum to AR coefficients.
 
     Parameters

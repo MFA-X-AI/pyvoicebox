@@ -1,9 +1,10 @@
 """V_ROTMR2QR - convert real quaternion matrices to quaternion vectors."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rotmr2qr(mr):
+def v_rotmr2qr(mr) -> np.ndarray:
     """Convert real quaternion matrix form to real quaternion vector form.
 
     Parameters

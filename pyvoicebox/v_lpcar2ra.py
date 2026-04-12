@@ -1,9 +1,10 @@
 """V_LPCAR2RA - Convert AR filter to inverse filter autocorrelation coefficients."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcar2ra(ar):
+def v_lpcar2ra(ar) -> np.ndarray:
     """Convert AR filter to inverse filter autocorrelation coefficients.
 
     Parameters

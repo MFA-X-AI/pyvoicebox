@@ -1,9 +1,10 @@
 """V_QRPERMUTE - Transpose or permute a quaternion array."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_qrpermute(x, p=None):
+def v_qrpermute(x, p=None) -> np.ndarray:
     """Transpose or permute a quaternion array.
 
     Parameters

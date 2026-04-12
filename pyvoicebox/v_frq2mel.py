@@ -1,9 +1,10 @@
 """V_FRQ2MEL - Convert Hertz to Mel frequency scale."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_frq2mel(frq):
+def v_frq2mel(frq) -> tuple[np.ndarray, np.ndarray]:
     """Convert frequencies in Hz to the Mel scale.
 
     Parameters

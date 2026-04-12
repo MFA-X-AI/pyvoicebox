@@ -1,10 +1,11 @@
 """V_CHOOSENK - All choices of K elements from 0:N-1."""
 
+from __future__ import annotations
 import numpy as np
 from itertools import combinations
 
 
-def v_choosenk(n, k):
+def v_choosenk(n, k) -> np.ndarray:
     """Generate all choices of K elements from 0:N-1 in lexical order.
 
     Note: Returns 0-based indices (unlike MATLAB's 1-based).

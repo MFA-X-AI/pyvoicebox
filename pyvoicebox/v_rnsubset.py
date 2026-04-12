@@ -1,9 +1,10 @@
 """V_RNSUBSET - Choose k distinct random integers from 1:n."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_rnsubset(k, n):
+def v_rnsubset(k, n) -> np.ndarray:
     """Choose k distinct random integers from 0:n-1.
 
     Note: Returns 0-based indices (unlike MATLAB's 1-based).

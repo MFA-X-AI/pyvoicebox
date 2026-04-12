@@ -1,9 +1,10 @@
 """V_LPCSTABLE - Test AR coefficients for stability and stabilize if necessary."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcstable(ar):
+def v_lpcstable(ar) -> tuple[np.ndarray, np.ndarray]:
     """Test AR coefficients for stability and stabilize if necessary.
 
     Parameters

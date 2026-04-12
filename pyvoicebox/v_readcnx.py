@@ -3,12 +3,13 @@
 This is the format of the BT Connex-S1 alphabet database.
 """
 
+from __future__ import annotations
 import numpy as np
 import struct
 import os
 
 
-def v_readcnx(filename, mode=''):
+def v_readcnx(filename, mode='') -> tuple[np.ndarray, float, dict]:
     """Read a .CNX format sound file.
 
     Parameters

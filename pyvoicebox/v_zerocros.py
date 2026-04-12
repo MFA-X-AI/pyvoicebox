@@ -1,9 +1,10 @@
 """V_ZEROCROS - Find zero crossings in a signal."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_zerocros(y, m='b', x=None):
+def v_zerocros(y, m='b', x=None) -> tuple[np.ndarray, np.ndarray]:
     """Find zero crossings in a signal.
 
     Parameters

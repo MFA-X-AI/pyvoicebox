@@ -1,9 +1,10 @@
 """V_LPCSS2ZZ - Convert s-plane poles to z-plane poles."""
 
+from __future__ import annotations
 import numpy as np
 
 
-def v_lpcss2zz(ss, nr=None):
+def v_lpcss2zz(ss, nr=None) -> np.ndarray:
     """Convert s-plane poles to z-plane poles.
 
     Parameters

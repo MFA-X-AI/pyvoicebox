@@ -1,5 +1,6 @@
 """V_GAUSSMIX - Fit a Gaussian mixture model using EM algorithm."""
 
+from __future__ import annotations
 import numpy as np
 from .v_voicebox import v_voicebox
 from .v_rnsubset import v_rnsubset
@@ -7,7 +8,7 @@ from .v_kmeans import v_kmeans
 from .v_kmeanhar import v_kmeanhar
 
 
-def v_gaussmix(x, c=None, l=None, m0=None, v0=None, w0=None, wx=None):
+def v_gaussmix(x, c=None, l=None, m0=None, v0=None, w0=None, wx=None) -> tuple[np.ndarray, np.ndarray, np.ndarray, float, float, np.ndarray, np.ndarray]:
     """Fit a Gaussian mixture PDF to data using EM algorithm.
 
     Parameters
