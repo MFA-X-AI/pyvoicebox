@@ -1,4 +1,4 @@
-"""Tests for Phase 2: Frequency Conversion Functions."""
+"""Tests for frequency scale conversion functions."""
 
 import os
 import numpy as np

@@ -36,11 +36,13 @@ def v_logsum(x, d=None, k=None) -> np.ndarray:
 
     q = np.max(x, axis=d, keepdims=True)
 
-    # Handle infinities
+    # Handle -inf slices: replace -inf max with 0 for safe subtraction,
+    # then restore -inf in the result. This avoids (-inf) - (-inf) = nan.
     a = np.isinf(q)
+    q_safe = np.where(a, 0.0, q)
 
     if k is None:
-        y = q + np.log(np.sum(np.exp(x - q), axis=d, keepdims=True))
+        y = q_safe + np.log(np.sum(np.exp(x - q_safe), axis=d, keepdims=True))
     else:
         k = np.asarray(k, dtype=float)
         # Broadcast k to match x along axis d
@@ -48,9 +50,9 @@ def v_logsum(x, d=None, k=None) -> np.ndarray:
             shape = [1] * x.ndim
             shape[d] = n
             k = k.reshape(shape)
-        y = q + np.log(np.sum(np.exp(x - q) * k, axis=d, keepdims=True))
+        y = q_safe + np.log(np.sum(np.exp(x - q_safe) * k, axis=d, keepdims=True))
 
-    # Correct columns whose max is +-Inf
+    # Restore +-inf for slices that had infinite max
     y = np.where(a, q, y)
 
     # Remove the keepdims axis to match MATLAB behavior

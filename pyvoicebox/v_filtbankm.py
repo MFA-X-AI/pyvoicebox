@@ -47,14 +47,14 @@ def v_filtbankm(p, n, fs, fl=0, fh=None, w='') -> tuple[Any, np.ndarray, int, in
 
     # Choose frequency scale
     if 'm' in w:
-        frq2scale = v_frq2mel
-        scale2frq = v_mel2frq
+        frq2scale = lambda x: v_frq2mel(x)[0]
+        scale2frq = lambda x: v_mel2frq(x)[0]
     elif 'b' in w:
-        frq2scale = v_frq2bark
-        scale2frq = v_bark2frq
+        frq2scale = lambda x: v_frq2bark(x)[0]
+        scale2frq = lambda x: v_bark2frq(x)[0]
     elif 'e' in w:
-        frq2scale = v_frq2erb
-        scale2frq = v_erb2frq
+        frq2scale = lambda x: v_frq2erb(x)[0]
+        scale2frq = lambda x: v_erb2frq(x)[0]
     else:
         frq2scale = lambda x: x
         scale2frq = lambda x: x

@@ -32,21 +32,31 @@ def v_besselratio(x, v=0, p=5) -> np.ndarray:
     s = x.shape
     x = x.ravel()
 
-    r = np.zeros((x.size, n + 1))
+    # Identify edge cases upfront
+    edge_zero = x == 0
+    edge_inf = x == np.inf
+    finite = ~edge_zero & ~edge_inf
+
+    # Work only on finite, nonzero values
+    xf = x[finite]
+    rf = np.zeros((xf.size, n + 1))
     for i in range(1, n + 2):
-        r[:, i - 1] = x / (u + i - 0.5 + np.sqrt((u + i + 0.5) ** 2 + x ** 2))
+        rf[:, i - 1] = xf / (u + i - 0.5 + np.sqrt((u + i + 0.5) ** 2 + xf ** 2))
 
     for i in range(1, n + 1):
-        for k in range(1, n - i + 2):  # k is k+1 in (20b)
-            r[:, k - 1] = x / (
-                u + k + np.sqrt((u + k) ** 2 + x ** 2 * r[:, k] / r[:, k - 1])
+        for k in range(1, n - i + 2):
+            rf[:, k - 1] = xf / (
+                u + k + np.sqrt((u + k) ** 2 + xf ** 2 * rf[:, k] / rf[:, k - 1])
             )
 
-    y = r[:, 0]
+    yf = rf[:, 0]
     for i in range(u, v, -1):
-        y = 1.0 / (y + 2 * i / x)
+        yf = 1.0 / (yf + 2 * i / xf)
 
-    y[x == 0] = 0.0
-    y[x == np.inf] = 1.0
+    # Assemble result
+    y = np.empty_like(x)
+    y[finite] = yf
+    y[edge_zero] = 0.0
+    y[edge_inf] = 1.0
     y = y.reshape(s)
     return y

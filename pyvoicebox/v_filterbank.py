@@ -50,9 +50,8 @@ def v_filterbank(b, a, x, zi=None) -> tuple[np.ndarray, np.ndarray]:
         if zi is not None and i < len(zi):
             yi, zfi = lfilter(bi, ai, x, zi=zi[i])
         else:
-            yi, zfi = lfilter(bi, ai, x, zi=None)
-            if zfi is None:
-                zfi = np.zeros(max(len(bi), len(ai)) - 1)
+            yi = lfilter(bi, ai, x)
+            zfi = np.zeros(max(len(bi), len(ai)) - 1)
         y[:, i] = yi
         zf.append(zfi)
 

@@ -32,5 +32,5 @@ def v_meansqtf(b, a=None) -> float:
     m = v_lpcar2ra(b.reshape(1, -1))
     m[0, 0] *= 0.5
     rr = v_lpcar2rr(a.reshape(1, -1), len(m[0]) - 1)
-    d = float(2.0 * rr @ m.T)
+    d = 2.0 * (rr @ m.T).item()
     return d

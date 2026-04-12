@@ -1,4 +1,4 @@
-"""Tests for Phase 10: Distance, Math, Signal Processing, Quaternion, and Utility functions."""
+"""Tests for distance measures and miscellaneous functions."""
 
 import os
 import numpy as np

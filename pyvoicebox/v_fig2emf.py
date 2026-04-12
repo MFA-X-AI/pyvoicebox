@@ -94,7 +94,7 @@ def v_fig2emf(h=None, s=None, p=None, f='svg', fig=None) -> None:
         else:
             v_figbolden(pos=p, fig=figure)
 
-    figure.set_tight_layout(True)
+    figure.set_layout_engine('tight')
 
     # Map the format
     fmt = _FORMAT_MAP.get(f, f)

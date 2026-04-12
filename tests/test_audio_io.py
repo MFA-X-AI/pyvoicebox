@@ -1,4 +1,4 @@
-"""Tests for Phase 5: Audio I/O & Codec functions."""
+"""Tests for audio I/O and codec functions."""
 
 import os
 import tempfile

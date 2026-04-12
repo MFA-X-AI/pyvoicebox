@@ -75,7 +75,7 @@ def v_activlev(sp, fs, mode='') -> tuple[np.ndarray, np.ndarray]:
     qe[qf == 0] = -np.inf
 
     # Apply hangover
-    qe_hang = v_maxfilt(qe, 1, nh, 1)
+    qe_hang = v_maxfilt(qe, 1, nh)[0]
 
     emax = np.max(qe_hang) + 1
     if emax == -np.inf:

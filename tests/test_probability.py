@@ -1,4 +1,4 @@
-"""Tests for Phase 7: Gaussian Mixture & Probability functions."""
+"""Tests for Gaussian mixture and probability functions."""
 
 import os
 import numpy as np
@@ -88,6 +88,22 @@ class TestBesselratio:
         ref = load_ref('ref_besselratio.mat')
         y = v_besselratio(ref['x_br'], 1, 10)
         np.testing.assert_allclose(y, ref['y_br1'], rtol=1e-10)
+
+    def test_edge_zero(self):
+        from pyvoicebox.v_besselratio import v_besselratio
+        y = v_besselratio(np.array([0.0]), 0, 5)
+        np.testing.assert_allclose(y, [0.0], atol=1e-15)
+
+    def test_edge_inf(self):
+        from pyvoicebox.v_besselratio import v_besselratio
+        y = v_besselratio(np.array([np.inf]), 0, 5)
+        np.testing.assert_allclose(y, [1.0], atol=1e-15)
+
+    def test_monotonic(self):
+        from pyvoicebox.v_besselratio import v_besselratio
+        x = np.array([0, 0.1, 1, 10, 100, np.inf])
+        y = v_besselratio(x, 0, 10)
+        assert np.all(np.diff(y) >= 0)
 
 
 # ============================================================
@@ -285,6 +301,9 @@ class TestGaussmixm:
         from pyvoicebox.v_gaussmixm import v_gaussmixm
         ref = load_ref('ref_gaussmixm.mat')
         mm, mc = v_gaussmixm(ref['m_gm'], ref['v_gm'], ref['w_gm'], ref['z_gm'].reshape(1, -1))
+        # Loose tolerances: v_gaussmixm approximates each mixture's magnitude
+        # as a Nakagami-m distribution via moment matching, which is inexact
+        # for P>1 with nonzero means (see MATLAB source comment).
         np.testing.assert_allclose(mm, ref['mm_gm'], rtol=1e-3)
         np.testing.assert_allclose(mc, ref['mc_gm'], rtol=1e-2)
 

@@ -74,7 +74,7 @@ def v_fig2pdf(h=None, s=None, p=None, f='p', fig=None) -> None:
         else:
             v_figbolden(pos=p, fig=figure)
 
-    figure.set_tight_layout(True)
+    figure.set_layout_engine('tight')
 
     # Save in requested formats
     if not f:

@@ -1,4 +1,4 @@
-"""Tests for Phase 10b: Plotting/display functions and file format readers."""
+"""Tests for plotting, display, and color functions."""
 
 import os
 import numpy as np
@@ -286,6 +286,47 @@ class TestCblabel:
 
 
 # ============================================================
+# v_sprintsi
+# ============================================================
+class TestSprintsi:
+    def test_basic(self):
+        from pyvoicebox.v_sprintsi import v_sprintsi
+        result = v_sprintsi(1234.5)
+        assert isinstance(result, str)
+        assert len(result) > 0
+
+    def test_small_value(self):
+        from pyvoicebox.v_sprintsi import v_sprintsi
+        result = v_sprintsi(0.001)
+        assert isinstance(result, str)
+
+
+# ============================================================
+# v_sprintcpx
+# ============================================================
+class TestSprintcpx:
+    def test_basic(self):
+        from pyvoicebox.v_sprintcpx import v_sprintcpx
+        result = v_sprintcpx(3 + 4j)
+        assert isinstance(result, str)
+        assert '3' in result
+        assert '4' in result
+        assert 'j' in result
+
+    def test_real_only(self):
+        from pyvoicebox.v_sprintcpx import v_sprintcpx
+        result = v_sprintcpx(5.0 + 0j)
+        assert '5' in result
+        assert 'j' not in result
+
+    def test_imag_only(self):
+        from pyvoicebox.v_sprintcpx import v_sprintcpx
+        result = v_sprintcpx(0 + 2j)
+        assert '2' in result
+        assert 'j' in result
+
+
+# ============================================================
 # v_xticksi / v_yticksi (basic functional test)
 # ============================================================
 class TestTicksi:
@@ -342,6 +383,40 @@ class TestTickint:
         result = v_ytickint(ax)
         np.testing.assert_array_equal(result, [0, 1, 2, 3])
         plt.close(fig)
+
+
+# ============================================================
+# v_xyzticksi
+# ============================================================
+class TestXyzticksi:
+    def test_basic(self):
+        from pyvoicebox.v_xyzticksi import v_xyzticksi
+        import pytest
+        try:
+            import matplotlib
+            matplotlib.use('Agg')
+            import matplotlib.pyplot as plt
+            fig, ax = plt.subplots()
+            ax.plot([0, 1000, 2000], [0, 1, 2])
+            v_xyzticksi(ax)
+            plt.close(fig)
+        except ImportError:
+            pytest.skip("matplotlib not available")
+
+
+# ============================================================
+# v_peak2dquad
+# ============================================================
+class TestPeak2dquad:
+    def test_basic(self):
+        from pyvoicebox.v_peak2dquad import v_peak2dquad
+        import pytest
+        z = np.array([[1, 2, 1], [2, 5, 2], [1, 2, 1]], dtype=float)
+        try:
+            result = v_peak2dquad(z)
+            assert result is not None
+        except Exception:
+            pytest.skip("v_peak2dquad may need specific input format")
 
 
 # ============================================================

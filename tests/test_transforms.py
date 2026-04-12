@@ -1,4 +1,4 @@
-"""Tests for Phase 3: FFT/Transform Functions."""
+"""Tests for FFT, DCT, and transform functions."""
 
 import os
 import numpy as np
