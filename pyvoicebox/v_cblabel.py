@@ -19,7 +19,8 @@ def v_cblabel(label, h=None, ax=None):
     cb : matplotlib colorbar or axes
         Handle of the colorbar that was labelled.
     """
-    import matplotlib.pyplot as plt
+    from pyvoicebox._compat import _require_matplotlib
+    plt = _require_matplotlib("v_cblabel")
     import numpy as np
 
     if h is None and ax is None:

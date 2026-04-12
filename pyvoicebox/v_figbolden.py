@@ -24,8 +24,8 @@ def v_figbolden(pos=None, pv=None, m='', fig=None):
     fig : matplotlib.figure.Figure, optional
         Figure handle. Default is plt.gcf().
     """
-    import matplotlib.pyplot as plt
-
+    from pyvoicebox._compat import _require_matplotlib
+    plt = _require_matplotlib("v_figbolden")
     if fig is None:
         fig = plt.gcf()
 

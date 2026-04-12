@@ -16,8 +16,8 @@ def v_xtickint(ax=None):
     xtick : ndarray
         Array of remaining integer tick positions.
     """
-    import matplotlib.pyplot as plt
-
+    from pyvoicebox._compat import _require_matplotlib
+    plt = _require_matplotlib("v_xtickint")
     if ax is None:
         ax = plt.gca()
 

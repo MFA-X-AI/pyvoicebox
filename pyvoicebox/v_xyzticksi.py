@@ -59,7 +59,8 @@ def v_xyzticksi(ax_idx, ax=None, return_prefix=False):
         The global SI prefix string (only if return_prefix is True).
         Empty string if no global prefix could be used.
     """
-    import matplotlib.pyplot as plt
+    from pyvoicebox._compat import _require_matplotlib
+    plt = _require_matplotlib("v_xyzticksi")
     import matplotlib.ticker as ticker
 
     if ax is None:

@@ -40,8 +40,8 @@ def v_texthvc(x, y, t, p=None, q=None, r=None, ax=None):
     text_obj : matplotlib.text.Text
         The text object.
     """
-    import matplotlib.pyplot as plt
-
+    from pyvoicebox._compat import _require_matplotlib
+    plt = _require_matplotlib("v_texthvc")
     if ax is None:
         ax = plt.gca()
 

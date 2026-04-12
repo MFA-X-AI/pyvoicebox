@@ -28,8 +28,8 @@ def v_fig2pdf(h=None, s=None, p=None, f='p', fig=None):
     Unlike the MATLAB version, this does not require MikTeX/pdfcrop.
     Uses matplotlib's built-in savefig with tight_layout.
     """
-    import matplotlib.pyplot as plt
-
+    from pyvoicebox._compat import _require_matplotlib
+    plt = _require_matplotlib("v_fig2pdf")
     # Handle flexible argument parsing like MATLAB version
     if isinstance(h, str):
         s = h

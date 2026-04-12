@@ -32,7 +32,6 @@ dependencies = [
     "numpy",
     "scipy",
     "soundfile",
-    "matplotlib",
 ]
 
 [project.urls]
@@ -43,7 +42,8 @@ Issues = "https://github.com/MFA-X-AI/pyvoicebox/issues"
 "Original MATLAB" = "https://github.com/ImperialCollegeLondon/sap-voicebox"
 
 [project.optional-dependencies]
-dev = ["pytest"]
+plot = ["matplotlib"]
+dev = ["pytest", "matplotlib"]
 docs = ["mkdocs-material", "mkdocstrings[python]", "ruff"]
 
 [tool.pytest.ini_options]

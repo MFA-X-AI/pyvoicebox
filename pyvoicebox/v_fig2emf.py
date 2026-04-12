@@ -48,8 +48,8 @@ def v_fig2emf(h=None, s=None, p=None, f='svg', fig=None):
     The MATLAB 'meta' (EMF) format is not natively supported by matplotlib.
     We use SVG as a substitute which is also a vector format.
     """
-    import matplotlib.pyplot as plt
-
+    from pyvoicebox._compat import _require_matplotlib
+    plt = _require_matplotlib("v_fig2emf")
     # Handle flexible argument parsing
     if isinstance(h, str):
         s = h

@@ -3,10 +3,15 @@
 ## Installation
 
 ```bash
-pip install -e ".[dev]"
+pip install pyvoicebox                # core (numpy, scipy, soundfile)
+pip install "pyvoicebox[plot]"        # with matplotlib for plotting functions
 ```
 
-Dependencies: `numpy`, `scipy`, `soundfile`, `matplotlib`. Tests additionally require `pytest`.
+For development:
+
+```bash
+pip install -e ".[dev]"
+```
 
 ## Quick Start
 

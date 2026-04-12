@@ -17,8 +17,8 @@ def v_axisenlarge(f=None, ax=None):
     ax : matplotlib.axes.Axes, optional
         Axes handle. Default is current axes (plt.gca()).
     """
-    import matplotlib.pyplot as plt
-
+    from pyvoicebox._compat import _require_matplotlib
+    plt = _require_matplotlib("v_axisenlarge")
     if ax is None:
         ax = plt.gca()
     if f is None:

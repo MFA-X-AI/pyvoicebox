@@ -3,6 +3,18 @@
 import numpy as np
 
 
+def _require_matplotlib(func_name):
+    """Import matplotlib.pyplot with a friendly error if it isn't installed."""
+    try:
+        import matplotlib.pyplot as plt
+        return plt
+    except ImportError as e:
+        raise ImportError(
+            f"{func_name} requires matplotlib, which is an optional dependency. "
+            f"Install it with: pip install 'pyvoicebox[plot]'"
+        ) from e
+
+
 def atleast_col(x):
     """Ensure x is at least a 2D column vector."""
     x = np.asarray(x)

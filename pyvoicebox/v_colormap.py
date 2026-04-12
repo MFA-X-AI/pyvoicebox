@@ -146,7 +146,8 @@ def v_colormap(map_input=None, m='', n=None, p=None):
     # Get the base RGB map
     if map_input is None:
         # Default: use a standard 64-entry viridis-like map
-        import matplotlib.pyplot as plt
+        from pyvoicebox._compat import _require_matplotlib
+        plt = _require_matplotlib("v_colormap")
         cmap = plt.cm.get_cmap('viridis', 64)
         rgb = cmap(np.linspace(0, 1, 64))[:, :3]
     elif isinstance(map_input, str):
@@ -169,8 +170,9 @@ def v_colormap(map_input=None, m='', n=None, p=None):
                 _computed_maps[matched_name] = rgb.copy()
         else:
             # Try matplotlib built-in colormap
+            from pyvoicebox._compat import _require_matplotlib
+            plt = _require_matplotlib("v_colormap")
             try:
-                import matplotlib.pyplot as plt
                 cmap = plt.cm.get_cmap(map_input, 64)
                 rgb = cmap(np.linspace(0, 1, 64))[:, :3]
             except ValueError:
@@ -329,7 +331,13 @@ def v_colormap_to_mpl(name_or_rgb, m='', n=None, p=None):
     cmap : matplotlib.colors.ListedColormap
         A matplotlib colormap object.
     """
-    from matplotlib.colors import ListedColormap
+    try:
+        from matplotlib.colors import ListedColormap
+    except ImportError as e:
+        raise ImportError(
+            "v_colormap_to_mpl requires matplotlib, which is an optional dependency. "
+            "Install it with: pip install 'pyvoicebox[plot]'"
+        ) from e
 
     rgb, _, _ = v_colormap(name_or_rgb, m, n, p)
     if isinstance(name_or_rgb, str):

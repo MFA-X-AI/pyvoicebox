@@ -19,8 +19,8 @@ def v_tilefigs(pos=None):
     window management (e.g., TkAgg, Qt5Agg). It will have no
     effect with non-interactive backends (e.g., Agg).
     """
-    import matplotlib.pyplot as plt
-
+    from pyvoicebox._compat import _require_matplotlib
+    plt = _require_matplotlib("v_tilefigs")
     # Get all open figure numbers sorted
     fig_nums = sorted(plt.get_fignums())
     nf = len(fig_nums)
