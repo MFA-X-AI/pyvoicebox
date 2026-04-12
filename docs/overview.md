@@ -37,7 +37,10 @@ See the [Getting Started](getting-started.md) guide for examples and usage detai
 
 Interactive Jupyter notebooks are available in the [`notebooks/`](https://github.com/MFA-X-AI/pyvoicebox/tree/master/notebooks) directory:
 
-- **Frequency Scales** — convert between Hz, Mel, Bark, ERB, Cent, MIDI with visualisations
-- **MFCC & Spectrograms** — extract MFCCs, build mel filterbanks, compute spectrograms
-- **LPC Analysis** — AR coefficients, spectral envelopes, representation conversions, bandwidth expansion
-- **Speech Enhancement** — add noise, measure SNR, compare clean vs noisy spectrograms
+| Notebook | Description | Colab |
+|---|---|---|
+| [Visualize Speech](https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/01_speech_analysis.ipynb) | Waveform, spectrogram, MFCCs, and pitch tracking | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MFA-X-AI/pyvoicebox/blob/master/notebooks/01_speech_analysis.ipynb) |
+| [Clean Up Noisy Speech](https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/02_speech_enhancement.ipynb) | Add noise, run MMSE enhancement, measure SNR improvement | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MFA-X-AI/pyvoicebox/blob/master/notebooks/02_speech_enhancement.ipynb) |
+| [Inside the Vocal Tract](https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/03_lpc_analysis.ipynb) | LPC spectral envelopes, coefficient conversions, bandwidth expansion | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MFA-X-AI/pyvoicebox/blob/master/notebooks/03_lpc_analysis.ipynb) |
+| [Who Said That?](https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/04_speaker_identification.ipynb) | Speaker identification with GMMs | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MFA-X-AI/pyvoicebox/blob/master/notebooks/04_speaker_identification.ipynb) |
+| [Emotion Recognition](https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/05_emotion_recognition.ipynb) | TEO vs MFCC features on EmoDB with Random Forest | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MFA-X-AI/pyvoicebox/blob/master/notebooks/05_emotion_recognition.ipynb) |

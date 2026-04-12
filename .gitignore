@@ -30,6 +30,14 @@ site/
 # Test reference data (regenerated on first run via Octave)
 tests/ref_data/
 
+# Notebook downloaded data
+notebooks/*.wav
+notebooks/*.zip
+notebooks/*.csv
+notebooks/arctic_data/
+notebooks/emodb/
+.ipynb_checkpoints/
+
 # IDE / editor
 .vscode/
 .idea/

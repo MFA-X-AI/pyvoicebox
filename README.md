@@ -93,6 +93,18 @@ from pyvoicebox import melcepst      # same as v_melcepst
 from pyvoicebox import lpcauto       # same as v_lpcauto
 ```
 
+## Notebooks
+
+Interactive Jupyter notebooks with audio playback:
+
+| Notebook | Description | Colab |
+|---|---|---|
+| [Visualize Speech](notebooks/01_speech_analysis.ipynb) | Waveform, spectrogram, MFCCs, and pitch tracking | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MFA-X-AI/pyvoicebox/blob/master/notebooks/01_speech_analysis.ipynb) |
+| [Clean Up Noisy Speech](notebooks/02_speech_enhancement.ipynb) | Add noise, run MMSE enhancement, measure SNR improvement | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MFA-X-AI/pyvoicebox/blob/master/notebooks/02_speech_enhancement.ipynb) |
+| [Inside the Vocal Tract](notebooks/03_lpc_analysis.ipynb) | LPC spectral envelopes, coefficient conversions, bandwidth expansion | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MFA-X-AI/pyvoicebox/blob/master/notebooks/03_lpc_analysis.ipynb) |
+| [Who Said That?](notebooks/04_speaker_identification.ipynb) | Speaker identification with GMMs | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MFA-X-AI/pyvoicebox/blob/master/notebooks/04_speaker_identification.ipynb) |
+| [Emotion Recognition](notebooks/05_emotion_recognition.ipynb) | TEO vs MFCC features on EmoDB with Random Forest | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MFA-X-AI/pyvoicebox/blob/master/notebooks/05_emotion_recognition.ipynb) |
+
 ## Function Reference
 
 Functions are grouped by topic, following the same categorisation as the [original VOICEBOX documentation](https://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html). Click any section to expand.
@@ -559,6 +571,14 @@ pytest tests/ -v
 # First run: clones voicebox source, generates ref data via Octave, runs all tests
 # Subsequent runs: uses cached ref data, runs tests only
 ```
+
+## A note on ergonomics
+
+pyvoicebox is a **faithful port** — it preserves the original MATLAB function names, argument order, mode strings, and default behaviour. This is intentional: if you're porting MATLAB code or following a paper that references VOICEBOX, everything works the same way.
+
+That said, some MATLAB conventions can feel surprising in Python. For example, `v_addnoise(signal, fs, 5)` normalises total power to 1 by default — you need the `'k'` flag to preserve the original signal level. Single-character mode strings like `'M0dD'` are compact but not self-documenting.
+
+We're considering a more Pythonic API layer on top of the faithful port — keyword arguments, sensible defaults, better discoverability. If you have opinions on what that should look like, or if you run into a gotcha that tripped you up, please [open an issue](https://github.com/MFA-X-AI/pyvoicebox/issues).
 
 ## Acknowledgements
 

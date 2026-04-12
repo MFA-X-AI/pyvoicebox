@@ -16,24 +16,9 @@ theme:
   custom_dir: docs/overrides
   language: en
   palette:
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/brightness-auto
-        name: Switch to light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Switch to system preference
+    scheme: slate
+    primary: indigo
+    accent: indigo
   font:
     text: Roboto
     code: Roboto Mono
@@ -128,6 +113,11 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+extra_javascript:
+  - overrides/assets/javascripts/mathjax.js
+  - overrides/assets/javascripts/home.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js
+
 extra_css:
   - overrides/assets/stylesheets/home.css
 
@@ -146,6 +136,13 @@ nav:
       - Comparison: comparison.md
       - Testing: testing.md
       - Acknowledgements & License: acknowledgements.md
+  - Examples:
+      - examples/index.md
+      - Visualize Speech: examples/speech-analysis.md
+      - Speech Enhancement: examples/speech-enhancement.md
+      - LPC Analysis: examples/lpc-analysis.md
+      - Speaker Identification: examples/speaker-identification.md
+      - Emotion Recognition: examples/emotion-recognition.md
   - API Reference:
       - api/index.md
       - Audio File I/O: api/audio-io.md

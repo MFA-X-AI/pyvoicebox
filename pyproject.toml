@@ -43,6 +43,7 @@ Issues = "https://github.com/MFA-X-AI/pyvoicebox/issues"
 
 [project.optional-dependencies]
 plot = ["matplotlib"]
+notebooks = ["matplotlib", "pandas", "scikit-learn", "notebook"]
 dev = ["pytest", "matplotlib"]
 docs = ["mkdocs-material", "mkdocstrings[python]", "ruff"]
 

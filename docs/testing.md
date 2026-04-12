@@ -48,14 +48,8 @@ pytest tests/ -v
 
 ## CI / GitHub Actions
 
-The documentation site is built and deployed via GitHub Actions on every push to `master` — see [`.github/workflows/docs.yml`](https://github.com/MFA-X-AI/pyvoicebox/blob/master/.github/workflows/docs.yml).
+Two workflows run via GitHub Actions:
 
-The test suite itself requires GNU Octave, which makes it better suited to local development than CI at the moment. A CI workflow for tests can be added with:
+- **Docs** ([`.github/workflows/docs.yml`](https://github.com/MFA-X-AI/pyvoicebox/blob/master/.github/workflows/docs.yml)) — builds and deploys the documentation site to GitHub Pages on every push to `master` that touches `docs/`, `mkdocs.yml`, or `pyvoicebox/`.
 
-```yaml
-- name: Install Octave
-  run: sudo apt-get install -y octave
-
-- name: Run tests
-  run: pytest tests/ -v
-```
+- **Tests** ([`.github/workflows/tests.yml`](https://github.com/MFA-X-AI/pyvoicebox/blob/master/.github/workflows/tests.yml)) — installs GNU Octave and runs the full test suite. Triggers on pushes and PRs that touch `pyvoicebox/`, `tests/`, or `pyproject.toml`. Frontend and documentation changes do not trigger a test run.

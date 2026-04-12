@@ -13,6 +13,7 @@
     @media screen and (min-width: 76.25em) {
       .md-sidebar--primary { display: none; }
     }
+    .md-footer { display: none; }
   </style>
 
   <!-- ▬▬ HERO ▬▬ -->
@@ -25,6 +26,10 @@
             <span class="mdx-hero__icon">{% include ".icons/custom/logo.svg" %}</span>
             pyvoicebox
           </h1>
+          <div class="mdx-hero__install" onclick="navigator.clipboard.writeText('pip install pyvoicebox'); var ic=this.querySelector('.mdx-install__icon'); ic.innerHTML='&#10003;'; setTimeout(function(){ic.innerHTML='&#x2398;'},1500)">
+            <span><span class="mdx-install__prompt">$</span> pip install pyvoicebox</span>
+            <span class="mdx-install__icon">&#x2398;</span>
+          </div>
           <p class="mdx-hero__tagline">
             <strong>280+ speech processing functions</strong>, fully typed, ported from MATLAB to Python.
           </p>
@@ -137,13 +142,10 @@
               <button class="mdx-code-tab" data-tab="matlab">MATLAB</button>
             </div>
           </div>
-<pre class="mdx-code-pre" data-tab="python"><span class="kw">import</span> <span class="fn">numpy</span> <span class="kw">as</span> np
-<span class="kw">from</span> <span class="fn">pyvoicebox</span> <span class="kw">import</span> (
-    v_filtbankm, v_melbankm, v_rfft,
-    v_enframe, v_lpcauto, v_lpcar2cc,
-)
+<pre class="mdx-code-pre" data-tab="python"><span class="kw">from</span> <span class="fn">pyvoicebox</span> <span class="kw">import</span> *
+<span class="kw">import</span> <span class="fn">numpy</span> <span class="kw">as</span> np
 
-<span class="cm"># Load audio &amp; frame into overlapping windows</span>
+<span class="cm"># Frame audio into overlapping windows</span>
 signal <span class="op">=</span> np.<span class="fn">random.randn</span>(<span class="num">16000</span>)
 frames <span class="op">=</span> <span class="fn">v_enframe</span>(signal, <span class="num">400</span>, <span class="num">160</span>)
 
@@ -153,7 +155,9 @@ m, _, _ <span class="op">=</span> <span class="fn">v_melbankm</span>(<span class
 <span class="cm"># LPC analysis &rarr; cepstral coefficients</span>
 ar, e <span class="op">=</span> <span class="fn">v_lpcauto</span>(frames, <span class="num">12</span>)
 cc <span class="op">=</span> <span class="fn">v_lpcar2cc</span>(ar, <span class="num">12</span>)</pre>
-<pre class="mdx-code-pre" data-tab="matlab" style="display:none"><span class="cm">% Load audio &amp; frame into overlapping windows</span>
+<pre class="mdx-code-pre" data-tab="matlab" style="display:none"><span class="fn">addpath</span>(<span class="str">'voicebox'</span>);
+
+<span class="cm">% Frame audio into overlapping windows</span>
 signal <span class="op">=</span> <span class="fn">randn</span>(<span class="num">1</span>, <span class="num">16000</span>);
 frames <span class="op">=</span> <span class="fn">v_enframe</span>(signal, <span class="num">400</span>, <span class="num">160</span>);
 
@@ -168,22 +172,59 @@ cc <span class="op">=</span> <span class="fn">v_lpcar2cc</span>(ar, <span class=
     </div>
   </section>
 
-  <!-- ▬▬ INSTALL ▬▬ -->
-  <section class="mdx-install-section" id="install">
+  <!-- ▬▬ NOTEBOOKS ▬▬ -->
+  <section class="mdx-notebooks-section">
     <div class="md-grid md-typeset">
-      <div class="mdx-install reveal">
-        <span class="mdx-section-label">Get started in seconds</span>
-        <h2 class="mdx-section-title" style="margin: 0 auto;">Start building <em>now</em></h2>
-        <div class="mdx-install__cmd" onclick="navigator.clipboard.writeText('pip install pyvoicebox'); this.querySelector('.mdx-install__copy').textContent='Copied!'">
-          <span><span class="mdx-install__prompt">$</span> pip install pyvoicebox</span>
-          <span class="mdx-install__copy">Click to copy</span>
-        </div>
-        <p class="mdx-install__note">
-          Validated against the original MATLAB source with
-          <a href="{{ 'testing/' | url }}"><strong>500+ automated tests</strong></a>.
-          <br>
-          <a href="{{ 'acknowledgements/' | url }}">LGPL-3.0 licensed</a>.
+      <div class="mdx-section-header reveal" style="text-align: center; max-width: 100%;">
+        <span class="mdx-section-label">Try it yourself</span>
+        <h2 class="mdx-section-title" style="margin: 0 auto;">Interactive <em>notebooks</em></h2>
+        <p class="mdx-notebooks__sub">
+          Jupyter notebooks with real speech data.
         </p>
+      </div>
+      <div class="mdx-notebooks__grid">
+        <a class="mdx-notebooks__item reveal" href="https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/01_speech_analysis.ipynb">
+          <h3>Visualize Speech</h3>
+          <p>Waveform, spectrogram, MFCCs, and pitch tracking</p>
+        </a>
+        <a class="mdx-notebooks__item reveal" href="https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/02_speech_enhancement.ipynb">
+          <h3>Clean Up Noisy Speech</h3>
+          <p>Add noise, run MMSE enhancement, measure SNR improvement</p>
+        </a>
+        <a class="mdx-notebooks__item reveal" href="https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/03_lpc_analysis.ipynb">
+          <h3>Inside the Vocal Tract</h3>
+          <p>LPC spectral envelopes, coefficient conversions, bandwidth expansion</p>
+        </a>
+        <a class="mdx-notebooks__item reveal" href="https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/04_speaker_identification.ipynb">
+          <h3>Who Said That?</h3>
+          <p>Speaker identification with GMMs: feature extraction, training, classification</p>
+        </a>
+        <a class="mdx-notebooks__item reveal" href="https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/05_emotion_recognition.ipynb">
+          <h3>Emotion Recognition</h3>
+          <p>TEO vs MFCC features on the EmoDB dataset with Random Forest classification</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▬▬ CTA ▬▬ -->
+  <section class="mdx-cta-section">
+    <div class="md-grid md-typeset">
+      <div class="mdx-cta reveal" style="text-align: center;">
+        <h2 class="mdx-section-title" style="margin: 0 auto;">
+          Ready to <em>get started</em>?
+        </h2>
+        <p class="mdx-cta__text">
+          280+ functions. Fully typed. 500+ tests against the original MATLAB source.
+        </p>
+        <div class="mdx-cta__actions">
+          <a href="{{ 'getting-started/' | url }}" class="md-button md-button--primary">
+            Getting Started &rarr;
+          </a>
+          <a href="https://github.com/MFA-X-AI/pyvoicebox" class="md-button">
+            View on GitHub
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -194,74 +235,4 @@ cc <span class="op">=</span> <span class="fn">v_lpcar2cc</span>(ar, <span class=
 
 {% block scripts %}
   {{ super() }}
-  <script>
-  // ━━━━ Intersection Observer for scroll animations ━━━━
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
-    revealObserver.observe(el);
-  });
-
-  // ━━━━ Code tabs ━━━━
-  document.querySelectorAll('.mdx-code-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      const block = tab.closest('.mdx-code-block');
-      block.querySelectorAll('.mdx-code-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const target = tab.dataset.tab;
-      block.querySelectorAll('.mdx-code-pre').forEach(pre => {
-        pre.style.display = pre.dataset.tab === target ? '' : 'none';
-      });
-    });
-  });
-
-  // ━━━━ Animated waveform canvas ━━━━
-  const canvas = document.getElementById('waveform');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-
-    function resize() {
-      canvas.width = canvas.offsetWidth * devicePixelRatio;
-      canvas.height = canvas.offsetHeight * devicePixelRatio;
-      ctx.scale(devicePixelRatio, devicePixelRatio);
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    function drawWave(t) {
-      const w = canvas.offsetWidth;
-      const h = canvas.offsetHeight;
-      ctx.clearRect(0, 0, w, h);
-
-      const layers = [
-        { color: 'rgba(159,168,218,0.35)',  amp: 35, freq: 0.007, speed: 0.0006, phase: 0 },
-        { color: 'rgba(121,134,203,0.3)',   amp: 25, freq: 0.011, speed: 0.001,  phase: 2 },
-        { color: 'rgba(197,202,233,0.15)',  amp: 18, freq: 0.016, speed: 0.0005, phase: 4 },
-      ];
-
-      layers.forEach(layer => {
-        ctx.beginPath();
-        ctx.moveTo(0, h / 2);
-        for (let x = 0; x <= w; x += 2) {
-          const y = h / 2
-            + Math.sin(x * layer.freq + t * layer.speed + layer.phase) * layer.amp
-            + Math.sin(x * layer.freq * 2.3 + t * layer.speed * 1.7) * (layer.amp * 0.4);
-          ctx.lineTo(x, y);
-        }
-        ctx.strokeStyle = layer.color;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      });
-
-      requestAnimationFrame(() => drawWave(t + 16));
-    }
-    drawWave(0);
-  }
-  </script>
 {% endblock %}
