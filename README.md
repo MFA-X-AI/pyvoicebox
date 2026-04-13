@@ -1,8 +1,16 @@
-# pyvoicebox
+[![PyPI](https://img.shields.io/pypi/v/py-voicebox?color=blue)](https://pypi.org/project/py-voicebox/)
+[![Python](https://img.shields.io/pypi/pyversions/py-voicebox)](https://pypi.org/project/py-voicebox/)
+[![Tests](https://github.com/MFA-X-AI/pyvoicebox/actions/workflows/tests.yml/badge.svg)](https://github.com/MFA-X-AI/pyvoicebox/actions/workflows/tests.yml)
+[![Docs](https://img.shields.io/badge/docs-live-brightgreen)](https://mfa-x-ai.github.io/pyvoicebox/)
+[![License](https://img.shields.io/badge/license-LGPL--3.0-orange)](https://github.com/MFA-X-AI/pyvoicebox/blob/master/LICENSE)
 
-A complete Python port of the [VOICEBOX](https://github.com/ImperialCollegeLondon/sap-voicebox) speech processing toolbox, originally written in MATLAB by Mike Brookes at Imperial College London's Speech and Audio Processing Lab.
+<img src="docs/assets/logo.png" alt="pyvoicebox" height="80">
 
-**280+ functions**, fully typed, validated against the original MATLAB source via GNU Octave with **500+ automated tests**.
+A complete Python port of the [VOICEBOX](https://github.com/ImperialCollegeLondon/sap-voicebox) speech processing toolbox by Mike Brookes, Imperial College London.
+
+**280+ functions** · fully typed · validated against the original MATLAB source via GNU Octave with **500+ automated tests**
+
+---
 
 ## What is VOICEBOX?
 
