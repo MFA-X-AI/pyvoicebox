@@ -1,14 +1,8 @@
 name: docs
 
 on:
-  push:
-    branches: [master]
-    paths:
-      - docs/**
-      - mkdocs.yml
-      - pyproject.toml
-      - pyvoicebox/**
-      - .github/workflows/docs.yml
+  release:
+    types: [published]
   workflow_dispatch:
 
 permissions:

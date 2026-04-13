@@ -1,12 +1,12 @@
-[![PyPI](https://img.shields.io/pypi/v/py-voicebox?color=blue)](https://pypi.org/project/py-voicebox/)
-[![Python](https://img.shields.io/pypi/pyversions/py-voicebox)](https://pypi.org/project/py-voicebox/)
+[![PyPI](https://img.shields.io/pypi/v/pyvoicebox-sap?color=blue)](https://pypi.org/project/pyvoicebox-sap/)
+[![Python](https://img.shields.io/pypi/pyversions/pyvoicebox-sap)](https://pypi.org/project/pyvoicebox-sap/)
 [![Tests](https://github.com/MFA-X-AI/pyvoicebox/actions/workflows/tests.yml/badge.svg)](https://github.com/MFA-X-AI/pyvoicebox/actions/workflows/tests.yml)
 [![Docs](https://img.shields.io/badge/docs-live-brightgreen)](https://mfa-x-ai.github.io/pyvoicebox/)
 [![License](https://img.shields.io/badge/license-LGPL--3.0-orange)](https://github.com/MFA-X-AI/pyvoicebox/blob/master/LICENSE)
 
 <img src="docs/assets/logo.png" alt="pyvoicebox" height="80">
 
-A complete Python port of the [VOICEBOX](https://github.com/ImperialCollegeLondon/sap-voicebox) speech processing toolbox by Mike Brookes, Imperial College London.
+A complete Python port of the [VOICEBOX](https://github.com/ImperialCollegeLondon/sap-voicebox) Speech and Audio Processing toolbox by Mike Brookes, Imperial College London.
 
 **280+ functions** · fully typed · validated against the original MATLAB source via GNU Octave with **500+ automated tests**
 
@@ -54,8 +54,8 @@ They complement each other. A common pipeline is pyvoicebox for cleanup and qual
 ## Installation
 
 ```bash
-pip install py-voicebox                # core (numpy, scipy, soundfile)
-pip install "py-voicebox[plot]"        # with matplotlib for plotting functions
+pip install pyvoicebox-sap                # core (numpy, scipy, soundfile)
+pip install "pyvoicebox-sap[plot]"        # with matplotlib for plotting functions
 ```
 
 For development:

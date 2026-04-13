@@ -3,9 +3,9 @@ requires = ["setuptools>=64", "setuptools-scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "py-voicebox"
+name = "pyvoicebox-sap"
 dynamic = ["version"]
-description = "Python port of VOICEBOX speech processing toolbox"
+description = "Python port of the VOICEBOX Speech and Audio Processing toolbox"
 readme = "README.md"
 requires-python = ">=3.9"
 license = "LGPL-3.0-or-later"

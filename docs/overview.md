@@ -4,7 +4,7 @@ icon: material/book-open-variant
 
 # pyvoicebox
 
-A complete Python port of the [VOICEBOX](https://github.com/ImperialCollegeLondon/sap-voicebox) speech processing toolbox, originally written in MATLAB by Mike Brookes at Imperial College London.
+A complete Python port of the [VOICEBOX](https://github.com/ImperialCollegeLondon/sap-voicebox) Speech and Audio Processing toolbox, originally written in MATLAB by Mike Brookes at Imperial College London.
 
 **280+ functions**, fully typed, validated against the original MATLAB source via GNU Octave with **[500+ automated tests](testing.md)**.
 
@@ -27,8 +27,8 @@ See how it [compares to librosa and openSMILE](comparison.md).
 ## Quick install
 
 ```bash
-pip install py-voicebox                # core (numpy, scipy, soundfile)
-pip install "py-voicebox[plot]"        # with matplotlib for plotting functions
+pip install pyvoicebox-sap                # core (numpy, scipy, soundfile)
+pip install "pyvoicebox-sap[plot]"        # with matplotlib for plotting functions
 ```
 
 See the [Getting Started](getting-started.md) guide for examples and usage details.

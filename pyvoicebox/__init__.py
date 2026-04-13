@@ -1,4 +1,4 @@
-# pyvoicebox - Python port of VOICEBOX speech processing toolbox
+# pyvoicebox - Python port of VOICEBOX Speech and Audio Processing toolbox
 
 from .v_activlev import *  # noqa: F401,F403
 from .v_activlevg import *  # noqa: F401,F403

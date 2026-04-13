@@ -15,6 +15,6 @@ Each notebook has a `%pip install` cell at the top — uncomment it to run on Go
 ## Running locally
 
 ```bash
-pip install "py-voicebox[notebooks]"
+pip install "pyvoicebox-sap[notebooks]"
 jupyter notebook notebooks/
 ```

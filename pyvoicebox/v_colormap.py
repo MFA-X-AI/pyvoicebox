@@ -337,7 +337,7 @@ def v_colormap_to_mpl(name_or_rgb, m='', n=None, p=None):
     except ImportError as e:
         raise ImportError(
             "v_colormap_to_mpl requires matplotlib, which is an optional dependency. "
-            "Install it with: pip install 'py-voicebox[plot]'"
+            "Install it with: pip install 'pyvoicebox-sap[plot]'"
         ) from e
 
     rgb, _, _ = v_colormap(name_or_rgb, m, n, p)

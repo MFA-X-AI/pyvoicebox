@@ -7,8 +7,8 @@ icon: material/rocket-launch
 ## Installation
 
 ```bash
-pip install py-voicebox                # core (numpy, scipy, soundfile)
-pip install "py-voicebox[plot]"        # with matplotlib for plotting functions
+pip install pyvoicebox-sap                # core (numpy, scipy, soundfile)
+pip install "pyvoicebox-sap[plot]"        # with matplotlib for plotting functions
 ```
 
 For development (includes pytest and matplotlib):
