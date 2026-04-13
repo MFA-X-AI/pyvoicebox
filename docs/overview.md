@@ -27,8 +27,8 @@ See how it [compares to librosa and openSMILE](comparison.md).
 ## Quick install
 
 ```bash
-pip install pyvoicebox                # core (numpy, scipy, soundfile)
-pip install "pyvoicebox[plot]"        # with matplotlib for plotting functions
+pip install py-voicebox                # core (numpy, scipy, soundfile)
+pip install "py-voicebox[plot]"        # with matplotlib for plotting functions
 ```
 
 See the [Getting Started](getting-started.md) guide for examples and usage details.

@@ -13,7 +13,7 @@ def _require_matplotlib(func_name):
     except ImportError as e:
         raise ImportError(
             f"{func_name} requires matplotlib, which is an optional dependency. "
-            f"Install it with: pip install 'pyvoicebox[plot]'"
+            f"Install it with: pip install 'py-voicebox[plot]'"
         ) from e
 
 

@@ -5,7 +5,7 @@ Interactive Jupyter notebooks demonstrating pyvoicebox with real speech data. Au
 ## Setup
 
 ```bash
-pip install "pyvoicebox[notebooks]"
+pip install "py-voicebox[notebooks]"
 jupyter notebook notebooks/
 ```
 
