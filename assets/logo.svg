@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 50" width="320" height="50">
+  <g transform="translate(5, 1) scale(2)">
+    <circle cx="12" cy="12" r="11" fill="none" stroke="black" stroke-width="1.2"/>
+    <path d="m20 12-1.2.6-.8.6-.8-.6-.8 1.8-.8-1.8-.8 4.8-.8-4.8-.8 1.2-.8-1.2-.8 2.4-.8-2.4-.8 5.4-.8-5.4-.8 3.6-.8-3.6-.8.6-.8-.6-1.2-.6 1.2-.6.8-.6.8.6.8-3.6.8 3.6.8-5.4.8 5.4.8-2.4.8 2.4.8-1.2.8 1.2.8-4.8.8 4.8.8-1.8.8 1.8.8-.6.8.6z" fill="black"/>
+  </g>
+  <text x="58" y="34" font-family="Georgia, 'Times New Roman', serif" font-size="30" fill="black" letter-spacing="-0.5">pyvoicebox</text>
+</svg>
