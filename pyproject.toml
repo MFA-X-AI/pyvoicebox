@@ -1,14 +1,14 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyvoicebox"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Python port of VOICEBOX speech processing toolbox"
 readme = "README.md"
 requires-python = ">=3.9"
-license = { text = "LGPL-3.0-or-later" }
+license = "LGPL-3.0-or-later"
 authors = [
     { name = "MFA-X-AI" },
 ]
@@ -16,7 +16,6 @@ keywords = ["speech", "audio", "dsp", "lpc", "mfcc", "voicebox", "matlab"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
@@ -46,6 +45,10 @@ plot = ["matplotlib"]
 notebooks = ["matplotlib", "pandas", "scikit-learn", "notebook"]
 dev = ["pytest", "matplotlib"]
 docs = ["mkdocs-material", "mkdocstrings[python]", "ruff"]
+
+[tool.setuptools_scm]
+version_scheme = "guess-next-dev"
+local_scheme = "no-local-version"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
