@@ -588,6 +588,8 @@ If you use pyvoicebox in academic work, please cite the original VOICEBOX toolbo
 
 > Brookes, M., *VOICEBOX: Speech Processing Toolbox for MATLAB*, Department of Electrical and Electronic Engineering, Imperial College London, 1997–present. <https://github.com/ImperialCollegeLondon/sap-voicebox>
 
+This work was supported by the Ministry of Higher Education (MOHE) Malaysia under the Prototype Development Research Grant Scheme (PRGS), Grant No. PRGS25-029-0073.
+
 Upstream resources:
 
 - MATLAB source: <https://github.com/ImperialCollegeLondon/sap-voicebox>
