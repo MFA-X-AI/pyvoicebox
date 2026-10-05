@@ -5,6 +5,7 @@ Uses the soundfile library when available for robust AIFF reading.
 
 from __future__ import annotations
 import numpy as np
+from ._audio_io import _read_raw
 
 
 def v_readaif(filename, mode='p', nmax=-1, nskip=0) -> tuple[np.ndarray, int]:
@@ -63,8 +64,7 @@ def v_readaif(filename, mode='p', nmax=-1, nskip=0) -> tuple[np.ndarray, int]:
             break
 
     if sc == 'r':
-        # Read as integer
-        y, _ = sf.read(filename, start=start, stop=stop, dtype='int32')
+        y, _ = _read_raw(filename, info.subtype, start=start, stop=stop)
     else:
         # Read as float (normalized to [-1, 1])
         y, _ = sf.read(filename, start=start, stop=stop, dtype='float64')

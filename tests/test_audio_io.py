@@ -323,6 +323,7 @@ class TestHtk:
         finally:
             os.unlink(tmpfile)
 
+
     def test_write_read_waveform_roundtrip(self):
         """Write and read waveform type HTK data."""
         from pyvoicebox.v_writehtk import v_writehtk
@@ -340,3 +341,98 @@ class TestHtk:
             assert t_r == 'WAVEFORM'
         finally:
             os.unlink(tmpfile)
+
+class TestAudioFormatRegressions:
+    @pytest.mark.parametrize('mode, subtype, tolerance', [
+        ('p8', 'PCM_U8', 1 / 128),
+        ('pa', 'ALAW', 0.035),
+        ('pu', 'ULAW', 0.035),
+    ])
+    def test_requested_wav_encoding(self, tmp_path, mode, subtype, tolerance):
+        import soundfile as sf
+        from pyvoicebox import v_writewav
+
+        filename = str(tmp_path / 'encoded.wav')
+        samples = np.linspace(-0.9, 0.9, 101)
+        v_writewav(samples, 8000, filename, mode)
+
+        assert sf.info(filename).subtype == subtype
+        decoded, fs = sf.read(filename)
+        assert fs == 8000
+        np.testing.assert_allclose(decoded, samples, atol=tolerance, rtol=0)
+
+    @pytest.mark.parametrize('bits', [8, 16, 24, 32])
+    def test_raw_wav_write_preserves_native_units(self, tmp_path, bits):
+        import soundfile as sf
+        from pyvoicebox import v_writewav, v_readwav
+
+        filename = str(tmp_path / 'raw.wav')
+        peak = 2 ** (bits - 1)
+        samples = np.array([-peak, -100, -1, 0, 1, 100, peak - 1])
+        v_writewav(samples, 16000, filename, f'r{bits}')
+
+        decoded, _ = sf.read(filename)
+        np.testing.assert_array_equal(decoded * peak, samples)
+        raw, fs = v_readwav(filename, 'r')
+        assert fs == 16000
+        np.testing.assert_array_equal(raw[:, 0], samples)
+
+    @pytest.mark.parametrize('file_format, subtype, bits', [
+        ('WAV', 'PCM_U8', 8),
+        ('WAV', 'PCM_16', 16),
+        ('WAV', 'PCM_24', 24),
+        ('WAV', 'PCM_32', 32),
+        ('AIFF', 'PCM_S8', 8),
+        ('AIFF', 'PCM_16', 16),
+        ('AIFF', 'PCM_24', 24),
+        ('AIFF', 'PCM_32', 32),
+        ('FLAC', 'PCM_S8', 8),
+        ('FLAC', 'PCM_16', 16),
+        ('FLAC', 'PCM_24', 24),
+    ])
+    def test_raw_read_uses_file_bit_depth(self, tmp_path, file_format, subtype, bits):
+        import soundfile as sf
+        from pyvoicebox import v_readwav, v_readaif, v_readflac
+
+        filename = str(tmp_path / 'input.audio')
+        peak = 2 ** (bits - 1)
+        channel = np.array([-peak, -100, -1, 0, 1, 100, peak - 1])
+        samples = np.column_stack([channel, channel[::-1]])
+        sf.write(filename, samples / peak, 22050, format=file_format, subtype=subtype)
+
+        reader = {'WAV': v_readwav, 'AIFF': v_readaif, 'FLAC': v_readflac}[file_format]
+        raw, fs = reader(filename, 'r')
+        assert fs == 22050
+        np.testing.assert_array_equal(raw, samples)
+        if file_format != 'FLAC':
+            partial, _ = reader(filename, 'r', nmax=3, nskip=2)
+            np.testing.assert_array_equal(partial, samples[2:5])
+
+    @pytest.mark.parametrize('file_format', ['WAV', 'AIFF'])
+    @pytest.mark.parametrize('subtype', ['FLOAT', 'DOUBLE'])
+    def test_raw_floating_audio_is_not_rescaled(self, tmp_path, file_format, subtype):
+        import soundfile as sf
+        from pyvoicebox import v_readwav, v_readaif
+
+        filename = str(tmp_path / 'float.audio')
+        samples = np.array([-3.25, -0.5, 0, 0.25, 2.0])
+        sf.write(filename, samples, 8000, format=file_format, subtype=subtype)
+        reader = v_readwav if file_format == 'WAV' else v_readaif
+        raw, _ = reader(filename, 'r')
+        np.testing.assert_array_equal(raw[:, 0], samples)
+
+    @pytest.mark.parametrize('mode, subtype, scale', [
+        ('ra', 'ALAW', 4096), ('ru', 'ULAW', 8192),
+    ])
+    def test_raw_g711_uses_voicebox_decoded_units(self, tmp_path, mode, subtype, scale):
+        import soundfile as sf
+        from pyvoicebox import v_readwav, v_writewav
+
+        filename = str(tmp_path / 'g711.wav')
+        samples = np.array([-2000., -1000., 0., 1000., 2000.])
+        v_writewav(samples, 8000, filename, mode)
+        assert sf.info(filename).subtype == subtype
+        raw, _ = v_readwav(filename, 'r')
+        decoded, _ = sf.read(filename)
+        np.testing.assert_array_equal(raw[:, 0], decoded * scale)
+        np.testing.assert_allclose(raw[:, 0], samples, atol=0.035 * scale, rtol=0)

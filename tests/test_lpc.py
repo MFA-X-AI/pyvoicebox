@@ -733,8 +733,31 @@ class TestLpcifilt:
         from conftest import _sine, _lpc_ar
         sig, fs = _sine(dur=0.1)
         ar = _lpc_ar(8)
-        result = v_lpcifilt(ar, sig)
-        assert result is not None
+        result = v_lpcifilt(sig, ar)
+        assert result.shape == sig.shape
+
+    def test_fade_with_identity_filters_preserves_signal(self):
+        from pyvoicebox.v_lpcifilt import v_lpcifilt
+        signal = np.arange(10.)
+        result = v_lpcifilt(signal, [[1, 0], [1, 0]], [1, 6], fade=2)
+        np.testing.assert_allclose(result, signal, atol=1e-12)
+
+    @pytest.mark.parametrize('fade', [1, 2, 10])
+    def test_fade_matches_voicebox_with_multiple_filters_and_dc(self, fade):
+        from pyvoicebox.v_lpcifilt import v_lpcifilt
+        signal = [0, 2, -1, 3, 1, 4, -2, 0, 5, 2, -3, 1]
+        ar = [[1, -0.5, 0.25], [1, 0.25, -0.125], [1, -0.75, 0.5]]
+        result = v_lpcifilt(signal, ar, [1, 5, 9], [0.5, -0.25, 1], fade)
+        # GNU Octave results from the original VOICEBOX v_lpcifilt. The
+        # longer fades are clipped at neighboring frame midpoints.
+        if fade == 1:
+            expected = [-0.5, 1.75, -2.375, 3.625, 0.515625, 4.15625,
+                        -0.84375, -0.71875, 4.390625, -2.5, -2.75, 3.5]
+        else:
+            expected = [-0.5, 1.75, -2.375, 3.4140625, 0.515625, 4.0859375,
+                        -0.84375, 0.2723214285714285, 4.227678571428571,
+                        -1.638392857142857, -2.75, 3.5]
+        np.testing.assert_allclose(result, expected, atol=1e-12, rtol=1e-12)
 
 
 # ============================================================

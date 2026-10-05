@@ -192,7 +192,8 @@ def v_melbankm(p=None, n=256, fs=11025, fl=0, fh=0.5, w='tz') -> tuple[Any, np.n
 
     # Double all except DC and Nyquist
     if sfact == 2:
-        msk = (c_arr + mn > 2) & (c_arr + mn < n - fn2 + 2)
+        fft_bins = c_arr + mn - 1  # zero-based bins in the full FFT
+        msk = (fft_bins > 0) & (fft_bins < n - fn2)
         v_arr[msk] = 2.0 * v_arr[msk]
 
     # Build sparse matrix

@@ -104,6 +104,9 @@ def v_snrseg(s, r, fs, m='wz', tf=0.01) -> tuple[float, float, np.ndarray, np.nd
     tc = (np.arange(1, nf + 1) * kf + (1 - kf) / 2.0) / fs
 
     seg = np.mean(snf[vf]) if np.any(vf) else 0.0
-    glo = 10.0 * np.log10(np.sum(rf[vf]) / np.sum(ef[vf])) if np.any(vf) and np.sum(ef[vf]) > 0 else 0.0
+    # Zero error has infinite SNR for a nonzero reference; two silent
+    # signals have undefined SNR, as in the original power-ratio formula.
+    with np.errstate(divide='ignore', invalid='ignore'):
+        glo = 10.0 * np.log10(np.sum(rf[vf]) / np.sum(ef[vf])) if np.any(vf) else 0.0
 
     return seg, glo, tc, snf, vf

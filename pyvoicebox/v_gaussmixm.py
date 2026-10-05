@@ -55,7 +55,7 @@ def v_gaussmixm(m, v=None, w=None, z=None) -> tuple[np.ndarray, np.ndarray]:
     if p == 1:
         # Exact 1D formula
         s = np.sqrt(v.ravel())
-        mt = m[:, np.newaxis] - z.T  # (k, t)
+        mt = m - z.T  # (k, t)
         mts = mt / s[:, np.newaxis]
         ncdf = norm.cdf(-mts)
         npdf = norm.pdf(-mts)

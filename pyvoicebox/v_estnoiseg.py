@@ -77,7 +77,10 @@ def v_estnoiseg(yf, tz, pp=None) -> tuple[np.ndarray, dict]:
 
     for t in range(nr):
         yft = yf[t, :]
-        ph1y = (1.0 + pfac * np.exp(xih1r * yft / xt)) ** (-1)
+        # With no estimated noise, use the limiting speech probability of
+        # one, including silent bins, so 0/0 cannot poison the running state.
+        ratio = np.divide(yft, xt, out=np.full_like(yft, np.inf), where=xt > 0)
+        ph1y = (1.0 + pfac * np.exp(xih1r * ratio)) ** (-1)
         pslp = ap * pslp + apc * ph1y
         ph1y = np.minimum(ph1y, 1.0 - pnsaf * (pslp > psthr))
         xtr = (1.0 - ph1y) * yft + ph1y * xt

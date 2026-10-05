@@ -88,7 +88,9 @@ def v_ssubmmse(si, fs, pp=None) -> np.ndarray:
     if nr == 0:
         return np.array([])
 
-    gam = np.clip(yp / dp, gz, gx)
+    # MATLAB's min/max selects gx even for 0/0 in a silent frequency bin.
+    gam = np.divide(yp, dp, out=np.full_like(yp, gx), where=dp > 0)
+    gam = np.clip(gam, gz, gx)
     g = np.zeros((nr, nf2))
     x_snr = np.zeros((nr, nf2))
 

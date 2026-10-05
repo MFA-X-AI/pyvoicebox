@@ -91,7 +91,8 @@ def v_ssubmmsev(si, fs, pp=None) -> np.ndarray:
     if qq['lg'] == 0:
         for i in range(nr):
             ypi = yp[i, :]
-            gami = np.clip(ypi / dpi, gz, gx)
+            gami = np.divide(ypi, dpi, out=np.full_like(ypi, gx), where=dpi > 0)
+            gami = np.clip(gami, gz, gx)
             xi = np.maximum(a_coeff * xb * xu + (1 - a_coeff) * np.maximum(gami - 1, gn1), xn)
             if np.sum(gami * xi / (1 + xi) - np.log(1 + xi)) < le * nf2:
                 dpi = dpi * an + (1 - an) * ypi
@@ -106,7 +107,8 @@ def v_ssubmmsev(si, fs, pp=None) -> np.ndarray:
     elif qq['lg'] == 2:
         for i in range(nr):
             ypi = yp[i, :]
-            gami = np.clip(ypi / dpi, gz, gx)
+            gami = np.divide(ypi, dpi, out=np.full_like(ypi, gx), where=dpi > 0)
+            gami = np.clip(gami, gz, gx)
             xi = np.maximum(a_coeff * xb * xu + (1 - a_coeff) * np.maximum(gami - 1, gn1), xn)
             if np.sum(gami * xi / (1 + xi) - np.log(1 + xi)) < le * nf2:
                 dpi = dpi * an + (1 - an) * ypi
@@ -117,7 +119,8 @@ def v_ssubmmsev(si, fs, pp=None) -> np.ndarray:
     else:
         for i in range(nr):
             ypi = yp[i, :]
-            gami = np.clip(ypi / dpi, gz, gx)
+            gami = np.divide(ypi, dpi, out=np.full_like(ypi, gx), where=dpi > 0)
+            gami = np.clip(gami, gz, gx)
             xi = np.maximum(a_coeff * xb * xu + (1 - a_coeff) * np.maximum(gami - 1, gn1), xn)
             xir = xi / (1 + xi)
             if np.sum(gami * xir - np.log(1 + xi)) < le * nf2:
