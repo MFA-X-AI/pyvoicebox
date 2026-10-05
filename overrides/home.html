@@ -1,0 +1,238 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+  {{ super() }}
+
+  <style>
+    .md-header { position: initial; }
+    .md-main__inner { margin: 0; }
+    .md-content { display: none; }
+    @media screen and (min-width: 60em) {
+      .md-sidebar--secondary { display: none; }
+    }
+    @media screen and (min-width: 76.25em) {
+      .md-sidebar--primary { display: none; }
+    }
+    .md-footer { display: none; }
+  </style>
+
+  <!-- ▬▬ HERO ▬▬ -->
+  <section class="mdx-container">
+    <div class="md-grid md-typeset">
+      <div class="mdx-hero">
+        <div class="mdx-hero__content">
+          <div class="mdx-hero__badge">Open Source &middot; LGPL-3.0</div>
+          <h1>
+            <span class="mdx-hero__icon">{% include ".icons/custom/logo.svg" %}</span>
+            pyvoicebox
+          </h1>
+          <div class="mdx-hero__install" onclick="navigator.clipboard.writeText('pip install pyvoicebox-sap'); var ic=this.querySelector('.mdx-install__icon'); ic.innerHTML='&#10003;'; setTimeout(function(){ic.innerHTML='&#x2398;'},1500)">
+            <span><span class="mdx-install__prompt">$</span> pip install pyvoicebox-sap</span>
+            <span class="mdx-install__icon">&#x2398;</span>
+          </div>
+          <p class="mdx-hero__tagline">
+            <strong>280+ speech and audio processing functions</strong>, fully typed, ported from MATLAB to Python.
+          </p>
+          <p class="mdx-hero__sub">
+            A complete port of the
+            <a href="https://github.com/ImperialCollegeLondon/sap-voicebox">VOICEBOX</a>
+            Speech and Audio Processing toolbox by Mike Brookes, Imperial College London.
+          </p>
+          <div class="mdx-hero__actions">
+            <a href="{{ 'getting-started/' | url }}" class="md-button md-button--primary">
+              Get Started &rarr;
+            </a>
+            <a href="{{ 'api/' | url }}" class="md-button">
+              API Reference
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mdx-hero__waveform">
+      <canvas id="waveform"></canvas>
+    </div>
+  </section>
+
+  <!-- ▬▬ FEATURES ▬▬ -->
+  <section class="mdx-features-section" id="features">
+    <div class="md-grid md-typeset">
+      <div class="mdx-section-header reveal">
+        <span class="mdx-section-label">Capabilities</span>
+        <h2 class="mdx-section-title">
+          Everything you need to <em>analyze</em>, <em>enhance</em>, and <em>transform</em> speech signals
+        </h2>
+      </div>
+      <div class="mdx-features__grid">
+
+        <a class="mdx-features__item reveal" href="{{ 'api/lpc/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/sine-wave.svg" %}</span>
+          </div>
+          <h3>LPC Analysis</h3>
+          <p>60+ functions for linear predictive coding &mdash; every conversion between AR, reflection coefficients, line spectra, cepstra, and more.</p>
+        </a>
+
+        <a class="mdx-features__item reveal" href="{{ 'api/speech-enhancement/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/waveform.svg" %}</span>
+          </div>
+          <h3>Speech Enhancement</h3>
+          <p>Spectral subtraction, MMSE estimators, noise estimation, dereverberation, and voice activity detection.</p>
+        </a>
+
+        <a class="mdx-features__item reveal" href="{{ 'api/speech-analysis/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/ear-hearing.svg" %}</span>
+          </div>
+          <h3>Psychoacoustic Metrics</h3>
+          <p>PESQ/MOS, Speech Intelligibility Index, STOI, phon/sone loudness, active speech level, and segmental SNR.</p>
+        </a>
+
+        <a class="mdx-features__item reveal" href="{{ 'api/speech-analysis/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/microphone.svg" %}</span>
+          </div>
+          <h3>Pitch Detection</h3>
+          <p>PEFAC, RAPT, and DYPSA glottal closure detection &mdash; battle-tested algorithms from decades of speech research.</p>
+        </a>
+
+        <a class="mdx-features__item reveal" href="{{ 'api/probability/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/chart-bell-curve.svg" %}</span>
+          </div>
+          <h3>Gaussian Mixtures</h3>
+          <p>Complete GMM toolkit: EM fitting, scoring, merging, marginals, conditionals, Bhattacharyya and KL divergence.</p>
+        </a>
+
+        <a class="mdx-features__item reveal" href="{{ 'api/rotation-geometry/' | url }}">
+          <div class="mdx-features__icon">
+            <span class="twemoji">{% include ".icons/material/axis-arrow.svg" %}</span>
+          </div>
+          <h3>Rotations &amp; Geometry</h3>
+          <p>Euler angles, rotation matrices, quaternions, polygon/polyhedron geometry, and spherical harmonics.</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ▬▬ CODE EXAMPLE ▬▬ -->
+  <section class="mdx-code-section" id="code">
+    <div class="md-grid">
+      <div class="mdx-code-grid">
+        <div class="mdx-code-text reveal-left">
+          <span class="mdx-section-label">Developer Experience</span>
+          <h2 class="mdx-section-title">
+            Faithful MATLAB port with a <em>Pythonic API</em>
+          </h2>
+          <p>
+            Every function preserves its original VOICEBOX name and behavior,
+            rigorously validated against the MATLAB source via GNU Octave.
+            Drop-in replacements using NumPy arrays.
+          </p>
+        </div>
+        <div class="mdx-code-block reveal-right">
+          <div class="mdx-code-header">
+            <span class="mdx-dot mdx-dot--red"></span>
+            <span class="mdx-dot mdx-dot--yellow"></span>
+            <span class="mdx-dot mdx-dot--green"></span>
+            <div class="mdx-code-tabs">
+              <button class="mdx-code-tab active" data-tab="python">Python</button>
+              <button class="mdx-code-tab" data-tab="matlab">MATLAB</button>
+            </div>
+          </div>
+<pre class="mdx-code-pre" data-tab="python"><span class="kw">from</span> <span class="fn">pyvoicebox</span> <span class="kw">import</span> *
+<span class="kw">import</span> <span class="fn">numpy</span> <span class="kw">as</span> np
+
+<span class="cm"># Frame audio into overlapping windows</span>
+signal <span class="op">=</span> np.<span class="fn">random.randn</span>(<span class="num">16000</span>)
+frames <span class="op">=</span> <span class="fn">v_enframe</span>(signal, <span class="num">400</span>, <span class="num">160</span>)
+
+<span class="cm"># Mel-scaled filterbank</span>
+m, _, _ <span class="op">=</span> <span class="fn">v_melbankm</span>(<span class="num">26</span>, <span class="num">512</span>, <span class="num">16000</span>)
+
+<span class="cm"># LPC analysis &rarr; cepstral coefficients</span>
+ar, e <span class="op">=</span> <span class="fn">v_lpcauto</span>(frames, <span class="num">12</span>)
+cc <span class="op">=</span> <span class="fn">v_lpcar2cc</span>(ar, <span class="num">12</span>)</pre>
+<pre class="mdx-code-pre" data-tab="matlab" style="display:none"><span class="fn">addpath</span>(<span class="str">'voicebox'</span>);
+
+<span class="cm">% Frame audio into overlapping windows</span>
+signal <span class="op">=</span> <span class="fn">randn</span>(<span class="num">1</span>, <span class="num">16000</span>);
+frames <span class="op">=</span> <span class="fn">v_enframe</span>(signal, <span class="num">400</span>, <span class="num">160</span>);
+
+<span class="cm">% Mel-scaled filterbank</span>
+[m, ~, ~] <span class="op">=</span> <span class="fn">v_melbankm</span>(<span class="num">26</span>, <span class="num">512</span>, <span class="num">16000</span>);
+
+<span class="cm">% LPC analysis &rarr; cepstral coefficients</span>
+[ar, e] <span class="op">=</span> <span class="fn">v_lpcauto</span>(frames, <span class="num">12</span>);
+cc <span class="op">=</span> <span class="fn">v_lpcar2cc</span>(ar, <span class="num">12</span>);</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▬▬ NOTEBOOKS ▬▬ -->
+  <section class="mdx-notebooks-section">
+    <div class="md-grid md-typeset">
+      <div class="mdx-section-header reveal" style="text-align: center; max-width: 100%;">
+        <span class="mdx-section-label">Try it yourself</span>
+        <h2 class="mdx-section-title" style="margin: 0 auto;">Interactive <em>notebooks</em></h2>
+        <p class="mdx-notebooks__sub">
+          Jupyter notebooks with real speech data.
+        </p>
+      </div>
+      <div class="mdx-notebooks__grid">
+        <a class="mdx-notebooks__item reveal" href="https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/01_speech_analysis.ipynb">
+          <h3>Visualize Speech</h3>
+          <p>Waveform, spectrogram, MFCCs, and pitch tracking</p>
+        </a>
+        <a class="mdx-notebooks__item reveal" href="https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/02_speech_enhancement.ipynb">
+          <h3>Clean Up Noisy Speech</h3>
+          <p>Add noise, run MMSE enhancement, measure SNR improvement</p>
+        </a>
+        <a class="mdx-notebooks__item reveal" href="https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/03_lpc_analysis.ipynb">
+          <h3>Inside the Vocal Tract</h3>
+          <p>LPC spectral envelopes, coefficient conversions, bandwidth expansion</p>
+        </a>
+        <a class="mdx-notebooks__item reveal" href="https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/04_speaker_identification.ipynb">
+          <h3>Who Said That?</h3>
+          <p>Speaker identification with GMMs: feature extraction, training, classification</p>
+        </a>
+        <a class="mdx-notebooks__item reveal" href="https://github.com/MFA-X-AI/pyvoicebox/blob/master/notebooks/05_emotion_recognition.ipynb">
+          <h3>Emotion Recognition</h3>
+          <p>TEO vs MFCC features on the EmoDB dataset with Random Forest classification</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▬▬ CTA ▬▬ -->
+  <section class="mdx-cta-section">
+    <div class="md-grid md-typeset">
+      <div class="mdx-cta reveal" style="text-align: center;">
+        <h2 class="mdx-section-title" style="margin: 0 auto;">
+          Ready to <em>get started</em>?
+        </h2>
+        <p class="mdx-cta__text">
+          280+ functions. Fully typed. 500+ tests against the original MATLAB source.
+        </p>
+        <div class="mdx-cta__actions">
+          <a href="{{ 'getting-started/' | url }}" class="md-button md-button--primary">
+            Getting Started &rarr;
+          </a>
+          <a href="https://github.com/MFA-X-AI/pyvoicebox" class="md-button">
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+{% endblock %}
