@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 import numpy as np
-from .v_voicebox import v_voicebox
 from .v_rnsubset import v_rnsubset
 from .v_kmeans import v_kmeans
 from .v_kmeanhar import v_kmeanhar
@@ -174,6 +173,8 @@ def v_gaussmix(x, c=None, l=None, m0=None, v0=None, w0=None, wx=None) -> tuple[n
         fv = v.ndim > 2 or (v.ndim == 2 and v.shape[0] > k)
 
         if fv:
+            if v.ndim == 2:
+                v = v[:, :, np.newaxis]
             mk_mask = np.eye(p) == 0
             fulliv = np.any(v[np.tile(mk_mask[:, :, np.newaxis], (1, 1, k))] != 0)
             if not fulliv:
@@ -185,6 +186,8 @@ def v_gaussmix(x, c=None, l=None, m0=None, v0=None, w0=None, wx=None) -> tuple[n
             else:
                 for ik in range(k):
                     v[:, :, ik] = v[:, :, ik] / np.outer(sx0, sx0)
+        else:
+            v = v / sx0[np.newaxis, :] ** 2
 
     if len(wx_local) != n:
         raise ValueError(f'{n} datapoints but {len(wx_local)} weights')
@@ -259,44 +262,88 @@ def v_gaussmix(x, c=None, l=None, m0=None, v0=None, w0=None, wx=None) -> tuple[n
                     break
                 ss -= 1
 
-        # Calculate final probabilities
-        pp = lpx - 0.5 * p * np.log(2 * np.pi) - lsx
-        gg_out = gg[:j_iter + 1] - 0.5 * p * np.log(2 * np.pi) - lsx
-        g = gg_out[-1]
-        m = m1
-        v = v1
-        w = w1
-        mm = np.sum(m, axis=0) / k
-        f = (m.ravel() @ m.ravel() - k * (mm @ mm)) / np.sum(v)
-
         if not fv:
+            # Return the parameters used to calculate the last likelihood.
+            pp = lpx - 0.5 * p * np.log(2 * np.pi) - lsx
+            gg_out = gg[:j_iter + 1] - 0.5 * p * np.log(2 * np.pi) - lsx
+            g = gg_out[-1]
+            m, v, w = m1, v1, w1
+            mm = np.mean(m, axis=0)
+            f = np.sum((m - mm) ** 2) / np.sum(v)
             m = m * sx0[np.newaxis, :] + mx0[np.newaxis, :]
             v = v * (sx0 ** 2)[np.newaxis, :]
         else:
+            # Use the diagonal fit to initialize full-covariance EM, as in
+            # VOICEBOX. Keep the parameters in normalized coordinates here.
             v_diag = v.copy()
             v = np.zeros((p, p, k))
             for ik in range(k):
                 v[:, :, ik] = np.diag(v_diag[ik, :])
-    else:
-        # Full covariance EM - simplified for the common case
-        # This path is taken when v0 contains full covariance matrices
-        pp = np.zeros(n)
-        f = 0.0
-        gg_out = np.array([0.0])
 
-        m = m * sx0[np.newaxis, :] + mx0[np.newaxis, :]
-        if v.ndim == 2:
-            v = v * (sx0 ** 2)[np.newaxis, :]
-        else:
+    if fv:
+        th = (l - np.floor(l)) * n
+        lp_iter = int(np.floor(l)) + 1
+        gg = np.zeros(lp_iter)
+        g = 0.0
+        ss = 1
+
+        for j_iter in range(lp_iter):
+            g1 = g
+            py = np.zeros((k, n))
             for ik in range(k):
-                v[:, :, ik] = v[:, :, ik] * np.outer(sx0, sx0)
+                # Floor eigenvalues in normalized coordinates, including
+                # when an explicit initial covariance is singular.
+                vk = 0.5 * (v[:, :, ik] + v[:, :, ik].T)
+                eigvals, eigvecs = np.linalg.eigh(vk)
+                eigvals = np.maximum(eigvals, c)
+                v[:, :, ik] = (eigvecs * eigvals) @ eigvecs.T
+                diff = (xs - m[ik, :]) @ eigvecs
+                with np.errstate(divide='ignore'):
+                    log_weight = np.log(w[ik])
+                py[ik, :] = (log_weight - 0.5 * np.sum(np.log(eigvals))
+                             - 0.5 * np.sum(diff ** 2 / eigvals, axis=1))
 
-    if fv and not fulliv:
-        # Convert diagonal to full if 'v' was requested
-        v_diag = v.copy()
-        v = np.zeros((p, p, k))
-        for ik in range(k):
-            if v_diag.ndim == 2:
-                v[:, :, ik] = np.diag(v_diag[ik, :])
+            m1, v1, w1 = m.copy(), v.copy(), w.copy()
+            mx = np.max(py, axis=0)
+            px = np.exp(py - mx[np.newaxis, :])
+            ps = np.sum(px, axis=0)
+            px /= ps[np.newaxis, :]
+            lpx = np.log(ps) + mx
+            g = float(lpx @ wx_local)
+            gg[j_iter] = g
+
+            weighted_px = px * wx_local[np.newaxis, :]
+            pk = np.sum(weighted_px, axis=1)
+            w = pk.copy()
+            nonzero = pk > 0
+            m[nonzero, :] = (weighted_px[nonzero, :] @ xs
+                             / pk[nonzero, np.newaxis])
+            for ik in np.flatnonzero(nonzero):
+                diff = xs - m[ik, :]
+                v[:, :, ik] = (diff.T @ (diff * weighted_px[ik, :, np.newaxis])
+                                / pk[ik])
+
+            # Revive components with no responsibility at the worst-fitted
+            # observations, applying the covariance floor on the next pass.
+            empty = np.flatnonzero(~nonzero)
+            if empty.size:
+                m[empty, :] = xs[np.argsort(lpx)[:empty.size], :]
+                v[:, :, empty] = 0.0
+                w[empty] = 1.0 / n
+                w /= np.sum(w)
+
+            if g - g1 <= th and j_iter > 0:
+                if ss <= 0:
+                    break
+                ss -= 1
+
+        m, v, w = m1, v1, w1
+        pp = lpx - 0.5 * p * np.log(2 * np.pi) - lsx
+        gg_out = gg[:j_iter + 1] - 0.5 * p * np.log(2 * np.pi) - lsx
+        g = gg_out[-1]
+        mm = np.mean(m, axis=0)
+        f = np.sum((m - mm) ** 2) / np.trace(v, axis1=0, axis2=1).sum()
+        m = m * sx0[np.newaxis, :] + mx0[np.newaxis, :]
+        v = v * np.outer(sx0, sx0)[:, :, np.newaxis]
 
     return m, v, w, g, f, pp, gg_out

@@ -283,6 +283,19 @@ class TestEstnoiseg:
         # Use looser tolerance for iterative algorithm
         np.testing.assert_allclose(x, ref['x_eng'], rtol=1e-6)
 
+    def test_silence_does_not_poison_streaming_state(self):
+        from pyvoicebox.v_estnoiseg import v_estnoiseg
+
+        with np.errstate(divide='raise', invalid='raise'):
+            silent, state = v_estnoiseg(np.zeros((10, 20)), 0.016)
+            # Continue through the returned state to check that the estimator
+            # can learn noise after an initially silent recording.
+            active, state = v_estnoiseg(np.ones((100, 20)), state)
+        np.testing.assert_array_equal(silent, 0)
+        assert np.isfinite(active).all()
+        assert np.isfinite(state['pslp']).all()
+        assert np.all(active[-1] > 0)
+
 
 # ============================================================
 # v_estnoisem
@@ -308,6 +321,21 @@ class TestSnrseg:
         seg, glo, _, _, _ = v_snrseg(ref['s_snr'], ref['r_snr'], float(ref['fs_snr']), 'wz')
         np.testing.assert_allclose(seg, ref['seg_snr'], rtol=1e-6)
         np.testing.assert_allclose(glo, ref['glo_snr'], rtol=1e-6)
+
+    def test_identical_signals_have_infinite_global_snr(self):
+        from pyvoicebox.v_snrseg import v_snrseg
+
+        signal = np.sin(2 * np.pi * 200 * np.arange(8000) / 8000)
+        seg, glo, _, snf, _ = v_snrseg(signal, signal, 8000)
+        assert seg == 100
+        assert np.isposinf(glo)
+        np.testing.assert_array_equal(snf, 100)
+
+    def test_silent_signals_have_undefined_global_snr(self):
+        from pyvoicebox.v_snrseg import v_snrseg
+
+        _, glo, *_ = v_snrseg(np.zeros(800), np.zeros(800), 8000)
+        assert np.isnan(glo)
 
 
 # ============================================================
@@ -360,6 +388,28 @@ class TestSsubmmsev:
         ss = v_ssubmmsev(s, 8000)
         assert len(ss) == len(s)
         assert np.isfinite(ss).all()
+
+
+@pytest.mark.parametrize('variant', ['mmse', 'vad'])
+@pytest.mark.parametrize('domain', [0, 1, 2])
+@pytest.mark.parametrize('signal_kind', ['silence', 'leading_silence'])
+def test_mmse_silent_initialization(variant, domain, signal_kind):
+    from pyvoicebox.v_ssubmmse import v_ssubmmse
+    from pyvoicebox.v_ssubmmsev import v_ssubmmsev
+
+    enhance = v_ssubmmse if variant == 'mmse' else v_ssubmmsev
+    signal = np.zeros(8000)
+    if signal_kind == 'leading_silence':
+        signal[800:] = np.sin(2 * np.pi * 200 * np.arange(7200) / 8000)
+    with np.errstate(divide='raise', invalid='raise'):
+        enhanced = enhance(signal, 8000, {'lg': domain})
+    assert enhanced.shape == signal.shape
+    assert np.isfinite(enhanced).all()
+    np.testing.assert_array_equal(enhanced[:500], 0)
+    if signal_kind == 'leading_silence':
+        assert np.max(np.abs(enhanced[800:])) > 0.5
+    else:
+        np.testing.assert_array_equal(enhanced, 0)
 
 
 # ============================================================
@@ -526,6 +576,26 @@ class TestFxpefac:
         fx, tt, pv = v_fxpefac(s, fs)
         assert len(fx) == len(tt)
         assert len(pv) == len(tt)
+
+    @pytest.mark.parametrize('fs', [8000, 16000, 22050, 44100, 48000])
+    @pytest.mark.parametrize('frequency', [100, 180, 200, 220, 300, 400])
+    def test_clean_tone_pitch(self, fs, frequency):
+        from pyvoicebox.v_fxpefac import v_fxpefac
+
+        signal = np.sin(2 * np.pi * frequency * np.arange(fs // 2) / fs)
+        fx, tt, pv = v_fxpefac(signal, fs)
+        assert fx.shape == tt.shape == pv.shape
+        # The existing windowed autocorrelation has a small upward bias,
+        # especially at 100 Hz, but must not halve pitch or choose 500 Hz.
+        np.testing.assert_allclose(fx, frequency, rtol=0.03)
+        assert np.all((pv > 0.3) & (pv <= 1))
+
+    def test_silence_is_unvoiced(self):
+        from pyvoicebox.v_fxpefac import v_fxpefac
+
+        fx, _, pv = v_fxpefac(np.zeros(8000), 8000)
+        np.testing.assert_array_equal(fx, 0)
+        np.testing.assert_array_equal(pv, 0)
 
 
 # ============================================================

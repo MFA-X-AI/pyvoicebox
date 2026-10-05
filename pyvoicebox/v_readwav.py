@@ -7,6 +7,7 @@ function signature for compatibility.
 from __future__ import annotations
 import numpy as np
 import soundfile as sf
+from ._audio_io import _read_raw
 
 
 def v_readwav(filename, mode='p', nmax=-1, nskip=0) -> tuple[np.ndarray, int]:
@@ -59,28 +60,7 @@ def v_readwav(filename, mode='p', nmax=-1, nskip=0) -> tuple[np.ndarray, int]:
 
     # Read as float (soundfile default gives +-1 range for integer formats)
     if sc == 'r':
-        # For raw mode, read as integer values
-        # Determine dtype based on subtype
-        if 'PCM_8' in subtype:
-            dtype = 'int16'  # soundfile doesn't support int8, we'll handle
-        elif 'PCM_16' in subtype:
-            dtype = 'int16'
-        elif 'PCM_24' in subtype:
-            dtype = 'int32'
-        elif 'PCM_32' in subtype:
-            dtype = 'int32'
-        elif 'FLOAT' in subtype or 'DOUBLE' in subtype:
-            dtype = 'float64'
-        else:
-            dtype = 'float64'
-
-        if 'FLOAT' in subtype or 'DOUBLE' in subtype:
-            y, _ = sf.read(filename, start=start, stop=stop, dtype='float64',
-                           always_2d=True)
-        else:
-            y, _ = sf.read(filename, start=start, stop=stop, dtype=dtype,
-                           always_2d=True)
-            y = y.astype(np.float64)
+        y, _ = _read_raw(filename, subtype, start=start, stop=stop)
     else:
         # Read as float64, soundfile normalizes to +-1
         y, _ = sf.read(filename, start=start, stop=stop, dtype='float64',

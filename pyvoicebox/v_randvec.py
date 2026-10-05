@@ -52,7 +52,7 @@ def v_randvec(n, m, c=None, w=None, mode='g') -> tuple[np.ndarray, np.ndarray]:
     else:
         ty = 'g'
 
-    x = np.zeros((n, p))
+    x = np.zeros((n, p), dtype=complex if ty == 'c' else float)
 
     if k > 1:
         kx = v_randiscr(w, n)

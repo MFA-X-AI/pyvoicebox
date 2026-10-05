@@ -85,7 +85,7 @@ def v_irfft(y, n=None, d=None) -> np.ndarray:
         perm_shape = [s[i] for i in (list(range(d, ns)) + list(range(0, d)))]
         x = x.reshape(perm_shape)
         # Inverse permutation
-        inv_perm = list(range(ns + 1 - d, ns)) + list(range(0, ns + 1 - d))
+        inv_perm = list(range(ns - d, ns)) + list(range(0, ns - d))
         x = np.transpose(x, inv_perm)
 
     return x

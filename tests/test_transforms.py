@@ -103,6 +103,18 @@ class TestIrfft:
         x_back = v_irfft(y, n=8)
         np.testing.assert_allclose(x_back, self.ref['x_roundtrip_back'], rtol=1e-10)
 
+    @pytest.mark.parametrize('shape, axis', [
+        ((2, 4), 1), ((2, 5), 1),
+        ((2, 4, 3), 1), ((2, 3, 5), 2), ((2, 3, 4, 6), 3),
+    ])
+    def test_nonzero_axis_preserves_shape_and_values(self, shape, axis):
+        from pyvoicebox.v_irfft import v_irfft
+        x = np.arange(np.prod(shape), dtype=float).reshape(shape)
+        spectrum = np.fft.rfft(x, axis=axis)
+        result = v_irfft(spectrum, n=shape[axis], d=axis)
+        assert result.shape == x.shape
+        np.testing.assert_allclose(result, x, atol=1e-12)
+
 
 # ============================================================
 # v_rsfft
@@ -236,6 +248,18 @@ class TestIrdct:
         x_back = v_irdct(y)
         np.testing.assert_allclose(x_back, self.ref['x_irdct_2d_back'], rtol=1e-10)
 
+    @pytest.mark.parametrize('n', [2, 6, 10, 14])
+    @pytest.mark.parametrize('columns', [None, 3])
+    def test_even_length_with_odd_half(self, n, columns):
+        from scipy.fft import dct
+        from pyvoicebox.v_irdct import v_irdct
+        shape = (n,) if columns is None else (n, columns)
+        x = np.arange(np.prod(shape), dtype=float).reshape(shape)
+        spectrum = dct(x, axis=0, norm='ortho')
+        result = v_irdct(spectrum)
+        assert result.shape == x.shape
+        np.testing.assert_allclose(result, x, atol=1e-12)
+
 
 # ============================================================
 # v_rhartley
@@ -342,6 +366,27 @@ class TestConvfft:
         h = self.ref['h_conv']
         z = v_convfft(x, h, d=0, m='x', h0=1, x1=1, x2=len(x))
         np.testing.assert_allclose(z.ravel(), self.ref['z_conv_xcorr'], rtol=1e-10)
+
+    @pytest.mark.parametrize('precompute', [False, True])
+    @pytest.mark.parametrize('complex_filter', [False, True])
+    @pytest.mark.parametrize('mode', ['', 'X'])
+    def test_real_input_with_complex_filter(self, precompute, complex_filter, mode):
+        from pyvoicebox.v_convfft import v_convfft
+        x = np.array([1., 2., -1., 3.])
+        h = np.array([1., -0.5, 2.])
+        if complex_filter:
+            h = h + 1j * np.array([0.5, 1., -2.])
+        # Request the full convolution or correlation, including both tails.
+        x1 = 1 if mode == '' else 2 - len(h)
+        x2 = len(x) + len(h) - 1 if mode == '' else len(x)
+        if precompute:
+            saved = v_convfft([len(x)], h, d=0, m=mode + 'z', x1=x1, x2=x2)
+            result = v_convfft(x, saved)
+        else:
+            result = v_convfft(x, h, m=mode, x1=x1, x2=x2)
+        expected = np.convolve(x, h) if mode == '' else np.correlate(x, h, 'full')
+        np.testing.assert_allclose(result, expected, atol=1e-12)
+        assert np.iscomplexobj(result) == complex_filter
 
 
 # ============================================================

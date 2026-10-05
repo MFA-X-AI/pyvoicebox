@@ -160,7 +160,7 @@ def v_pdfmoments(t, m, b=0, a=1) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
                 for i in range(n):
                     # polyval: bc[i, 0:i+2] * v[0:i+2] evaluated at bb
                     coeffs = bc[i, :i + 2] * v[:i + 2]
-                    y[i] = np.polyval(coeffs[::-1], bb)
+                    y[i] = np.polyval(coeffs, bb)
             if il == 0:
                 c = y.copy()
             else:

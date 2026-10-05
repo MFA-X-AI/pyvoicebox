@@ -15,6 +15,7 @@ class _ConvFFTPrecomputed:
         self.vmax = None
         self.nf = None
         self.fh = None
+        self.real_h = None
         self.fmin = None
         self.fmax = None
         self.nz = None
@@ -87,7 +88,7 @@ def v_convfft(x, h, d=None, m='', h0=1, x1=1, x2=None) -> np.ndarray:
         z_out = np.zeros((nz, k), dtype=complex)
         z_out[zmin:zmax + 1, :] = zz[fmin:fmax + 1, :]
 
-        if np.all(np.isreal(x)):
+        if precomp.real_h and np.all(np.isreal(x)):
             z_out = np.real(z_out)
 
         s[d] = nz
@@ -104,6 +105,7 @@ def v_convfft(x, h, d=None, m='', h0=1, x1=1, x2=None) -> np.ndarray:
     # Normal input calling sequence
     x = np.asarray(x)
     h = np.asarray(h, dtype=complex).ravel()
+    real_h = np.all(np.isreal(h))
 
     s = list(x.shape)
     ps = x.size
@@ -191,6 +193,7 @@ def v_convfft(x, h, d=None, m='', h0=1, x1=1, x2=None) -> np.ndarray:
         result.vmax = vmax - 1  # convert to 0-based
         result.nf = nf
         result.fh = fh
+        result.real_h = real_h
         result.fmin = fmin_idx - 1  # convert to 0-based
         result.fmax = fmax_idx - 1  # convert to 0-based
         result.nz = nz
@@ -214,7 +217,7 @@ def v_convfft(x, h, d=None, m='', h0=1, x1=1, x2=None) -> np.ndarray:
         z_out = np.zeros((nz, k), dtype=complex)
         z_out[zmin_idx - 1:zmax_idx, :] = zz[fmin_idx - 1:fmax_idx, :]
 
-        if np.all(np.isreal(x)):
+        if real_h and np.all(np.isreal(x)):
             z_out = np.real(z_out)
 
         s[d] = nz

@@ -67,8 +67,9 @@ def v_fxpefac(s, fs, tinc=0.01) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
 
     for i in range(nr):
         # Compute autocorrelation via IFFT of power spectrum
-        full_pw = pw[i, :]
-        acf = np.fft.irfft(np.concatenate([full_pw, full_pw[-2:0:-1]]))[:n_fft // 2 + 1]
+        # irfft reconstructs the negative-frequency half itself. Mirroring
+        # here would nearly double the transform length and the pitch lag.
+        acf = np.fft.irfft(pw[i, :], n=n_fft)[:n_fft // 2 + 1]
         acf = acf / (acf[0] + 1e-20)
 
         # Search for pitch in valid range

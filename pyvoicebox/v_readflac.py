@@ -5,6 +5,7 @@ Uses the soundfile library for FLAC decoding.
 
 from __future__ import annotations
 import numpy as np
+from ._audio_io import _read_raw
 
 
 def v_readflac(filename, mode='p') -> tuple[np.ndarray, int]:
@@ -49,7 +50,7 @@ def v_readflac(filename, mode='p') -> tuple[np.ndarray, int]:
     fs = info.samplerate
 
     if sc == 'r':
-        y, _ = sf.read(filename, dtype='int32')
+        y, _ = _read_raw(filename, info.subtype)
     else:
         y, _ = sf.read(filename, dtype='float64')
 

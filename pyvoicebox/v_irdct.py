@@ -73,62 +73,14 @@ def v_irdct(y, n=None, a=None, b=1.0) -> np.ndarray:
         zz = np.fft.ifft(yy, axis=0)
         uu = np.real(zz)
         yi = np.imag(zz)
-        q = m // 2
-        h = (m % 2) / 2.0  # rem(m,2)/2
-
-        # MATLAB uses 1-based indexing for x(1:4:n,:), x(2:4:n,:), etc.
-        # In 0-based: x[0::4], x[1::4], x[2::4], x[3::4]
-        # MATLAB: x(1:4:n,:)=u(1:q+h,:)   -> 0-based: x[0::4]=uu[0:int(q+h)]
-        # MATLAB: x(2:4:n,:)=y(m:-1:q+1-h,:) -> 0-based: x[1::4]=yi[m-1:int(q-h):-1]
-        # MATLAB: x(3:4:n,:)=y(1:q-h,:) -> 0-based: x[2::4]=yi[0:int(q-h)]
-        # MATLAB: x(4:4:n,:)=u(m:-1:q+1+h,:) -> 0-based: x[3::4]=uu[m-1:int(q+h):-1]
-        # Note: h is 0 when m is even, 0.5 when m is odd
-        # But these are used as integer indices; in MATLAB q+h is floor/ceil depending
-        ih = int(h)  # 0 if m even, but h=0.5 rounds... let's be careful
-
-        # When m is even: h=0, q=m/2
-        #   x(1:4:n)=u(1:q) -> x[0::4]=uu[0:q]
-        #   x(2:4:n)=y(m:-1:q+1) -> x[1::4]=yi[m-1:q-1:-1]
-        #   x(3:4:n)=y(1:q) -> x[2::4]=yi[0:q]
-        #   x(4:4:n)=u(m:-1:q+1) -> x[3::4]=uu[m-1:q-1:-1]
-        # When m is odd: h=0.5, q=(m-1)/2
-        #   x(1:4:n)=u(1:q+0.5)=u(1:q+1) (since MATLAB rounds up for indexing)
-        #   Actually in MATLAB, q+h where h=0.5 gives q+0.5, and 1:q+0.5 means 1:floor(q+0.5)
-        #   For m odd, q=(m-1)/2, so q+0.5 = m/2 which is not integer... MATLAB truncates
-        #   Actually MATLAB: 1:q+h where q=int, h=0.5 gives 1:q (since q+0.5 is not >= q+1)
-        #   Wait, let me re-examine. In MATLAB, 1:2.5 = [1, 2], so it goes up to floor(2.5)=2.
-        #   So: when m is odd, h=0.5:
-        #     q = (m-1)/2  (integer since m is odd)
-        #     q+h = q + 0.5 = m/2 (non-integer)
-        #     1:q+h = 1:q  (MATLAB truncates to integer steps)
-        #     q+1-h = q+0.5 (non-integer)
-        #     m:-1:q+1-h = m:-1:q+1 (MATLAB ceil for reverse: goes down to ceil(q+0.5)=q+1)
-        #     q-h = q-0.5 (non-integer)
-        #     1:q-h = 1:q-1 (MATLAB floor)
-        #     q+1+h = q+1.5
-        #     m:-1:q+1+h = m:-1:q+2 (MATLAB ceil for reverse: ceil(q+1.5)=q+2)
-
-        if m % 2 == 0:
-            # m even
-            x[0::4, :] = uu[:q, :]
-            x[1::4, :] = yi[m - 1:q - 1:-1, :]
-            x[2::4, :] = yi[:q, :]
-            x[3::4, :] = uu[m - 1:q - 1:-1, :]
-        else:
-            # m odd: q = (m-1)//2
-            x[0::4, :] = uu[:q, :]            # 1:q in MATLAB (q elements)
-            x[1::4, :] = yi[m - 1:q:-1, :]    # m:-1:q+1 in MATLAB
-            x[2::4, :] = yi[:q, :]            # 1:q-1 -> but wait, need to check count
-            # Actually let me count more carefully for odd m
-            # n = 2*m when m==p, so n is even
-            # x has n elements, x[0::4] has n/4 elements = m/2 elements
-            # For m odd, that's (m-1)/2 = q... but len(x[0::4]) could be ceil(n/4)
-            # n = 2m, so x[0::4] has ceil(2m/4) = ceil(m/2) elements
-            # For m odd, ceil(m/2) = (m+1)/2 = q+1
-            x[0::4, :] = uu[:q + 1, :]          # q+1 elements
-            x[1::4, :] = yi[m - 1:q:-1, :]      # m-1 down to q+1 = m-1-q elements
-            x[2::4, :] = yi[:q, :]              # q elements
-            x[3::4, :] = uu[m - 1:q:-1, :]      # m-1 down to q+1 = m-1-q elements
+        # Interleave the real and imaginary halves. When m is odd, the
+        # first two strides contain one more sample than the last two.
+        upper = (m + 1) // 2
+        lower = m // 2
+        x[0::4, :] = uu[:upper, :]
+        x[1::4, :] = yi[::-1, :][:upper, :]
+        x[2::4, :] = yi[:lower, :]
+        x[3::4, :] = uu[::-1, :][:lower, :]
     else:
         # Odd n case
         # z = real(ifft([y; conj(flipud(u))]))

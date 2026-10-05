@@ -12,6 +12,29 @@ def load_ref(name):
     return loadmat(os.path.join(REF_DIR, name), squeeze_me=True)
 
 
+@pytest.mark.parametrize('n', [255, 256])
+@pytest.mark.parametrize('single_sided', [False, True])
+def test_melbankm_preserves_fft_bin_power(n, single_sided):
+    from pyvoicebox.v_melbankm import v_melbankm
+
+    mode = 'ys' if single_sided else 'y'
+    bank, _, _, _ = v_melbankm(10, n, 8000, w=mode)
+    weights = np.ones(n // 2 + 1)
+    if not single_sided:
+        weights[1:] = 2
+        if n % 2 == 0:
+            weights[-1] = 1  # Nyquist has no separate negative-frequency bin
+    np.testing.assert_allclose(np.asarray(bank.sum(axis=0)).ravel(), weights)
+
+    signal = np.random.default_rng(42).standard_normal(n)
+    power = np.abs(np.fft.rfft(signal)) ** 2
+    if single_sided:
+        expected = np.sum(power)
+    else:
+        expected = n * np.sum(signal ** 2)  # Parseval's identity
+    np.testing.assert_allclose(np.sum(bank @ power), expected, rtol=1e-12)
+
+
 # ============================================================
 # v_enframe
 # ============================================================

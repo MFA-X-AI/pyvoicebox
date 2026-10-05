@@ -6,6 +6,7 @@ Uses the soundfile library for core WAV I/O.
 from __future__ import annotations
 import numpy as np
 import soundfile as sf
+from ._audio_io import _RAW_SCALE
 
 
 def v_writewav(d, fs, filename, mode='s') -> None:
@@ -50,9 +51,9 @@ def v_writewav(d, fs, filename, mode='s') -> None:
     elif 'V' in mode:
         subtype = 'DOUBLE'
     elif 'a' in mode:
-        subtype = 'PCM_16'  # A-law: we encode manually then write as PCM
+        subtype = 'ALAW'
     elif 'u' in mode:
-        subtype = 'PCM_16'  # Mu-law: same
+        subtype = 'ULAW'
     else:
         # Look for numeric bit depth
         bits = None
@@ -66,7 +67,7 @@ def v_writewav(d, fs, filename, mode='s') -> None:
                 break
             i += 1
         if bits is not None:
-            bit_map = {8: 'PCM_16', 16: 'PCM_16', 24: 'PCM_24', 32: 'PCM_32'}
+            bit_map = {8: 'PCM_U8', 16: 'PCM_16', 24: 'PCM_24', 32: 'PCM_32'}
             subtype = bit_map.get(bits, 'PCM_16')
 
     # Determine scaling mode
@@ -87,15 +88,8 @@ def v_writewav(d, fs, filename, mode='s') -> None:
         # Scale by dBm0 factor
         d = d / 2.03033976
     elif sc == 'r':
-        # Raw: normalize integer range to +-1 for soundfile
-        # Determine the peak integer value for the bit depth
-        if subtype == 'FLOAT' or subtype == 'DOUBLE':
-            pass  # no normalization needed
-        else:
-            # Extract bits
-            bits_val = int(subtype.split('_')[1]) if '_' in subtype else 16
-            peak_int = 2 ** (bits_val - 1)
-            d = d / peak_int
+        # Convert native PCM / decoded G.711 units to libsndfile's range.
+        d = d / _RAW_SCALE.get(subtype, 1)
 
     # Append .wav if no extension
     if '.' not in filename:

@@ -307,6 +307,39 @@ class TestGaussmixm:
         np.testing.assert_allclose(mm, ref['mm_gm'], rtol=1e-3)
         np.testing.assert_allclose(mc, ref['mc_gm'], rtol=1e-2)
 
+    @pytest.mark.parametrize('origins', [[0.0], [-1.0, 2.0]])
+    def test_1d_mixture_magnitude_moments(self, origins):
+        from scipy.integrate import quad
+        from scipy.stats import norm
+        from pyvoicebox.v_gaussmixm import v_gaussmixm
+
+        means = np.array([0.0, 1.5])
+        variances = np.array([1.0, 2.0])
+        weights = np.array([0.3, 0.7])
+        origins = np.asarray(origins)
+        mm, mc = v_gaussmixm(means[:, None], variances[:, None],
+                             weights, origins[:, None])
+
+        def pdf(x):
+            return weights @ norm.pdf(x, means, np.sqrt(variances))
+
+        edges = np.r_[-np.inf, origins, np.inf]
+
+        def expectation(fn):
+            return sum(quad(lambda x: fn(x) * pdf(x), left, right)[0]
+                       for left, right in zip(edges[:-1], edges[1:]))
+
+        expected_mean = np.array([
+            expectation(lambda x: abs(x - z)) for z in origins
+        ])
+        expected_second = np.array([
+            [expectation(lambda x: abs(x - zi) * abs(x - zj))
+             for zj in origins] for zi in origins
+        ])
+        np.testing.assert_allclose(mm, expected_mean, rtol=1e-10)
+        np.testing.assert_allclose(mc, expected_second - np.outer(expected_mean, expected_mean),
+                                   rtol=1e-10, atol=1e-10)
+
 
 # ============================================================
 # v_gaussmixb
@@ -494,6 +527,132 @@ class TestGaussmix:
         # Weights should be roughly equal
         assert np.all(w > 0.3)
         assert np.all(w < 0.7)
+
+    @pytest.mark.parametrize('initialization', ['hv', 'explicit', 'diagonal_full'])
+    def test_full_covariance_single_component(self, initialization):
+        from pyvoicebox.v_gaussmix import v_gaussmix
+        from pyvoicebox.v_gaussmixp import v_gaussmixp
+
+        x = np.array([[1., 1.], [2., 2.], [3., 4.], [4., 3.]])
+        if initialization == 'hv':
+            args = dict(m0=1, v0='hv')
+        else:
+            covariance = (np.array([[1., .5], [.5, 1.]])
+                          if initialization == 'explicit' else np.eye(2))
+            args = dict(m0=[[0., 0.]], v0=covariance[:, :, None], w0=[1.])
+        m, v, w, g, f, pp, gg = v_gaussmix(x, l=10, **args)
+        np.testing.assert_allclose(m, [[2.5, 2.5]], atol=1e-12)
+        np.testing.assert_allclose(v[:, :, 0], [[1.25, 1.], [1., 1.25]], atol=1e-12)
+        np.testing.assert_allclose(w, [1.])
+        np.testing.assert_allclose(pp, v_gaussmixp(x, m, v, w)[0], atol=1e-12)
+        np.testing.assert_allclose(g, pp.mean(), atol=1e-12)
+        np.testing.assert_allclose(gg[-1], g, atol=1e-12)
+        assert f == 0
+
+    def test_weighted_full_covariance(self):
+        from pyvoicebox.v_gaussmix import v_gaussmix
+        from pyvoicebox.v_gaussmixp import v_gaussmixp
+
+        x = np.array([[10., 1.], [20., 2.], [30., 4.], [40., 3.]])
+        weights = np.array([1., 2., 3., 4.])
+        normalized = weights / weights.sum()
+        expected_mean = normalized @ x
+        centered = x - expected_mean
+        expected_covariance = centered.T @ (centered * normalized[:, None])
+        m, v, w, g, _, pp, gg = v_gaussmix(
+            x, l=10, m0=[[0., 0.]], v0=np.array([[20., 1.], [1., 2.]]),
+            w0=[1.], wx=weights,
+        )
+        np.testing.assert_allclose(m[0], expected_mean, atol=1e-12)
+        np.testing.assert_allclose(v[:, :, 0], expected_covariance, atol=1e-12)
+        np.testing.assert_allclose(pp, v_gaussmixp(x, m, v, w)[0], atol=1e-12)
+        np.testing.assert_allclose(g, normalized @ pp, atol=1e-12)
+        np.testing.assert_allclose(gg[-1], g, atol=1e-12)
+
+    @pytest.mark.parametrize('initialization', ['explicit', 'kmv'])
+    def test_correlated_two_component_fit(self, initialization):
+        from pyvoicebox.v_gaussmix import v_gaussmix
+        from pyvoicebox.v_gaussmixp import v_gaussmixp
+
+        rng = np.random.RandomState(17)
+        c1 = rng.multivariate_normal([-3., 5.], [[1.5, .9], [.9, 1.]], size=160)
+        c2 = rng.multivariate_normal([5., -2.], [[.7, -.5], [-.5, 1.2]], size=240)
+        x = np.vstack([c1, c2])
+        means = np.array([[-2., 4.], [4., -1.]])
+        if initialization == 'explicit':
+            covariance = np.repeat(np.array([[3., .2], [.2, 3.]])[:, :, None], 2, axis=2)
+            args = dict(m0=means, v0=covariance, w0=[.5, .5])
+        else:
+            args = dict(m0=means, v0=initialization)
+        m, v, w, g, f, pp, gg = v_gaussmix(x, l=30, **args)
+        order = np.argsort(m[:, 0])
+        np.testing.assert_allclose(m[order], [c1.mean(axis=0), c2.mean(axis=0)], atol=1e-4)
+        np.testing.assert_allclose(w[order], [.4, .6], atol=1e-4)
+        for idx, cloud in zip(order, [c1, c2]):
+            np.testing.assert_allclose(v[:, :, idx], np.cov(cloud, rowvar=False, bias=True), atol=1e-4)
+            assert np.linalg.eigvalsh(v[:, :, idx]).min() > 0
+        np.testing.assert_allclose(pp, v_gaussmixp(x, m, v, w)[0], atol=1e-11)
+        np.testing.assert_allclose(g, pp.mean(), atol=1e-12)
+        np.testing.assert_allclose(gg[-1], g, atol=1e-12)
+        assert np.all(np.diff(gg) >= -1e-10)
+        assert f > 0
+
+    def test_full_covariance_eigenvalue_floor(self):
+        from pyvoicebox.v_gaussmix import v_gaussmix
+        from pyvoicebox.v_gaussmixp import v_gaussmixp
+
+        x = np.array([[1., 2.], [2., 4.], [3., 6.], [4., 8.]])
+        m, v, w, _, _, pp, _ = v_gaussmix(
+            x, c=.05, l=10, m0=[[0., 0.]],
+            v0=np.array([[1., 1.], [1., 1.]])[:, :, None], w0=[1.],
+        )
+        scaled_covariance = v[:, :, 0] / np.outer(x.std(axis=0), x.std(axis=0))
+        np.testing.assert_allclose(np.linalg.eigvalsh(scaled_covariance), [.05, 2.], atol=1e-12)
+        np.testing.assert_allclose(pp, v_gaussmixp(x, m, v, w)[0], atol=1e-12)
+
+    def test_explicit_diagonal_variance_normalization(self):
+        from pyvoicebox.v_gaussmix import v_gaussmix
+        from pyvoicebox.v_gaussmixp import v_gaussmixp
+
+        x = np.array([[10., 1.], [20., 2.], [30., 4.], [40., 3.]])
+        mean, variance = np.array([[5., 1.]]), np.array([[20., 2.]])
+        m, v, w, _, _, pp, _ = v_gaussmix(x, l=0, m0=mean, v0=variance, w0=[1.])
+        np.testing.assert_allclose(m, mean, atol=1e-12)
+        np.testing.assert_allclose(v, variance, atol=1e-12)
+        np.testing.assert_allclose(pp, v_gaussmixp(x, mean, variance, [1.])[0], atol=1e-12)
+
+
+class TestProbabilityRegressions:
+    @pytest.mark.parametrize('mode, moments, expected', [
+        ('mR', [2., 1., 0., 3.], [2., 5., 14., 43.]),
+        ('rM', [2., 5., 14., 43.], [2., 1., 0., 3.]),
+    ])
+    def test_translated_moments(self, mode, moments, expected):
+        from pyvoicebox.v_pdfmoments import v_pdfmoments
+
+        converted, _, _ = v_pdfmoments(mode, moments)
+        np.testing.assert_allclose(converted, expected, atol=1e-12)
+
+    def test_affine_moment_transform(self):
+        from pyvoicebox.v_pdfmoments import v_pdfmoments
+
+        raw, _, _ = v_pdfmoments('mR', [2., 1., 0., 3.], b=3., a=2.)
+        np.testing.assert_allclose(raw, [7., 53., 427., 3625.], atol=1e-12)
+
+    @pytest.mark.parametrize('full_covariance', [False, True])
+    def test_complex_gaussian_sampling(self, full_covariance):
+        from pyvoicebox.v_randvec import v_randvec
+
+        np.random.seed(43)
+        mean = np.array([[.5, -2.]])
+        covariance = np.array([[2., .4], [.4, .5]]) if full_covariance else np.diag([2., .5])
+        specified = covariance[:, :, None] if full_covariance else np.diag(covariance)[None, :]
+        x, components = v_randvec(40000, mean, specified, [1.], mode='c')
+        assert np.iscomplexobj(x)
+        np.testing.assert_array_equal(components, np.zeros(len(x), dtype=int))
+        np.testing.assert_allclose(x.mean(axis=0), mean[0], atol=.02)
+        np.testing.assert_allclose(np.cov(x.real, rowvar=False), covariance / 2, atol=.025)
+        np.testing.assert_allclose(np.cov(x.imag, rowvar=False), covariance / 2, atol=.025)
 
 
 # ============================================================
